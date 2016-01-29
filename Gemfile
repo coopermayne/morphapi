@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 
-gem 'casein', '~>5.1.1'
+#gem 'casein', '~>5.1.1'
 
 gem 'carrierwave', '0.10.0'
 gem 'mini_magick'
@@ -54,5 +54,5 @@ end
 
 gem 'rails_12factor', group: :production
 
-ruby "2.2.0"
+ruby "2.2.3"
 
