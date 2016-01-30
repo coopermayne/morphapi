@@ -2,10 +2,10 @@ CarrierWave.configure do |config|
 
   config.fog_credentials = {
     :provider                   =>"AWS" ,
-    :aws_access_key_id          =>"AKIAIAAKWBBSS2G3XS6A",
-    :aws_secret_access_key      =>"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",
+    :aws_access_key_id          =>ENV["aws_access_key_id"],
+    :aws_secret_access_key      =>ENV["aws_secret_access_key"],
     :region                     =>"us-west-2"
   }
-  config.fog_directory = "morphmorph"
+  config.fog_directory = ENV["bucket_name"]
 
 end
