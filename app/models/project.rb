@@ -8,6 +8,4 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :bibliography_items
 
   has_many :uploads
-  belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
-  has_many :galleries
 end
