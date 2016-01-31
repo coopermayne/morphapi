@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127225346) do
+ActiveRecord::Schema.define(version: 20160131233709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,17 @@ ActiveRecord::Schema.define(version: 20160127225346) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "rank"
+    t.boolean  "visible"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "project_id"
+  end
+
+  add_index "galleries", ["project_id"], name: "index_galleries_on_project_id", using: :btree
+
   create_table "news_items", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -186,6 +197,7 @@ ActiveRecord::Schema.define(version: 20160127225346) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
+    t.integer  "primary_id"
   end
 
   add_index "projects", ["section_id"], name: "index_projects_on_section_id", using: :btree
@@ -220,25 +232,26 @@ ActiveRecord::Schema.define(version: 20160127225346) do
     t.string   "name"
     t.boolean  "copyright"
     t.integer  "rank"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "title"
     t.integer  "file_type_id"
     t.integer  "credit_id"
-    t.integer  "project_id"
-    t.integer  "person_id"
-    t.integer  "new_item_id"
+    t.integer  "gallery_id"
+    t.integer  "uploadable_id"
+    t.string   "uploadable_type"
   end
 
   add_index "uploads", ["credit_id"], name: "index_uploads_on_credit_id", using: :btree
   add_index "uploads", ["file_type_id"], name: "index_uploads_on_file_type_id", using: :btree
-  add_index "uploads", ["new_item_id"], name: "index_uploads_on_new_item_id", using: :btree
-  add_index "uploads", ["person_id"], name: "index_uploads_on_person_id", using: :btree
-  add_index "uploads", ["project_id"], name: "index_uploads_on_project_id", using: :btree
+  add_index "uploads", ["gallery_id"], name: "index_uploads_on_gallery_id", using: :btree
+  add_index "uploads", ["uploadable_type", "uploadable_id"], name: "index_uploads_on_uploadable_type_and_uploadable_id", using: :btree
 
   add_foreign_key "educations", "people"
+  add_foreign_key "galleries", "projects"
   add_foreign_key "projects", "sections"
   add_foreign_key "roles", "people"
   add_foreign_key "roles", "positions"
   add_foreign_key "roles", "projects"
+  add_foreign_key "uploads", "galleries"
 end

@@ -280,15 +280,17 @@ def get_files
   errors = 0
 
   files = DB['select a.rank, b.id as project_id, b.type_id, b.sub_type, c.title as image_title, d.file_name, d.file_type as file_type_id, d.credit as credit_id, d.file_ext
-             from article_file as a
-             left join article as b
-             on a.article_id = b.id
-             left join article as c
-             on a.file_article_id = c.id
-             left join file_details as d
-             on d.article_id = a.file_article_id
-             left join file_credits as e
-             on e.id = d.credit
+            from article_file as a
+            left join article as b
+            on a.article_id = b.id
+            left join article as c
+            on a.file_article_id = c.id
+            left join file_details as d
+            on d.article_id = a.file_article_id
+            left join file_credits as e
+            on e.id = d.credit
+            where b.id = 288
+            or b.id = 110
              ']
 
   files.each do |file|
@@ -300,12 +302,14 @@ def get_files
         up = Upload.new()
 
         if file[:type_id]==3
-          up.project = Project.find(file[:project_id])
+          obj = Project.find(file[:project_id])
         elsif file[:type_id]==4
-          up.person = Person.find(file[:project_id])
+          obj = Person.find(file[:project_id])
         elsif file[:type_id]==2
-          up.news_item = NewsItem.find(file[:project_id])
+          obj = NewsItem.find(file[:project_id])
         end
+
+        up.uploadable = obj
 
         up.title = file[:image_title]
         up.rank = file[:rank]

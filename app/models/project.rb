@@ -7,5 +7,5 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :awards
   has_and_belongs_to_many :bibliography_items
 
-  has_many :uploads
+  has_many :uploads, as: :uploadable
 end
