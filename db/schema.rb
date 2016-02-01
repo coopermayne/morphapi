@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201004754) do
+ActiveRecord::Schema.define(version: 20160201144852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,7 +228,23 @@ ActiveRecord::Schema.define(version: 20160201004754) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "parent_id"
   end
+
+  add_index "sections", ["parent_id"], name: "index_sections_on_parent_id", using: :btree
+
+  create_table "slides", force: :cascade do |t|
+    t.integer  "rank"
+    t.boolean  "visible"
+    t.boolean  "is_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "upload_id"
+    t.integer  "section_id"
+  end
+
+  add_index "slides", ["section_id"], name: "index_slides_on_section_id", using: :btree
+  add_index "slides", ["upload_id"], name: "index_slides_on_upload_id", using: :btree
 
   create_table "uploads", force: :cascade do |t|
     t.string   "name"

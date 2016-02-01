@@ -3,5 +3,7 @@ class Upload < ActiveRecord::Base
   belongs_to :file_type
   belongs_to :credit
 
+  belongs_to :slide
+
   belongs_to :uploadable, polymorphic: true
 end
