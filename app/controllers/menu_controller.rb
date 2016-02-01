@@ -24,7 +24,7 @@ class MenuController < ApplicationController
       title: 'Architecture',
       url: 'architecture',
       sorting: [ {
-        title: 'Alphabetical',
+        title: 'a-z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       }, {
         title: 'Year',
