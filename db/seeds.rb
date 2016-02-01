@@ -279,26 +279,39 @@ end
 def get_files
   errors = 0
 
-  files = DB['select a.rank, b.id as project_id, b.type_id, b.sub_type, c.title as image_title, d.file_name, d.file_type as file_type_id, d.credit as credit_id, d.file_ext
-            from article_file as a
-            left join article as b
-            on a.article_id = b.id
-            left join article as c
-            on a.file_article_id = c.id
-            left join file_details as d
-            on d.article_id = a.file_article_id
-            left join file_credits as e
-            on e.id = d.credit
-            where b.id = 288
-            or b.id = 110
+  files = DB['select 
+  a.rank, 
+  b.id as project_id,
+  b.photo as primary_photo_id,
+  b.type_id,
+  b.sub_type, 
+  c.id as image_article_id,
+  c.title as image_title,
+  d.file_name,
+  d.file_type as file_type_id,
+  d.credit as credit_id,
+  d.file_ext
+
+  from article_file as a
+  left join article as b
+  on a.article_id = b.id
+  left join article as c
+  on a.file_article_id = c.id
+  left join file_details as d
+  on d.article_id = a.file_article_id
+  left join file_credits as e
+  on e.id = d.credit
+  where b.id = 288
+  or b.id = 110
              ']
 
   files.each do |file|
     #only images for now
     begin
 
-      if file[:file_ext]=='jpg'
+      is_primary = file[:image_article_id]==file[:primary_photo_id]
 
+      if file[:file_ext]=='jpg'
         up = Upload.new()
 
         if file[:type_id]==3
@@ -307,6 +320,12 @@ def get_files
           obj = Person.find(file[:project_id])
         elsif file[:type_id]==2
           obj = NewsItem.find(file[:project_id])
+        end
+
+        if is_primary
+          obj.primary_image = up
+          obj.save
+          puts "FOUND THE PRIMARY BABY"
         end
 
         up.uploadable = obj
@@ -322,24 +341,25 @@ def get_files
         #add image to amazon bucket
         n = file[:file_name] + "-l." + file[:file_ext]
 
-        up.remote_name_url = "http://morphopedia.com/uploads/" + n
+        #up.remote_name_url = "http://morphopedia.com/uploads/" + n
 
         if up.save
           puts 'saved: ' + up.title
-          puts 'url: ' + up.name.url
+          #puts 'url: ' + up.name.url
           puts 
         else
           puts "file name: " + n
           ft = up.file_type ? up.file_type.title : 'nil'
           puts "file type: " + ft
-          puts "belongs to: "  + (up.project.to_s || up.person.to_s || up.newsitem.to_s)
+          puts "belongs to: "  +  up.uploadable.class.to_s
           puts
         end
       end
 
-    rescue
+    rescue => error
       errors += 1
       puts "","RESCUE",""
+      puts error
     end
     puts "errors: " + errors.to_s
   end
