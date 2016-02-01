@@ -303,7 +303,7 @@ def get_files
 
   files = DB['select 
   a.rank, 
-  b.id as project_id,
+  b.id as article_id,
   b.photo as primary_photo_id,
   b.type_id,
   b.sub_type, 
@@ -323,8 +323,6 @@ def get_files
   on d.article_id = a.file_article_id
   left join file_credits as e
   on e.id = d.credit
-  where b.id = 288
-  or b.id = 110
              ']
 
   files.each do |file|
@@ -333,16 +331,17 @@ def get_files
 
       is_primary = file[:image_article_id]==file[:primary_photo_id]
 
-      if true
-      #if file[:file_ext]=='jpg'
+      #if true
+      if file[:file_ext]=='jpg'
         up = Upload.new()
 
+        obj = nil
         if file[:type_id]==3
-          obj = Project.find(file[:project_id])
+          obj = Project.find(file[:article_id])
         elsif file[:type_id]==4
-          obj = Person.find(file[:project_id])
+          obj = Person.find(file[:article_id])
         elsif file[:type_id]==2
-          obj = NewsItem.find(file[:project_id])
+          obj = NewsItem.find(file[:article_id])
         end
 
         if is_primary
@@ -372,7 +371,7 @@ def get_files
         else
           puts "file name: " + n
           ft = up.file_type ? up.file_type.title : 'nil'
-          puts "file type: " + ft
+          #puts "file type: " + ft
           puts "belongs to: "  +  up.uploadable.class.to_s
           puts
         end

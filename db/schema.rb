@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201153607) do
+ActiveRecord::Schema.define(version: 20160201191243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160201153607) do
     t.integer  "year"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "primary_id"
   end
 
   create_table "awards_projects", id: false, force: :cascade do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160201153607) do
     t.string   "pages"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "primary_id"
   end
 
   create_table "bibliography_items_projects", id: false, force: :cascade do |t|
@@ -129,6 +131,7 @@ ActiveRecord::Schema.define(version: 20160201153607) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "news_type_id"
+    t.integer  "primary_id"
   end
 
   add_index "news_items", ["news_type_id"], name: "index_news_items_on_news_type_id", using: :btree
