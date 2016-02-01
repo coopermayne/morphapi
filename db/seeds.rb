@@ -333,7 +333,8 @@ def get_files
 
       is_primary = file[:image_article_id]==file[:primary_photo_id]
 
-      if file[:file_ext]=='jpg'
+      if true
+      #if file[:file_ext]=='jpg'
         up = Upload.new()
 
         if file[:type_id]==3
