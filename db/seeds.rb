@@ -5,6 +5,26 @@ def get_sections
   sections.each do |section|
     Section.create(section)
   end
+
+  #add morph section and add seed ranks
+  Section.create(id: 13, title: "Morphosis", rank: 1)
+  Section.create(id: 14, title: "News", rank: 6)
+
+  Section.all.each do |sec|
+    if sec.id == 1
+      sec.rank = 1
+    elsif sec.id == 2
+      sec.rank = 3
+      sec.title = "Urban"
+    elsif sec.id == 4
+      sec.rank = 4
+      sec.title = "Tangents"
+    elsif sec.id == 6
+      sec.rank = 5
+    end
+
+    sec.save
+  end
 end
 
 
@@ -60,6 +80,8 @@ def get_people
 
     person.save
   end
+
+  #TODO add section to people...?
 end
 
 def get_projects

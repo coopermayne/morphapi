@@ -1,4 +1,4 @@
 class Slide < ActiveRecord::Base
-  has_one :section
-  has_one :slide
+  belongs_to :section
+  belongs_to :upload
 end
