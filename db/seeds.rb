@@ -325,7 +325,6 @@ def get_files
         if is_primary
           obj.primary_image = up
           obj.save
-          puts "FOUND THE PRIMARY BABY"
         end
 
         up.uploadable = obj
