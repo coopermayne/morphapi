@@ -34,7 +34,7 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: Project.all.select {|p| p.section && p.section.title=="Architecture"}.map {|p| p.project_types.first.title }.uniq
+        items: Project.includes(:project_types, :section).select {|p| p.section && p.section.title=="Architecture"}.map {|p| p.project_types.first.title }.uniq
       }, {
         title: 'Location',
         items: []
