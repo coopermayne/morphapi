@@ -3,4 +3,5 @@ class Award < ActiveRecord::Base
 
   belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
   has_many :uploads, as: :uploadable
+
 end

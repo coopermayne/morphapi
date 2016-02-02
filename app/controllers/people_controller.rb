@@ -1,9 +1,9 @@
 class PeopleController < ApplicationController
   def index
-    @people = Person.all.select{|p| p.is_morphosis && p.is_employed}
+    @people = Person.includes(:primary_image).where(is_employed: true)
   end
 
   def show
-    @person = Person.find(params[:id])
+    @person = Person.includes(roles: [:position, :project]).find(params[:id])
   end
 end

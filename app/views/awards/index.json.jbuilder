@@ -1,9 +1,8 @@
-json.array! @projects do |project|
+json.array! @awards do |award|
 
-  json.(project, :id, :title, :lat, :lon, :constr_edate, :design_edate )
-  if project.section
-    json.section project.section, :title
+  json.(award, :id, :title, :description, :overview, :year)
+  json.projects award.projects.each do |project|
+    json.(project, :id, :title)
   end
-  json.types project.project_types.map{|t| t.title}
 
 end
