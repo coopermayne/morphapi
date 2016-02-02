@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: uploads
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  copyright       :boolean
+#  rank            :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  title           :string
+#  file_type_id    :integer
+#  credit_id       :integer
+#  gallery_id      :integer
+#  uploadable_id   :integer
+#  uploadable_type :string
+#
+
 class Upload < ActiveRecord::Base
   mount_uploader :name, AvatarUploader
   belongs_to :file_type

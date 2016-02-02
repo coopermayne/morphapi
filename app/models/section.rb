@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: sections
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  parent_id  :integer
+#  rank       :integer
+#
+
 class Section < ActiveRecord::Base
   has_many :projects
   has_many :slides
