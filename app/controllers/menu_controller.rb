@@ -2,6 +2,9 @@ class MenuController < ApplicationController
   #def index
     #@sections = Section.all.select{|s| s.rank}.sort_by{|s| s.rank}
   #end
+  def links
+
+  end
 
   def index
     res = [
