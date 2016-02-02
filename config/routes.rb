@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :bibliography_items
   resources :news_items
   resources :people
+  resources :media
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

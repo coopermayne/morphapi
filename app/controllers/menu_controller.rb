@@ -7,6 +7,8 @@ class MenuController < ApplicationController
   end
 
   def index
+    arch_types = Project.includes(:project_types, :section).select {|p| p.section && p.section.title=="Architecture"}.map {|p| p.project_types.first.title }.uniq
+
     res = [
       {
       title: 'Morphosis',
@@ -27,14 +29,14 @@ class MenuController < ApplicationController
       title: 'Architecture',
       url: 'architecture',
       sorting: [ {
-        title: 'a-z',
+        title: 'A-Z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       }, {
         title: 'Year',
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: Project.includes(:project_types, :section).select {|p| p.section && p.section.title=="Architecture"}.map {|p| p.project_types.first.title }.uniq
+        items: arch_types
       }, {
         title: 'Location',
         items: []
