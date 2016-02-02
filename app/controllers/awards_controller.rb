@@ -1,6 +1,6 @@
 class AwardsController < ApplicationController
   def index
-    @awards = Award.all
+    @awards = Award.includes(:primary_image, :projects)
   end
 
   def show
