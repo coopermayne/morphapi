@@ -92,7 +92,11 @@ class MenuController < ApplicationController
       } ]
     }, {
       title: 'Research',
-      url: 'research'
+      url: 'research',
+      sorting: [{
+          title: "Now Institute",
+          items: types["Research"]
+      }]
     }, {
       title: 'News',
       url: 'news'
