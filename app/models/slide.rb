@@ -17,6 +17,7 @@
 
 class Slide < ActiveRecord::Base
   belongs_to :section
+  belongs_to :project
 
   has_many :uploads, as: :uploadable
 

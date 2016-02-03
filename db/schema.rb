@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203181436) do
+ActiveRecord::Schema.define(version: 20160203204040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -249,8 +249,10 @@ ActiveRecord::Schema.define(version: 20160203181436) do
     t.integer  "vida_upload_id"
     t.integer  "vidb_upload_id"
     t.integer  "gif_upload_id"
+    t.integer  "project_id"
   end
 
+  add_index "slides", ["project_id"], name: "index_slides_on_project_id", using: :btree
   add_index "slides", ["section_id"], name: "index_slides_on_section_id", using: :btree
 
   create_table "uploads", force: :cascade do |t|
@@ -278,4 +280,5 @@ ActiveRecord::Schema.define(version: 20160203181436) do
   add_foreign_key "roles", "people"
   add_foreign_key "roles", "positions"
   add_foreign_key "roles", "projects"
+  add_foreign_key "slides", "projects"
 end
