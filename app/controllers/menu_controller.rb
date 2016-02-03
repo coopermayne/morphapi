@@ -7,12 +7,26 @@ class MenuController < ApplicationController
   end
 
   def index
-    arch_types = Project.includes(:project_types, :section).select {|p| p.section && p.section.title=="Architecture"}.map {|p| p.project_types.first.title }.uniq
+
+    types = Hash.new []
+
+    Project.includes(:project_types, :section).each do |p|
+      next if !p.section
+      types[p.section.title] =  (types[p.section.title] + p.project_types.map(&:title)).uniq
+    end
+    
+    arch_slides = Section.includes(slides: [:image, :project]).find_by_title("Architecture").slides.map do |slide|
+
+      {
+        project_id: slide.project.id,
+        project_title: slide.project.title,
+        image: slide.image.name
+      }
+    end
 
     res = [
       {
       title: 'Morphosis',
-      url: '',
       sorting: [ {
         title: 'Awards',
         items: ''
@@ -27,7 +41,7 @@ class MenuController < ApplicationController
 
     {
       title: 'Architecture',
-      url: 'architecture',
+      slides: arch_slides,
       sorting: [ {
         title: 'A-Z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -36,7 +50,7 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: arch_types
+        items: types["Architecture"]
       }, {
         title: 'Location',
         items: []
@@ -45,22 +59,43 @@ class MenuController < ApplicationController
     
     {
       title: 'Urban Design',
-      url: 'urban-design'
+      sorting: [ {
+        title: 'A-Z',
+        items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      }, {
+        title: 'Year',
+        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
+      }, {
+        title: 'Type',
+        items: types["Urban"]
+      }, {
+        title: 'Location',
+        items: []
+      } ]
     }, 
     
     {
       title: 'Tangents',
-      url: 'tangents'
+      sorting: [ {
+        title: 'A-Z',
+        items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      }, {
+        title: 'Year',
+        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
+      }, {
+        title: 'Type',
+        items: types["Tangents"]
+      } ]
     }, {
       title: 'Research',
       url: 'research'
     }, {
-      title: 'Media',
-      url: 'media'
-    }, {
       title: 'News',
       url: 'news'
-    }]
+    },{
+      title: "Search"
+    }
+    ]
 
     render json: res
   end
