@@ -13,6 +13,9 @@ json.result do |json|
   end
 
   json.people @project.roles do |role|
+    json.role_title role.position.title
+    json.role_rank role.position.rank
+    json.is_morphosis role.person.is_morphosis
     json.person role.person, :id, :name, :last_name, :is_morphosis, :is_collaborator, :is_consultant
   end
 
