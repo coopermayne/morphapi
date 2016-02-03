@@ -1,5 +1,7 @@
 DB = Sequel.connect('postgres://cooper:home3232@localhost:5432/test')
 
+LOGGER = Logger.new('logfile.log')
+
 def get_sections
   sections = DB['select id, title from section']
   sections.each do |section|
@@ -303,6 +305,7 @@ def get_files
 
   files = DB['select 
   a.rank, 
+  a.featured,
   b.id as article_id,
   b.photo as primary_photo_id,
   b.type_id,
@@ -326,63 +329,70 @@ def get_files
              ']
 
   files.each do |file|
-    #only images for now
     begin
 
       is_primary = file[:image_article_id]==file[:primary_photo_id]
 
-      #if true
+      up = Upload.new()
+
+      obj = nil
+      if file[:type_id]==3
+        obj = Project.find(file[:article_id])
+      elsif file[:type_id]==4
+        obj = Person.find(file[:article_id])
+      elsif file[:type_id]==2
+        obj = NewsItem.find(file[:article_id])
+      elsif file[:sub_type]==1
+        obj = BibliographyItem.find(file[:article_id])
+      elsif file[:sub_type]==2
+        obj =Award.find(file[:article_id])
+      end
+
+      if is_primary
+        obj.primary_image = up
+        obj.save
+      end
+
+      up.uploadable = obj
+
+      up.title = file[:image_title]
+      up.rank = file[:rank]
+      up.is_featured = file[:featured]
+      up.copyright = false
+      t_id = file[:file_type_id]
+      c_id = file[:credit_id]
+      up.file_type = FileType.exists?(t_id) ? FileType.find(t_id) : nil
+      up.credit = Credit.exists?(c_id) ? Credit.find(c_id) : nil
+
+      #add image to amazon bucket
       if file[:file_ext]=='jpg'
-        up = Upload.new()
-
-        obj = nil
-        if file[:type_id]==3
-          obj = Project.find(file[:article_id])
-        elsif file[:type_id]==4
-          obj = Person.find(file[:article_id])
-        elsif file[:type_id]==2
-          obj = NewsItem.find(file[:article_id])
-        end
-
-        if is_primary
-          obj.primary_image = up
-          obj.save
-        end
-
-        up.uploadable = obj
-
-        up.title = file[:image_title]
-        up.rank = file[:rank]
-        up.copyright = false
-        t_id = file[:file_type_id]
-        c_id = file[:credit_id]
-        up.file_type = FileType.exists?(t_id) ? FileType.find(t_id) : nil
-        up.credit = Credit.exists?(c_id) ? Credit.find(c_id) : nil
-
-        #add image to amazon bucket
         n = file[:file_name] + "-l." + file[:file_ext]
+      else
+        n = file[:file_name] + file[:file_ext]
+      end
 
-        up.remote_name_url = "http://morphopedia.com/uploads/" + n
+      up.remote_name_url = "http://morphopedia.com/uploads/" + n
 
-        if up.save
-          puts 'saved: ' + up.title
-          #puts 'url: ' + up.name.url
-          puts 
-        else
-          puts "file name: " + n
-          ft = up.file_type ? up.file_type.title : 'nil'
-          #puts "file type: " + ft
-          puts "belongs to: "  +  up.uploadable.class.to_s
-          puts
-        end
+      if up.save
+        puts 'saved: ' + up.title
+        puts 
+      else
+        puts "no save"
+        puts
+        msg =  "file name: " + n
+        msg += "...."
+        msg += "file title: " + file[:image_title]
+        LOGGER.debug { msg }
       end
 
     rescue => error
+      puts "error"
+      puts
       errors += 1
-      puts "","RESCUE",""
-      puts error
+      LOGGER.debug { error }
     end
-    puts "errors: " + errors.to_s
+
+    LOGGER.debug {"errors: " + errors.to_s}
   end
 end
 

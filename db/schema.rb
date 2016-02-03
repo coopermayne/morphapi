@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201191243) do
+ActiveRecord::Schema.define(version: 20160202220920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -259,14 +259,14 @@ ActiveRecord::Schema.define(version: 20160201191243) do
     t.string   "title"
     t.integer  "file_type_id"
     t.integer  "credit_id"
-    t.integer  "gallery_id"
     t.integer  "uploadable_id"
     t.string   "uploadable_type"
+    t.boolean  "in_gallery"
+    t.boolean  "is_featured"
   end
 
   add_index "uploads", ["credit_id"], name: "index_uploads_on_credit_id", using: :btree
   add_index "uploads", ["file_type_id"], name: "index_uploads_on_file_type_id", using: :btree
-  add_index "uploads", ["gallery_id"], name: "index_uploads_on_gallery_id", using: :btree
   add_index "uploads", ["uploadable_type", "uploadable_id"], name: "index_uploads_on_uploadable_type_and_uploadable_id", using: :btree
 
   add_foreign_key "educations", "people"
@@ -275,5 +275,4 @@ ActiveRecord::Schema.define(version: 20160201191243) do
   add_foreign_key "roles", "people"
   add_foreign_key "roles", "positions"
   add_foreign_key "roles", "projects"
-  add_foreign_key "uploads", "galleries"
 end
