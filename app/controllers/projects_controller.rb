@@ -29,7 +29,6 @@
 #  state          :string
 #  country        :string
 #  primary_id     :integer
-#
 
 class ProjectsController < ApplicationController
   def index

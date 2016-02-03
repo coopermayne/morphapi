@@ -2,14 +2,17 @@
 #
 # Table name: slides
 #
-#  id         :integer          not null, primary key
-#  rank       :integer
-#  visible    :boolean
-#  is_image   :boolean
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  upload_id  :integer
-#  section_id :integer
+#  id              :integer          not null, primary key
+#  rank            :integer
+#  visible         :boolean
+#  is_image        :boolean
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  section_id      :integer
+#  image_upload_id :integer
+#  vida_upload_id  :integer
+#  vidb_upload_id  :integer
+#  gif_upload_id   :integer
 #
 
 class Slide < ActiveRecord::Base
