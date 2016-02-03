@@ -27,6 +27,7 @@ class MenuController < ApplicationController
     res = [
       {
       title: 'Morphosis',
+      url: "",
       sorting: [ {
         title: 'Awards',
         items: ''
@@ -42,6 +43,7 @@ class MenuController < ApplicationController
     {
       title: 'Architecture',
       slides: arch_slides,
+      url: "architecture",
       sorting: [ {
         title: 'A-Z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -59,6 +61,7 @@ class MenuController < ApplicationController
     
     {
       title: 'Urban Design',
+      url: "urban-design",
       sorting: [ {
         title: 'A-Z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -76,6 +79,7 @@ class MenuController < ApplicationController
     
     {
       title: 'Tangents',
+      url: "tangents",
       sorting: [ {
         title: 'A-Z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -93,7 +97,8 @@ class MenuController < ApplicationController
       title: 'News',
       url: 'news'
     },{
-      title: "Search"
+      title: "Search",
+      url: "search"
     }
     ]
 
