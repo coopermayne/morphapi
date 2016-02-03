@@ -60,8 +60,8 @@ class MenuController < ApplicationController
     }, 
     
     {
-      title: 'Urban Design',
-      url: "urban-design",
+      title: 'Urban',
+      url: "urban",
       sorting: [ {
         title: 'A-Z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
