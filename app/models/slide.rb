@@ -13,6 +13,8 @@
 #  vida_upload_id  :integer
 #  vidb_upload_id  :integer
 #  gif_upload_id   :integer
+#  project_id      :integer
+#  title           :string
 #
 
 class Slide < ActiveRecord::Base
