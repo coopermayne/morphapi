@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
 	#Casein routes
-	#namespace :casein do
-	#end
+  namespace :casein do
+		resources :projects
+  end
 
 
   get 'menu' => 'menu#index'
