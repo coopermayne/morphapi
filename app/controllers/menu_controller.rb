@@ -41,7 +41,7 @@ class MenuController < ApplicationController
       {
       title: 'Morphosis',
       slides: arch_slides,
-      url: "",
+      url: "/",
       sorting: [ {
         title: 'Awards',
         items: ''
