@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 	#Casein routes
 	#namespace :casein do
-		#resources :projects
 	#end
 
 

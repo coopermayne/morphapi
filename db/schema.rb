@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203235833) do
+ActiveRecord::Schema.define(version: 20160204202754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,28 @@ ActiveRecord::Schema.define(version: 20160203235833) do
 
   add_index "bibliography_items_projects", ["bibliography_item_id"], name: "index_bibliography_items_projects_on_bibliography_item_id", using: :btree
   add_index "bibliography_items_projects", ["project_id"], name: "index_bibliography_items_projects_on_project_id", using: :btree
+
+  create_table "casein_admin_users", force: :cascade do |t|
+    t.string   "login",                           null: false
+    t.string   "name"
+    t.string   "email"
+    t.integer  "access_level",        default: 0, null: false
+    t.string   "crypted_password",                null: false
+    t.string   "password_salt",                   null: false
+    t.string   "persistence_token"
+    t.string   "single_access_token"
+    t.string   "perishable_token"
+    t.integer  "login_count",         default: 0, null: false
+    t.integer  "failed_login_count",  default: 0, null: false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.string   "time_zone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "component_types", force: :cascade do |t|
     t.string   "title"
