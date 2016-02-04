@@ -4,13 +4,14 @@ json.result do |json|
   json.primary_image @project.primary_image
 
   #json.components @project.components, :id, :content, :rank, :component_type
+  #
+  json.galleries @project.getGalleries
 
-  json.uploads @project.uploads do |upload|
-    json.(upload, :id, :title, :rank )
-    json.url upload.name.url
-    json.type upload.file_type, :title, :rank
-    json.credit upload.credit
-  end
+  #json.galleries @project.getGalleries do |upload|
+    #json.(upload, :id, :title, :rank )
+    #json.url upload.name.url
+    #json.credit upload.credit
+  #end
 
   json.people @project.roles do |role|
     json.role_title role.position.title

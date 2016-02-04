@@ -42,4 +42,11 @@ class Project < ActiveRecord::Base
 
   has_many :uploads, as: :uploadable
   belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
+
+  def getGalleries
+    grouped = self.uploads.select{|u| u.in_gallery}.group_by{|item| item.file_type}
+    res = {}
+    grouped.each{ |k, v| res[k.title.to_sym] = v }
+    res
+  end
 end
