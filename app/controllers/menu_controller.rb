@@ -40,6 +40,7 @@ class MenuController < ApplicationController
     res[:sections] = [
       {
       title: 'Morphosis',
+      slides: arch_slides,
       url: "",
       sorting: [ {
         title: 'Awards',
@@ -74,6 +75,7 @@ class MenuController < ApplicationController
     
     {
       title: 'Urban',
+      slides: arch_slides,
       url: "urban",
       sorting: [ {
         title: 'A-Z',
@@ -92,6 +94,7 @@ class MenuController < ApplicationController
     
     {
       title: 'Tangents',
+      slides: arch_slides,
       url: "tangents",
       sorting: [ {
         title: 'A-Z',
@@ -105,6 +108,7 @@ class MenuController < ApplicationController
       } ]
     }, {
       title: 'Research',
+      slides: arch_slides,
       url: 'research',
       sorting: [{
           title: "Now Institute",
