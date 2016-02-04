@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203204040) do
+ActiveRecord::Schema.define(version: 20160203235833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,6 +250,7 @@ ActiveRecord::Schema.define(version: 20160203204040) do
     t.integer  "vidb_upload_id"
     t.integer  "gif_upload_id"
     t.integer  "project_id"
+    t.string   "title"
   end
 
   add_index "slides", ["project_id"], name: "index_slides_on_project_id", using: :btree
