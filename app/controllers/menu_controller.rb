@@ -16,7 +16,6 @@ class MenuController < ApplicationController
     end
     
     arch_slides = Section.includes(slides: [:image, :project]).find_by_title("Architecture").slides.map do |slide|
-
       {
         project_id: slide.project.id,
         project_title: slide.project.title,
@@ -24,7 +23,21 @@ class MenuController < ApplicationController
       }
     end
 
-    res = [
+    vid_slide = Section.find_by_title("Morphosis").slides.first
+
+    res = {}
+    res[:landing] = {
+      slides: [
+        {
+          mp4: vid_slide.mp4.name,
+          webm: vid_slide.webm.name,
+          gif:vid_slide.gif.name,
+          image:vid_slide.image.name,
+        }
+      ]
+    }
+
+    res[:sections] = [
       {
       title: 'Morphosis',
       url: "",
