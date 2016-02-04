@@ -1,4 +1,4 @@
-datas = [
+image_slides = [
   {
     section: "Architecture",
     project_id: 9314,
@@ -40,15 +40,108 @@ datas = [
     file_location: "db/morph\ data/3-architecture/4-emerson-college-los-angeles/ela-img-5624-jp-crop.jpg"
   }
 ]
-datas.each do |data|
-  sl = Slide.new()
-  sl.section = Section.find_by_title(data[:section])
-  sl.project = Project.find(data[:project_id])
 
-  u = Upload.new
-  u.name = File.open(Rails.root.join(data[ :file_location ]))
-  sl.image = u
+vid_slides = [
+  {
+    section: "Morphosis",
+    title: "vid1",
+    image: "db/morph\ data/1-home/1-heidi-duckler-dance/web-video-hddt-1.jpg",
+    mp4: "db/morph\ data/1-home/1-heidi-duckler-dance/heidi-duckler-dance-video/web-video-hddt-1.mp4.mp4",
+    webm: "db/morph\ data/1-home/1-heidi-duckler-dance/heidi-duckler-dance-video/web-video-hddt-1.webmhd.webm",
+    gif: "db/morph\ data/1-home/1-heidi-duckler-dance/heidi-duckler-dance-video/web-video-hddt-1.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "vid2",
+    image: "db/morph\ data/1-home/2-vals-celebration/web-video-vlh-celebrate.jpg",
+    mp4: "db/morph\ data/1-home/2-vals-celebration/vals-celebration-video/web-video-vlh-celebrate.mp4.mp4",
+    webm: "db/morph\ data/1-home/2-vals-celebration/vals-celebration-video/web-video-vlh-celebrate.webmhd.webm",
+    gif: "db/morph\ data/1-home/2-vals-celebration/vals-celebration-video/web-video-vlh-celebrate.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "vid3",
+    image: "db/morph\ data/1-home/3-full-scale-mock-up/web-video-kfr-shop2.jpg",
+    mp4: "db/morph\ data/1-home/3-full-scale-mock-up/a-confederacy-of-heretics-2-video/web-video-kfr-shop.mp4",
+    webm: "db/morph\ data/1-home/3-full-scale-mock-up/a-confederacy-of-heretics-2-video/web-video-kfr-shop.webmhd.webm",
+    gif: "db/morph\ data/1-home/3-full-scale-mock-up/a-confederacy-of-heretics-2-video/web-video-kfr-shop.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "vid4",
+    image: "db/morph\ data/1-home/4-kfr-team-meeting/web-video-kfr-team-meeting.jpg",
+    mp4: "db/morph\ data/1-home/4-kfr-team-meeting/kfr-team-meetin/web-video-kfr-team-meeting.mp4.mp4",
+    webm: "db/morph\ data/1-home/4-kfr-team-meeting/kfr-team-meetin/web-video-kfr-team-meeting.webmhd.webm",
+    gif: "db/morph\ data/1-home/4-kfr-team-meeting/kfr-team-meetin/web-video-kfr-team-meeting.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "vid5",
+    image: "db/morph\ data/1-home/5-fabrication-ccb-atrium-model/web-video-vlh-shop.jpg",
+    mp4: "db/morph\ data/1-home/5-fabrication-ccb-atrium-model/fabrication-shop/web-video-vlh-shop-webmhd.mp4.mp4",
+    webm: "db/morph\ data/1-home/5-fabrication-ccb-atrium-model/fabrication-shop/web-video-vlh-shop.webmhd.webm",
+    gif: "db/morph\ data/1-home/5-fabrication-ccb-atrium-model/fabrication-shop/web-video-vlh-shop.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "a-confed",
+    image: "db/morph\ data/1-home/a-confederacy-of-heretics/aconfederacyofheretics.jpg",
+    mp4: "db/morph\ data/1-home/a-confederacy-of-heretics/morphosis-party/web-video-kfr-moving-720.mp4",
+    webm: "db/morph\ data/1-home/a-confederacy-of-heretics/morphosis-party/web-video-kfr-moving-720.webm",
+    gif: "db/morph\ data/1-home/a-confederacy-of-heretics/morphosis-party/web-video-kfr-moving-720-fps8-fuzz3.w500.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "morphparty",
+    image: "db/morph\ data/1-home/morphosis-party-2014/web-video-vlh-celebrate2-720.jpg",
+    mp4: "db/morph\ data/1-home/morphosis-party-2014/confederacy-of-heretics-video/web-video-vlh-celebrate2-720.mp4",
+    webm: "db/morph\ data/1-home/morphosis-party-2014/confederacy-of-heretics-video/web-video-vlh-celebrate2-720.webm",
+    gif: "db/morph\ data/1-home/morphosis-party-2014/confederacy-of-heretics-video/vid-fps8-fuzz3.w500.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "shop-fab",
+    image: "db/morph\ data/1-home/shop-fabrication/web-video-ccb-shop.jpg",
+    mp4: "db/morph\ data/1-home/shop-fabrication/fabrication-shop-ccb/web-video-ccb-shop.mp4.mp4",
+    webm: "db/morph\ data/1-home/shop-fabrication/fabrication-shop-ccb/web-video-ccb-shop.webmhd.webm",
+    gif: "db/morph\ data/1-home/shop-fabrication/fabrication-shop-ccb/web-video-ccb-shop.gif",
+  },
+  {
+    section: "Morphosis",
+    title: "urban-campus",
+    image: "db/morph\ data/1-home/urban-campus/urbancampus.jpg",
+    mp4: "db/morph\ data/1-home/urban-campus/urban-campus-video/urbancampus.mp4.mp4",
+    webm: "db/morph\ data/1-home/urban-campus/urban-campus-video/urbancampus.mp4.webm",
+    gif: "db/morph\ data/1-home/urban-campus/urban-campus-video/final-640.gif",
+  }
+]
 
+#image_slides.each do |image_slide|
+  #sl = Slide.new()
+  #sl.section = Section.find_by_title(image_slide[:section])
+  #if image_slide[:project_id]
+    #sl.project = Project.find(image_slide[:project_id])
+  #end
+
+  #u = Upload.new
+  #u.name = File.open(Rails.root.join(image_slide[ :file_location ]))
+  #sl.image = u
+
+  #puts sl.save
+#end
+def getfile(f)
+  File.open(Rails.root.join(f))
+end
+
+vid_slides.each do |vid_slide|
+  sl = Slide.new(title: vid_slide[:title])
+  sl.section = Section.find_by_title(vid_slide[:section])
+
+  sl.image = Upload.new(name: getfile(vid_slide[:image]))
+  sl.mp4 = Upload.new(name: getfile(vid_slide[:mp4]))
+  sl.webm = Upload.new(name: getfile(vid_slide[:webm]))
+  sl.gif = Upload.new(name: getfile(vid_slide[:gif]))
+  
   puts sl.save
 end
 
