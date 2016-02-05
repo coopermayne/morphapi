@@ -2,7 +2,19 @@
 
 <h2>Projects<%= casein_pagination_details @projects %></h2>
 
-filter
+
+<ul class="nav nav-pills">
+
+  <li role="presentation" class="<%= 'active' unless @section_id %>">
+    <%= link_to "All", casein_projects_path %>
+  </li>
+
+  <% Section.all.select{|s| !s.projects.empty? }.each do |sec| %>
+    <li role="presentation" class="<%= 'active' if @section_id==sec.id.to_s %>">
+      <%= link_to sec.title, casein_projects_path(section_id: sec.id) %>
+    </li>
+  <% end %>
+</ul>
 
 <%= render :partial => 'casein/projects/table', :locals => { :projects => @projects } %>
 

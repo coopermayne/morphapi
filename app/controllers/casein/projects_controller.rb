@@ -2,14 +2,19 @@
 
 module Casein
   class ProjectsController < Casein::CaseinController
-  
+
     ## optional filters for defining usage according to Casein::AdminUser access_levels
     # before_filter :needs_admin, :except => [:action1, :action2]
     # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
   
     def index
       @casein_page_title = 'Projects'
-  		@projects = Project.order(sort_order(:title)).paginate :page => params[:page]
+
+      @section_id = params[:section_id]
+
+      @projects = Project.where(nil)
+      @projects = @projects.with_section(@section_id) if @section_id
+  		@projects = @projects.order(sort_order(:title)).paginate :page => params[:page]
     end
   
     def show
