@@ -64,7 +64,7 @@ module Casein
     private
       
       def project_params
-        params.require(:project).permit(:title, :overview, :description, :program, :client, :size, :site_area, :lat, :lon, :street_address, :zip, :design_sdate, :height)
+        params.require(:project).permit(:title, :overview, :description, :program, :client, :size, :site_area, :lat, :lon, :street_address, :zip, :design_sdate, :height, :section_id)
       end
 
   end

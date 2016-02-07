@@ -33,8 +33,11 @@
 
 class Project < ActiveRecord::Base
 
+
   has_many :components
   has_many :roles
+  accepts_nested_attributes_for :roles
+
 
   belongs_to :section
   has_and_belongs_to_many :project_types, join_table: "projects_project_types"
