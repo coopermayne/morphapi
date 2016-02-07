@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
 	#Casein routes
-	#namespace :casein do
-		#resources :projects
-	#end
+  namespace :casein do
+		resources :people
+		resources :news_items
+		resources :projects
+  end
 
 
   get 'menu' => 'menu#index'

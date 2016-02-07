@@ -1,0 +1,5 @@
+<%= f.label :person %>
+<%= f.collection_select :person_id, Person.all, :id, :name, prompt: "Select a person" %><br />
+
+<%= f.label :position %>
+<%= f.collection_select :position_id, Position.all, :id, :title, prompt: "Select a position" %><br />
