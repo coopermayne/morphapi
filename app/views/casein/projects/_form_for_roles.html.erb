@@ -1,0 +1,16 @@
+<p>
+
+<%= f.label :person %>
+<%= f.object.person.name if f.object.person %>
+
+<br \>
+
+<%= f.label :position %>
+<%= f.object.position.title if f.object.position %>
+
+<br \>
+
+<%= f.check_box :_destroy %>
+<%= f.label :_destroy, "Remove Role" %>
+
+</p>

@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
 
   has_many :components
   has_many :roles
-  accepts_nested_attributes_for :roles
+  accepts_nested_attributes_for :roles, allow_destroy: true
 
 
   belongs_to :section
