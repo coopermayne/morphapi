@@ -1,4 +1,5 @@
 #json.(@project, :id, :title, :overview, :description, :program, :client, :size, :site_area, :lat)
+
 json.result do |json|
   json.merge! @project.attributes
   json.primary_image @project.primary_image

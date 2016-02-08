@@ -1,4 +1,9 @@
-json.array! @sections do |section|
-  json.(section, :id, :title)
-  json.slides section.slides
-end
+#json.landing do |json|
+  #json.array! @vid_slides do |sl|
+    #json.(sl)
+  #end
+#end
+
+#json.sections do |json|
+  #json.map "hi"
+#end
