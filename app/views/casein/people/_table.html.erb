@@ -4,17 +4,10 @@
 	<thead>
 		<tr>
 			<th><%= casein_sort_link "Name", :name %></th>
-			<th><%= casein_sort_link "Birthday", :birthday %></th>
-			<th><%= casein_sort_link "Description", :description %></th>
-			<th><%= casein_sort_link "Email", :email %></th>
 			<th><%= casein_sort_link "Is morphosis", :is_morphosis %></th>
 			<th><%= casein_sort_link "Is employed", :is_employed %></th>
 			<th><%= casein_sort_link "Is collaborator", :is_collaborator %></th>
 			<th><%= casein_sort_link "Is consultant", :is_consultant %></th>
-			<th><%= casein_sort_link "Start date", :start_date %></th>
-			<th><%= casein_sort_link "End date", :end_date %></th>
-			<th><%= casein_sort_link "Website", :website %></th>
-			<th><%= casein_sort_link "Location", :location %></th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
@@ -22,17 +15,10 @@
 	<% people.each do |person| %>
 		<tr>
 			<td><%= casein_table_cell_link person.name, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.birthday, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.description, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.email, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.is_morphosis, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.is_employed, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.is_collaborator, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.is_consultant, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.start_date, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.end_date, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.website, casein_person_path(person) %></td>
-			<td><%= casein_table_cell_link person.location, casein_person_path(person) %></td>
+			<td><%= casein_table_cell_link casein_yes_no_label( person.is_morphosis ), casein_person_path(person) %></td>
+			<td><%= casein_table_cell_link casein_yes_no_label( person.is_employed ), casein_person_path(person) %></td>
+			<td><%= casein_table_cell_link casein_yes_no_label( person.is_collaborator), casein_person_path(person) %></td>
+			<td><%= casein_table_cell_link casein_yes_no_label( person.is_consultant ), casein_person_path(person) %></td>
 			<td class="delete">
 				<%= link_to(casein_show_row_icon("trash"), casein_person_path(person), :method => :delete, :data => { :confirm => "Are you sure you want to delete this person?" }) %>
 			</td>

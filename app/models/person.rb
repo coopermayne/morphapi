@@ -28,4 +28,7 @@ class Person < ActiveRecord::Base
 
   has_many :uploads, as: :uploadable
   belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
+
+  accepts_nested_attributes_for :roles, allow_destroy: true
+  accepts_nested_attributes_for :uploads, allow_destroy: true
 end

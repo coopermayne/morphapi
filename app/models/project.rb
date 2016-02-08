@@ -36,7 +36,6 @@ class Project < ActiveRecord::Base
 
   has_many :components
   has_many :roles
-  accepts_nested_attributes_for :roles, allow_destroy: true
 
 
   belongs_to :section
@@ -48,6 +47,10 @@ class Project < ActiveRecord::Base
   belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
 
 
+  accepts_nested_attributes_for :roles, allow_destroy: true
+  accepts_nested_attributes_for :uploads, allow_destroy: true
+
+
   def getGalleries
     grouped = self.uploads.select{|u| u.in_gallery}.group_by{|item| item.file_type}
     res = {}
@@ -56,7 +59,7 @@ class Project < ActiveRecord::Base
   end
 
   def getAllGalleries
-    grouped = self.uploads.select{|u| u.isImage }.group_by{|item| item.file_type}
+    grouped = self.uploads.select{|u| u.is_image }.group_by{|item| item.file_type}
     res = {}
     grouped.each{ |k, v| res[k.title.to_sym] = v.sort_by{|u| u.rank} }
     res

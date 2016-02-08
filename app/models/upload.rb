@@ -26,7 +26,7 @@ class Upload < ActiveRecord::Base
 
   belongs_to :uploadable, polymorphic: true
 
-  def isImage
+  def is_image
     [".jpg", ".jpeg", ".png"].include? File.extname(self.name_url)
   end
 end

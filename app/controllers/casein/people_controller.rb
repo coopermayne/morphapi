@@ -8,8 +8,14 @@ module Casein
     # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
   
     def index
+
+      #@is_collaborator = params[:is_collaborator]
+      #@is_consultant = params[:is_consultant]
       @casein_page_title = 'People'
-  		@people = Person.order(sort_order(:name)).paginate :page => params[:page]
+
+      @people = Person.where(nil)
+
+  		@people = @people.order(sort_order(:name)).paginate :page => params[:page]
     end
   
     def show

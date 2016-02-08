@@ -64,7 +64,41 @@ module Casein
     private
       
       def project_params
-        params.require(:project).permit(:title, :overview, :description, :program, :client, :size, :site_area, :lat, :lon, :street_address, :zip, :design_sdate, :height, :section_id, roles_attributes: [:id, :_destroy, :person_id, :project_id, :position_id])
+        params.require(:project).permit(
+          :title,
+          :overview,
+          :description,
+          :program,
+          :client,
+          :size,
+          :site_area,
+          :lat,
+          :lon,
+          :street_address,
+          :zip,
+          :design_sdate,
+          :design_edate,
+          :constr_sdate,
+          :constr_edate,
+          :open_date,
+          :close_date,
+          :height,
+          :section_id,
+          roles_attributes: [
+            :id,
+            :_destroy,
+            :person_id,
+            :project_id,
+            :position_id
+          ],
+          uploads_attributes: [
+            :id,
+            :_destroy,
+            :file_type_id,
+            :rank,
+            :in_gallery,
+          ]
+        )
       end
 
   end
