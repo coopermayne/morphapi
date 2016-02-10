@@ -18,6 +18,7 @@ gem 'carrierwave', '0.10.0'
 gem 'mini_magick'
 gem 'fog'
 gem 'figaro'
+gem 'ancestry'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
