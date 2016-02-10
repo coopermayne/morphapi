@@ -33,6 +33,8 @@
 
 class Project < ActiveRecord::Base
 
+  before_save :select_parents_of_selected_kids
+
 
   has_many :components
   has_many :roles
@@ -63,6 +65,14 @@ class Project < ActiveRecord::Base
     res = {}
     grouped.each{ |k, v| res[k.title.to_sym] = v.sort_by{|u| u.rank} }
     res
+  end
+
+  def select_parents_of_selected_kids
+    self.project_types.each do |pt|
+      pt.ancestors.each do |ancestor|
+        self.project_types << ancestor
+      end
+    end
   end
 
   scope :with_section, -> (section_id) { where section_id: section_id }

@@ -84,6 +84,7 @@ module Casein
           :close_date,
           :height,
           :section_id,
+          project_type_ids: [],
           roles_attributes: [
             :id,
             :_destroy,
