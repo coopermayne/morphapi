@@ -9,7 +9,11 @@ module Casein
   
     def index
       @casein_page_title = 'News items'
-  		@news_items = NewsItem.order(sort_order(:title)).paginate :page => params[:page]
+      unless params[:d] || params[:u]
+        params[:d] = 'down'
+      end
+
+  		@news_items = NewsItem.order(sort_order(:created_at)).paginate :page => params[:page]
     end
   
     def show
@@ -59,7 +63,15 @@ module Casein
     private
       
       def news_item_params
-        params.require(:news_item).permit(:title, :description, :overview, :place_name, :street_address, :start_date)
+        params.require(:news_item).permit(
+          :title,
+          :description,
+          :overview,
+          :place_name,
+          :street_address,
+          :start_date,
+          :news_type_id
+        )
       end
 
   end
