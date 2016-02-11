@@ -11,6 +11,13 @@
   <% project_type.children.each do |child| %>
     --<%= check_box_tag "project[project_type_ids][]", child.id, f.object.project_type_ids.include?(child.id), id: dom_id(child) %>
     <%= label_tag dom_id(child), child.title %><br>
+
+
+    <% child.children.each do |ch| %>
+      ----<%= check_box_tag "project[project_type_ids][]", ch.id, f.object.project_type_ids.include?(ch.id), id: dom_id(ch) %>
+      <%= label_tag dom_id(ch), ch.title %><br>
+    <% end %>
+
   <% end %>
 
 <% end %>
