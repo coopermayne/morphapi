@@ -10,4 +10,26 @@ $(document).ready(function(){
     $(this).before($(this).data('fields').replace(regexp, time));
     return event.preventDefault();
   });
+
+  $('.sectiontype input').on('change', function(a,b,c){
+    console.log("change");
+    var t_el = $(a.target)
+    var isChecked=t_el.is(':checked')
+    console.log(isChecked);
+    if(isChecked){
+      //check all parent checkboxes...
+      //only allow one section to be selected...
+      t_el.parents(".section").children("input:checkbox").prop("checked", true)
+      t_el.parents(".section").siblings(".section").find("input:checkbox").prop("checked", false)
+
+      if(t_el.parents(".type")){
+        t_el.parents(".type").children("input:checkbox").prop("checked", true)
+      }
+
+    } else {
+      //uncheck all child checkboxes
+      t_el.parent().find("input").prop("checked", false)
+    }
+  })
 })
+
