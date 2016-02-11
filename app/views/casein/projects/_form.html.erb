@@ -85,7 +85,9 @@
 	</div>
 
 	<div class="col-lg-6">
+    <% if f.object && f.object.primary_image %>
     <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
+  <% end %>
 	</div>
 
 </div>
