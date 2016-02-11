@@ -3,13 +3,13 @@ class MenuController < ApplicationController
   end
 
   def index
-    types = Hash.new []
 
     news = NewsItem.order(created_at: :desc).limit(10).map do |item|
       img = item.primary_image ? item.primary_image.name : nil
       {id: item.id, title: item.title, image: img }
     end
 
+    types = Hash.new []
     Project.includes(:project_types, :section).each do |p|
       next if !p.section
       types[p.section.title] =  (types[p.section.title] + p.project_types.map(&:title)).uniq

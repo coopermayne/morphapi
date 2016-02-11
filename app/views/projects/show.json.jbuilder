@@ -8,12 +8,6 @@ json.result do |json|
   #
   json.galleries @project.getGalleries
 
-  #json.galleries @project.getGalleries do |upload|
-    #json.(upload, :id, :title, :rank )
-    #json.url upload.name.url
-    #json.credit upload.credit
-  #end
-
   json.people @project.roles do |role|
     json.role_title role.position.title
     json.role_rank role.position.rank
