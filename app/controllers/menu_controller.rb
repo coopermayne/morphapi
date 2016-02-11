@@ -14,6 +14,7 @@ class MenuController < ApplicationController
       next if !p.section
       types[p.section.title] =  (types[p.section.title] + p.project_types.map(&:title)).uniq
     end
+    types.each{|k,v| v.select!{|vv|vv != k}}
 
     
     arch_slides = Section.includes(slides: [:image, :project]).find_by_title("Architecture").slides.map do |slide|
