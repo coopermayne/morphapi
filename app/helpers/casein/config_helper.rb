@@ -33,12 +33,12 @@ module Casein
   
     # A list of stylesheets to include. Do not remove the core casein/casein, but you can change the load order, if required.
     def casein_config_stylesheet_includes
-      %w[casein/casein casein/custom]
+      %w[casein/casein casein/trumbowyg.min casein/custom]
     end
   
     # A list of JavaScript files to include. Do not remove the core casein/casein, but you can change the load order, if required.
     def casein_config_javascript_includes
-      %w[casein/casein casein/custom]
+      %w[casein/casein casein/trumbowyg.min casein/custom]
     end
     
   end

@@ -30,5 +30,21 @@ $(document).ready(function(){
       t_el.parent().find("input").prop("checked", false)
     }
   })
+
+  $('textarea').trumbowyg({
+    autogrow: true,
+    fullscreenable: false,
+    semantic: true,
+    btns:[
+      'viewHTML',
+      '|', 'formatting',
+      '|', 'btnGrp-design',
+      '|', 'link',
+      '|', 'insertImage',
+      '|', 'btnGrp-lists',
+      '|', 'horizontalRule'
+
+    ]
+  })
 })
 
