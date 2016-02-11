@@ -8,17 +8,18 @@
 <% ProjectType.roots.each do |project_type| %>
 
   <div class="section">
+
     <%= check_box_tag "project[project_type_ids][]", project_type.id, f.object.project_type_ids.include?(project_type.id), id: dom_id(project_type) %>
     <%= label_tag dom_id(project_type), project_type.title %><br>
 
     <% project_type.children.each do |child| %>
       <div class="type">
-      --<%= check_box_tag "project[project_type_ids][]", child.id, f.object.project_type_ids.include?(child.id), id: dom_id(child), class: "type" %>
+      &nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag "project[project_type_ids][]", child.id, f.object.project_type_ids.include?(child.id), id: dom_id(child), class: "type" %>
       <%= label_tag dom_id(child), child.title %><br>
 
       <% child.children.each do |ch| %>
         <div class="subtype">
-        ----<%= check_box_tag "project[project_type_ids][]", ch.id, f.object.project_type_ids.include?(ch.id), id: dom_id(ch), class: "subtype"%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag "project[project_type_ids][]", ch.id, f.object.project_type_ids.include?(ch.id), id: dom_id(ch), class: "subtype"%>
         <%= label_tag dom_id(ch), ch.title %><br>
         </div>
       <% end %>
@@ -106,51 +107,51 @@
 <h2>details</h2>
 
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :client %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :size %>
   </div>
 
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :height %>
   </div>
 
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :site_area %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :lat %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :lon %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :street_address %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_text_field f, f.object, :zip %>
   </div>
 </div>
 <h2>dates</h2>
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_date_select f, f.object, :design_sdate %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_date_select f, f.object, :design_sdate %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_date_select f, f.object, :constr_sdate %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_date_select f, f.object, :constr_edate %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_date_select f, f.object, :open_date %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= casein_date_select f, f.object, :close_date %>
   </div>
 </div>

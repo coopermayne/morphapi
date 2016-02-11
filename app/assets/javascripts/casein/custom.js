@@ -12,7 +12,6 @@ $(document).ready(function(){
   });
 
   $('.sectiontype input').on('change', function(a,b,c){
-    console.log("change");
     var t_el = $(a.target)
     var isChecked=t_el.is(':checked')
     console.log(isChecked);
