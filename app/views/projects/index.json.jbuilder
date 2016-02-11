@@ -8,6 +8,6 @@ json.array! @projects do |project|
     json.section project.section, :title
   end
 
-  json.types project.project_types.map{|t| t.title}
+  json.types project.project_types.select {|t| t.parent}.map{|t| t.title }
 
 end
