@@ -1,10 +1,13 @@
 # encoding: utf-8
 
 class AvatarUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+  include CarrierWave::MimeTypes
+
+  process :set_content_type
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   #storage :file
@@ -14,6 +17,20 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.id}"
+  end
+
+  version :mobile, :if => :image? do
+    process :resize_to_limit => [500, 10000]
+  end
+
+  version :thumb, :if => :image? do
+    process :resize_to_limit => [10000, 200]
+  end
+
+  protected
+
+  def image?(new_file)
+    new_file.content_type.start_with? 'image'
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
