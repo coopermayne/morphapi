@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210214928) do
+ActiveRecord::Schema.define(version: 20160212165240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,7 +197,10 @@ ActiveRecord::Schema.define(version: 20160210214928) do
     t.string  "title"
     t.integer "rank"
     t.string  "ancestry"
+    t.integer "section_id"
   end
+
+  add_index "project_types", ["section_id"], name: "index_project_types_on_section_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "title"
@@ -254,12 +257,9 @@ ActiveRecord::Schema.define(version: 20160210214928) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "parent_id"
     t.integer  "rank"
     t.text     "content"
   end
-
-  add_index "sections", ["parent_id"], name: "index_sections_on_parent_id", using: :btree
 
   create_table "slides", force: :cascade do |t|
     t.integer  "rank"
@@ -300,6 +300,7 @@ ActiveRecord::Schema.define(version: 20160210214928) do
 
   add_foreign_key "educations", "people"
   add_foreign_key "galleries", "projects"
+  add_foreign_key "project_types", "sections"
   add_foreign_key "projects", "sections"
   add_foreign_key "roles", "people"
   add_foreign_key "roles", "positions"

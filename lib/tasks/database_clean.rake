@@ -53,6 +53,15 @@ namespace :db do
       pt.title[0] ="" if pt.title[0]=='x'
       pt.save
     end
+  end
 
+  task correct_types_again: :environment do
+    Project.all.each do |pr|
+      pr.project_types.each do |pt|
+        pt.section = pr.section
+        puts pt.section.title
+        puts pr.section.title
+      end
+    end
   end
 end

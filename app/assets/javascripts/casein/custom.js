@@ -11,24 +11,32 @@ $(document).ready(function(){
     return event.preventDefault();
   });
 
-  $('.sectiontype input').on('change', function(a,b,c){
+  $('.subtype input').on('change', function(a,b,c){
     var t_el = $(a.target)
     var isChecked=t_el.is(':checked')
     console.log(isChecked);
     if(isChecked){
       //check all parent checkboxes...
-      //only allow one section to be selected...
-      t_el.parents(".section").children("input:checkbox").prop("checked", true)
-      t_el.parents(".section").siblings(".section").find("input:checkbox").prop("checked", false)
-
-      if(t_el.parents(".type")){
-        t_el.parents(".type").children("input:checkbox").prop("checked", true)
-      }
-
-    } else {
-      //uncheck all child checkboxes
-      t_el.parent().find("input").prop("checked", false)
+      t_el.parents('.type').children('input:checkbox').prop("checked", true)
     }
+  })
+  $('.type input').on('change', function(a,b,c){
+    var t_el = $(a.target)
+    var isChecked=t_el.is(':checked')
+    console.log(isChecked);
+    if(!isChecked){
+      //uncheck kids
+      t_el.siblings('.subtype').find('input:checkbox').prop("checked", false)
+    }
+  })
+
+  $('.types').hide()
+    $('.section'+$('.section select').val()).show()
+
+  $('.section select').on('change', function(e){
+    var el = $( e.target )
+    $('.types').hide()
+    $('.section'+el.val()).show()
   })
 
   $('textarea').trumbowyg({
@@ -40,10 +48,8 @@ $(document).ready(function(){
       '|', 'formatting',
       '|', 'btnGrp-design',
       '|', 'link',
-      '|', 'insertImage',
       '|', 'btnGrp-lists',
       '|', 'horizontalRule'
-
     ]
   })
 })
