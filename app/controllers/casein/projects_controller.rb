@@ -92,6 +92,16 @@ module Casein
             :project_id,
             :position_id
           ],
+          awards_attributes: [
+            :id,
+            :_destroy,
+            :title,
+          ],
+          bibliography_items_attributes: [
+            :id,
+            :_destroy,
+            :title,
+          ],
           uploads_attributes: [
             :id,
             :_destroy,

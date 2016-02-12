@@ -4,10 +4,16 @@
 
 $(document).ready(function(){
   $('form').on('click', '.add_fields', function(event) {
+    //add the form partial
     var regexp, time;
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $(this).before($(this).data('fields').replace(regexp, time));
+
+
+    //add trumbowyg
+    applyTextBox($('textarea'))
+
     return event.preventDefault();
   });
 
@@ -39,7 +45,13 @@ $(document).ready(function(){
     $('.section'+el.val()).show()
   })
 
-  $('textarea').trumbowyg({
+  applyTextBox($('textarea'))
+})
+
+var applyTextBox = function(jquery_el){
+  console.log('hi');
+  console.log(jquery_el);
+  jquery_el.trumbowyg({
     autogrow: true,
     fullscreenable: false,
     semantic: true,
@@ -52,5 +64,4 @@ $(document).ready(function(){
       '|', 'horizontalRule'
     ]
   })
-})
-
+}
