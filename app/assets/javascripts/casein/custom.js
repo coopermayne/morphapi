@@ -9,18 +9,20 @@ $(document).ready(function(){
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $(this).before($(this).data('fields').replace(regexp, time));
-
-
     //add trumbowyg
     applyTextBox($('textarea'))
-
-    return event.preventDefault();
+    event.preventDefault();
   });
+
+  $('form').on('click', '.remove_fields', function(event){
+    $(this).prev('input[type=hidden]').val('1')
+    $(this).closest('fieldset').hide()
+    event.preventDefault();
+  })
 
   $('.subtype input').on('change', function(a,b,c){
     var t_el = $(a.target)
     var isChecked=t_el.is(':checked')
-    console.log(isChecked);
     if(isChecked){
       //check all parent checkboxes...
       t_el.parents('.type').children('input:checkbox').prop("checked", true)
@@ -29,7 +31,6 @@ $(document).ready(function(){
   $('.type input').on('change', function(a,b,c){
     var t_el = $(a.target)
     var isChecked=t_el.is(':checked')
-    console.log(isChecked);
     if(!isChecked){
       //uncheck kids
       t_el.siblings('.subtype').find('input:checkbox').prop("checked", false)
@@ -49,8 +50,6 @@ $(document).ready(function(){
 })
 
 var applyTextBox = function(jquery_el){
-  console.log('hi');
-  console.log(jquery_el);
   jquery_el.trumbowyg({
     autogrow: true,
     fullscreenable: false,

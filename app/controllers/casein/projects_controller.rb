@@ -19,7 +19,7 @@ module Casein
   
     def show
       @casein_page_title = 'View project'
-      @project = Project.find params[:id]
+      @project = Project.includes(:section, :project_types, roles:[:position, :person], uploads: [:file_type]).find params[:id]
     end
   
     def new
@@ -96,11 +96,23 @@ module Casein
             :id,
             :_destroy,
             :title,
+            :description,
+            :overview,
           ],
           bibliography_items_attributes: [
             :id,
             :_destroy,
             :title,
+            :description,
+            :overview, 
+            :author,  
+            :article_name, 
+            :book_title,   
+            :subtitle,     
+            :publication,  
+            :publisher,    
+            :date, 
+            :pub_date 
           ],
           uploads_attributes: [
             :id,
@@ -108,6 +120,8 @@ module Casein
             :file_type_id,
             :rank,
             :in_gallery,
+            :title,
+            :name,
           ]
         )
       end

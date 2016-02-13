@@ -1,3 +1,18 @@
-<%= casein_text_field f, f.object, :title %>
-<%= casein_text_area f, f.object, :description %>
-<%= casein_text_area f, f.object, :overview %>
+<fieldset class="well">
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "#{casein_show_icon 'minus-sign'}remove".html_safe, "#", class: "remove_fields" %>
+
+  <div class='row'>
+    <div class="col-md-12">
+      <%= casein_text_field f, f.object, :title %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class="col-md-6">
+      <%= casein_text_area f, f.object, :description %>
+    </div>
+    <div class="col-md-6">
+      <%= casein_text_area f, f.object, :overview %>
+    </div>
+  </div>
+</fieldset>

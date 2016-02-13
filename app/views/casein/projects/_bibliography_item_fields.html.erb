@@ -1,15 +1,17 @@
-<%= casein_text_field f, f.object, :title %>
-<%= casein_text_area f, f.object, :description %>
-<%= casein_text_area f, f.object, :overview %>
-<%= casein_text_field f, f.object, :author  %>
-<%= casein_text_field f, f.object, :article_name %>
-<%= casein_text_field f, f.object, :book_title   %>
-<%= casein_text_field f, f.object, :subtitle     %>
-<%= casein_text_field f, f.object, :publication  %>
-<%= casein_text_field f, f.object, :publisher    %>
+<fieldset class="well">
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "#{casein_show_icon 'minus-sign'}remove".html_safe, "#", class: "remove_fields" %>
 
-<%= casein_date_field f, f.object, :date %>
-<%= casein_date_field f, f.object, :pub_date %>
-
-<%= f.label :pages        %>
-<%= f.text_field :pages        %>
+  <%= casein_text_field f, f.object, :title %>
+  <%= casein_text_area f, f.object, :description %>
+  <%= casein_text_area f, f.object, :overview %>
+  <%= casein_text_field f, f.object, :author  %>
+  <%= casein_text_field f, f.object, :article_name %>
+  <%= casein_text_field f, f.object, :book_title   %>
+  <%= casein_text_field f, f.object, :subtitle     %>
+  <%= casein_text_field f, f.object, :publication  %>
+  <%= casein_text_field f, f.object, :publisher    %>
+  <%= casein_date_field f, f.object, :date %>
+  <%= casein_date_field f, f.object, :pub_date %>
+  <%= casein_text_field f, f.object,  :pages        %>
+</fieldset>
