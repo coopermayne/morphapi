@@ -18,15 +18,22 @@
 #
 
 class Upload < ActiveRecord::Base
+  before_save :set_some_defaults
+
   mount_uploader :name, AvatarUploader
 
   belongs_to :file_type
   belongs_to :credit
   #has_one :slide
 
+
   belongs_to :uploadable, polymorphic: true
 
   def is_image
     self.name_url && [".jpg", ".jpeg", ".png"].include?(File.extname(self.name_url))
+  end
+
+  def set_some_defaults
+    self.rank ||= 999
   end
 end
