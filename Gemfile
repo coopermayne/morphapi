@@ -22,9 +22,9 @@ gem 'ancestry'
 gem 'trumbowyg_rails'
 gem 'will_paginate', '~> 3.0.6'
 
-group :assets do
-  gem 'twitter-bootstrap-rails'
-end
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
