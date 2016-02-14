@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-	#Casein routes
-  namespace :casein do
+  #admin routes
+  namespace :admin do
 		resources :people
 		resources :news_items
 		resources :projects

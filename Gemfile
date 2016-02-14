@@ -14,13 +14,17 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 
-gem 'casein', '~>5.1.1'
-
 gem 'carrierwave', '0.10.0'
 gem 'mini_magick'
 gem 'fog'
 gem 'figaro'
 gem 'ancestry'
+gem 'trumbowyg_rails'
+gem 'will_paginate', '~> 3.0.6'
+
+group :assets do
+  gem 'twitter-bootstrap-rails'
+end
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
