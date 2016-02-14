@@ -1,5 +1,8 @@
-<%= f.label :person %>
-<%= f.collection_select :person_id, Person.all, :id, :name, prompt: "Select a person" %><br />
-
-<%= f.label :position %>
-<%= f.collection_select :position_id, Position.all, :id, :title, prompt: "Select a position" %><br />
+<div class='row'>
+  <div class='col-md-6'>
+    <%= f.input :person_id, collection: Person.all, prompt: "Select a person" %><br />
+  </div>
+  <div class='col-md-6'>
+    <%= f.input :position_id, collection: Position.all, prompt: "Select a position" %><br />
+  </div>
+</div>
