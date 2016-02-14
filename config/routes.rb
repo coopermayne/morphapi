@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   get 'menu' => 'menu#index'
-  root 'menu#links'
+  root 'admin/projects#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

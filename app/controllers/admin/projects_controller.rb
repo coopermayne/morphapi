@@ -1,18 +1,13 @@
 class Admin::ProjectsController < AdminController
-
-  ## optional filters for defining usage according to Casein::AdminUser access_levels
-  # before_filter :needs_admin, :except => [:action1, :action2]
-  # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
+  helper_method :sort_column, :sort_direction
 
   def index
     @casein_page_title = 'Projects'
 
     @section_id = params[:section_id]
-
     @projects = Project.where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
-    #@projects = @projects.order(sort_order(:title)).paginate :page => params[:page]
-    @projects = @projects.paginate :page => params[:page]
+    @projects = @projects.order(sort_column+ " " + sort_direction).paginate :page => params[:page]
   end
 
   def show
@@ -30,7 +25,7 @@ class Admin::ProjectsController < AdminController
 
     if @project.save
       flash[:notice] = 'Project created'
-      redirect_to casein_projects_path
+      redirect_to admin_projects_path
     else
       flash.now[:warning] = 'There were problems when trying to create a new project'
       render :action => :new
@@ -44,7 +39,7 @@ class Admin::ProjectsController < AdminController
 
     if @project.update_attributes project_params
       flash[:notice] = 'Project has been updated'
-      redirect_to casein_projects_path
+      redirect_to admin_projects_path
     else
       flash.now[:warning] = 'There were problems when trying to update this project'
       render :action => :show
@@ -56,7 +51,7 @@ class Admin::ProjectsController < AdminController
 
     @project.destroy
     flash[:notice] = 'Project has been deleted'
-    redirect_to casein_projects_path
+    redirect_to admin_projects_path
   end
 
   private
@@ -122,6 +117,16 @@ class Admin::ProjectsController < AdminController
         :name,
       ]
     )
+  end
+
+  private
+
+  def sort_column
+    Project.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end
