@@ -64,4 +64,14 @@ namespace :db do
       end
     end
   end
+
+  task generate_search_results: :environment do
+    [Award, BibliographyItem, NewsItem, Person, Project].each do |model|
+      model.all.each do |instance|
+        instance.autocreate_searchable
+        instance.update_search_content
+        puts instance.search_result
+      end
+    end
+  end
 end

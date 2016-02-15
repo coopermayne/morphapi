@@ -13,5 +13,4 @@ class ProjectType < ActiveRecord::Base
   belongs_to :section
 
   has_ancestry
-
 end

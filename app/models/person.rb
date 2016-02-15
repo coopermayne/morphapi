@@ -23,6 +23,8 @@
 #
 
 class Person < ActiveRecord::Base
+  has_one :search_result, as: :searchable
+
   has_many :roles
   has_many :educations
 
@@ -32,4 +34,12 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :roles, allow_destroy: true
   accepts_nested_attributes_for :educations, allow_destroy: true
   accepts_nested_attributes_for :uploads, allow_destroy: true
+
+  def autocreate_searchable
+    self.create_search_result
+  end
+
+  def update_search_content
+    search_result.update_attributes(title: name, content: "#{roles.map(&:project).map(&:title).join(" ")}")
+  end
 end

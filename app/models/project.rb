@@ -33,8 +33,10 @@
 
 class Project < ActiveRecord::Base
 
-  #before_save :select_parents_of_selected_kids
+  has_one :search_result, as: :searchable
 
+  after_create :autocreate_searchable
+  after_commit :update_search_content
 
   has_many :components
   has_many :roles
@@ -79,4 +81,10 @@ class Project < ActiveRecord::Base
 
   scope :with_section, -> (section_id) { where section_id: section_id }
 
+  def autocreate_searchable
+    self.create_search_result
+  end
+  def update_search_content
+    search_result.update_attributes(title: title, content: "#{title} #{project_types.map(&:title).join(" ")}")
+  end
 end

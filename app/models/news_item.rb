@@ -22,10 +22,19 @@
 #
 
 class NewsItem < ActiveRecord::Base
+  has_one :search_result, as: :searchable
   belongs_to :news_type
 
   has_many :uploads, as: :uploadable
   belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
 
   accepts_nested_attributes_for :news_type
+
+  def autocreate_searchable
+    self.create_search_result
+  end
+
+  def update_search_content
+    search_result.update_attributes(title: title, content: "")
+  end
 end
