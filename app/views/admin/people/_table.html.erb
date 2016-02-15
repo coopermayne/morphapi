@@ -13,7 +13,7 @@
 	
 	<% people.each do |person| %>
 		<tr>
-			<td><%= link_to person.name, admin_people_path(person) %></td>
+			<td><%= link_to person.name, admin_person_path(person) %></td>
 			<td><%= person.is_morphosis  %></td>
 			<td><%= person.is_employed  %></td>
 			<td><%= person.is_collaborator %></td>

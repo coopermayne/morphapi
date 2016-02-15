@@ -14,5 +14,9 @@ module ApplicationHelper
 
     link_to title, {:sort => column, :direction => direction, :section_id => params[:section_id], :type => params[:type] }
   end
+
+  def recent_years
+    {start_year: Date.today.year - 90, end_year: Date.today.year}
+  end
 end
 
