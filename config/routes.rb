@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
   #admin routes
   namespace :admin do
 		resources :people
