@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  #no sign up
+  devise_for :users, path_prefix: 'd',  controllers: { registrations: "registrations"}
 
   #admin routes
   namespace :admin do
 		resources :people
 		resources :news_items
 		resources :projects
+    resources :users
   end
 
 
   get 'menu' => 'menu#index'
-  root 'admin/projects#index'
+  root to: redirect('admin/projects')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
