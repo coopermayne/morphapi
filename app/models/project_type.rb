@@ -2,10 +2,11 @@
 #
 # Table name: project_types
 #
-#  id        :integer          not null, primary key
-#  title     :string
-#  rank      :integer
-#  parent_id :integer
+#  id         :integer          not null, primary key
+#  title      :string
+#  rank       :integer
+#  ancestry   :string
+#  section_id :integer
 #
 
 class ProjectType < ActiveRecord::Base
@@ -13,4 +14,5 @@ class ProjectType < ActiveRecord::Base
   belongs_to :section
 
   has_ancestry
+
 end

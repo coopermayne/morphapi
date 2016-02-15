@@ -6,7 +6,7 @@
 #  name            :string
 #  last_name       :string
 #  birthday        :date
-#  description     :string
+#  description     :text
 #  email           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

@@ -19,6 +19,7 @@
 #  updated_at     :datetime         not null
 #  news_type_id   :integer
 #  primary_id     :integer
+#  in_news_box    :boolean          default(FALSE)
 #
 
 class NewsItem < ActiveRecord::Base
