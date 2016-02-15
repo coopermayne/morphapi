@@ -1,49 +1,122 @@
+
+
+<div class="row">
+  <h2>Roles</h2>
+  <div class="col-md-12">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th> Project </th>
+          <th> Position </th>
+          <th> &nbsp; </th>
+        </tr>
+      </thead>
+      <%= f.fields_for :roles do |builder| %>
+        <%= render "form_for_roles", f:builder %>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <h2>Ed</h2>
+  <div class="col-md-12">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th> Education </th>
+          <th> &nbsp; </th>
+        </tr>
+      </thead>
+      <%= f.fields_for :educations do |builder| %>
+        <%= render "form_for_educations", f:builder %>
+      <% end %>
+    </table>
+  </div>
+</div>
+
 <div class="row">
 
-  <%= f.fields_for :roles do |builder| %>
-    <%=  builder.object.position.title %>
+  <div class="col-md-6">
+    <%= f.input :name %>
+    <%= f.input :email %>
+  </div>
+
+  <div class="col-md-3">
+    <% if f.object && f.object.primary_image %>
+      <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="row">
+  <h2>Images</h2>
+
+  <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
+    <h1><%= type.title %></h1>
+    <div class='row'>
+      <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
+        <div class="panel panel-default col-md-3">
+
+          <div class = 'row'>
+
+            <div class='col-md-6'> show? <%= builder.check_box :in_gallery %> </div>
+            <div class='col-md-6'> delete? <%= builder.check_box :_destroy %> </div>
+          </div>
+
+          <%= image_tag builder.object.name.thumb, class: "img-responsive" %>
+
+          <ul class='list-group'>
+            <li class='list-group-item'>
+              <%= builder.input :rank, size: 3 %>
+            </li>
+
+            <li class='list-group-item'>
+              <%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type..." %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
   <% end %>
+</div>
 
-
-	<div class="col-lg-6">
-		<%= f.input :name %>
-	</div>
-	<div class="col-lg-6">
-		<%= f.input :email %>
-	</div>
-
-	<div class="col-lg-6">
-		<%= f.input :birthday, html5: true %>
-	</div>
-	<div class="col-lg-6">
+<div class="row">
+	<div class="col-md-6">
 		<%= f.input :description %>
 	</div>
 
-	<div class="col-lg-3">
+	<div class="col-md-6">
+		<%= f.input :birthday, html5: true %>
+	</div>
+
+	<div class="col-md-3">
 		<%= f.input :is_morphosis %>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-md-3">
 		<%= f.input :is_employed %>
 	</div>
 
-	<div class="col-lg-3">
+	<div class="col-md-3">
 		<%= f.input :is_collaborator %>
 	</div>
-	<div class="col-lg-3">
+	<div class="col-md-3">
 		<%= f.input :is_consultant %>
 	</div>
 
-	<div class="col-lg-6">
+	<div class="col-md-6">
     <%= f.input :start_date, html5: true %>
 	</div>
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<%= f.input :end_date, html5: true %>
 	</div>
 
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<%= f.input :website %>
 	</div>
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<%= f.input :location %>
 	</div>
 

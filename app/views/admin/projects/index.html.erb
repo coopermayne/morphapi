@@ -8,7 +8,7 @@
 
   <% Section.all.select{|s| !s.projects.empty? }.each do |sec| %>
     <li role="presentation" class="<%= 'active' if @section_id==sec.id.to_s %>">
-      <%= link_to sec.title, admin_projects_path(section_id: sec.id) %>
+      <%= link_to sec.title, admin_projects_path(type: sec.id) %>
     </li>
   <% end %>
 </ul>

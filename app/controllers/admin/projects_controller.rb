@@ -2,7 +2,7 @@ class Admin::ProjectsController < AdminController
   helper_method :sort_column, :sort_direction
 
   def index
-    @section_id = params[:section_id]
+    @section_id = params[:type]
     @projects = Project.where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
     @projects = @projects.order(sort_column+ " " + sort_direction).paginate :page => params[:page]

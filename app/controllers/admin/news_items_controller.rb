@@ -1,26 +1,20 @@
 class Admin::NewsItemsController < AdminController
-
-  ## optional filters for defining usage according to Casein::AdminUser access_levels
-  # before_filter :needs_admin, :except => [:action1, :action2]
-  # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @casein_page_title = 'News items'
-    unless params[:d] || params[:u]
-      params[:d] = 'down'
-    end
 
-    @news_items
-    @news_items = NewsItem.order(sort_order(:created_at)).paginate :page => params[:page]
+    @news_type_id = params[:type]
+    @news_items = NewsItem.where(nil)
+    @news_items = @news_items.where(news_type_id: @news_type_id) if @news_type_id
+    @news_items = @news_items.order(sort_column+ " " + sort_direction).paginate :page => params[:page]
+
   end
 
   def show
-    @casein_page_title = 'View news item'
     @news_item = NewsItem.find params[:id]
   end
 
   def new
-    @casein_page_title = 'Add a new news item'
     @news_item = NewsItem.new
   end
 
@@ -29,7 +23,7 @@ class Admin::NewsItemsController < AdminController
 
     if @news_item.save
       flash[:notice] = 'News item created'
-      redirect_to casein_news_items_path
+      redirect_to admin_news_items_path
     else
       flash.now[:warning] = 'There were problems when trying to create a new news item'
       render :action => :new
@@ -37,13 +31,12 @@ class Admin::NewsItemsController < AdminController
   end
 
   def update
-    @casein_page_title = 'Update news item'
 
     @news_item = NewsItem.find params[:id]
 
     if @news_item.update_attributes news_item_params
       flash[:notice] = 'News item has been updated'
-      redirect_to casein_news_items_path
+      redirect_to admin_news_items_path
     else
       flash.now[:warning] = 'There were problems when trying to update this news item'
       render :action => :show
@@ -55,7 +48,7 @@ class Admin::NewsItemsController < AdminController
 
     @news_item.destroy
     flash[:notice] = 'News item has been deleted'
-    redirect_to casein_news_items_path
+    redirect_to admin_news_items_path
   end
 
   private
@@ -68,8 +61,17 @@ class Admin::NewsItemsController < AdminController
       :place_name,
       :street_address,
       :start_date,
-      :news_type_id
+      :news_type_id,
+      :in_news_box
     )
   end
 
+
+  def sort_column
+    NewsItem.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
 end
