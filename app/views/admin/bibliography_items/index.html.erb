@@ -1,0 +1,7 @@
+<h2>Bibliography Items</h2>
+
+<%= render :partial => 'admin/bibliography_items/table', :locals => { :bibliography_items => @bibliography_items } %>
+
+<div class="text-center">
+	<%= will_paginate @bibliography_items %>
+</div>
