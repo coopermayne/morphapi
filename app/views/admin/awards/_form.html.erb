@@ -4,8 +4,6 @@
 	<div class="col-md-6">
 
     <%= f.input :title %>
-    <%= f.input :news_type_id, collection: NewsType.all, prompt: "select a section" %>
-    <%= f.input :in_news_box %>
 
 	</div>
   <% if f.object.primary_image %>
@@ -22,20 +20,7 @@
 	<div class="col-md-6">
 		<%= f.input :overview, rows: "20" %>
 	</div>
-</div>
-
-<div class="row">
 	<div class="col-md-6">
-		<%= f.input :place_name %>
-	</div>
-
-	<div class="col-md-6">
-		<%= f.input :street_address %>
-	</div>
-	<div class="col-md-6">
-		<%= f.input :start_date, html5:true %>
-	</div>
-	<div class="col-md-6">
-    <%= f.input :end_date, html5:true %>
+		<%= f.input :year, html5:true %>
 	</div>
 </div>

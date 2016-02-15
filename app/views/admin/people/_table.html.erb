@@ -18,7 +18,7 @@
 			<td><%= person.is_employed  %></td>
 			<td><%= person.is_collaborator %></td>
 			<td><%= person.is_consultant  %></td>
-      <td><%= person.primary_image ? "#{fa_icon "check 1x"}".html_safe : "false" %>
+      <td><%= person.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
 			<td><%= person.roles.count  %></td>
 		</tr>
 	<% end %>

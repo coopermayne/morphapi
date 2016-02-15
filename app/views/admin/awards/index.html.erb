@@ -1,0 +1,7 @@
+<h2>Award</h2>
+
+<%= render :partial => 'admin/awards/table', :locals => { :awards => @awards } %>
+
+<div class="text-center">
+	<%= will_paginate @awards %>
+</div>

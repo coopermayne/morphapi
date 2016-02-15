@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 		resources :news_items
 		resources :projects
     resources :users
+    resources :awards
+    resources :bibliography_items
   end
 
 
@@ -22,12 +24,12 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   # Example of regular route:
-  resources :projects
-  resources :awards
-  resources :bibliography_items
-  resources :news_items
-  resources :people
-  resources :media
+  resources :projects, only: [:index, :show]
+  resources :awards, only: [:index, :show]
+  resources :bibliography_items, only: [:index, :show]
+  resources :news_items, only: [:index, :show]
+  resources :people, only: [:index, :show]
+  resources :media, only: [:index, :show]
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
