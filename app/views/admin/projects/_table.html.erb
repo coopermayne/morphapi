@@ -6,7 +6,8 @@
       <th><%= sortable "title" %></th>
       <th><%= sortable "design_edate" %></th>
       <th><%= sortable "constr_edate" %></th>
-      <th>primary image</th>
+      <th>Image</th>
+      <th>Visible</th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
@@ -16,7 +17,8 @@
       <td><%= link_to project.title, admin_project_path(project) %>
       <td><%= project.design_edate %>
       <td><%= project.constr_edate %>
-      <td><%= project.primary_image ? "true" : "false" %>
+      <td><%= project.primary_image ? "#{fa_icon "check 1x"}".html_safe : "false" %>
+      <td><%= project.primary_image ? "#{fa_icon "eye 1x"}".html_safe : "false" %>
 
 			<td class="delete">
 			</td>
