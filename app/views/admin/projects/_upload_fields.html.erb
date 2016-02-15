@@ -1,11 +1,11 @@
 <fieldset class="well">
   <%= f.hidden_field :_destroy %>
-  <%= link_to "#{casein_show_icon 'minus-sign'}remove".html_safe, "#", class: "remove_fields" %>
+  <%= link_to "#{fa_icon "trash"}remove".html_safe, "#", class: "remove_fields" %>
 
-  <%= casein_text_field f, f.object, :title %> 
-  <%= casein_check_box f, f.object, :in_gallery %>
+  <%= f.input :title %> 
+  <%= f.input :in_gallery %>
 
-  <%= f.collection_select :file_type_id, FileType.all, :id, :title, prompt: "Type..." %><br />
+  <%= f.input :file_type_id, collection: FileType.all, prompt: "Type..." %><br />
 
-  <%= casein_file_field f, f.object, "something", :name %> 
+  <%= f.input :name %> 
 </fieldset>

@@ -1,17 +1,17 @@
 <fieldset class="well">
   <%= f.hidden_field :_destroy %>
-  <%= link_to "#{casein_show_icon 'minus-sign'}remove".html_safe, "#", class: "remove_fields" %>
+  <%= link_to "#{fa_icon "trash"}remove".html_safe, "#", class: "remove_fields" %>
 
-  <%= casein_text_field f, f.object, :title %>
-  <%= casein_text_area f, f.object, :description %>
-  <%= casein_text_area f, f.object, :overview %>
-  <%= casein_text_field f, f.object, :author  %>
-  <%= casein_text_field f, f.object, :article_name %>
-  <%= casein_text_field f, f.object, :book_title   %>
-  <%= casein_text_field f, f.object, :subtitle     %>
-  <%= casein_text_field f, f.object, :publication  %>
-  <%= casein_text_field f, f.object, :publisher    %>
-  <%= casein_date_field f, f.object, :date %>
-  <%= casein_date_field f, f.object, :pub_date %>
-  <%= casein_text_field f, f.object,  :pages        %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :overview %>
+  <%= f.input :author  %>
+  <%= f.input :article_name %>
+  <%= f.input :book_title   %>
+  <%= f.input :subtitle     %>
+  <%= f.input :publication  %>
+  <%= f.input :publisher    %>
+  <%= f.input :date %>
+  <%= f.input :pub_date %>
+  <%= f.input :pages        %>
 </fieldset>
