@@ -2,8 +2,6 @@ class Admin::ProjectsController < AdminController
   helper_method :sort_column, :sort_direction
 
   def index
-    @casein_page_title = 'Projects'
-
     @section_id = params[:section_id]
     @projects = Project.where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
@@ -128,5 +126,4 @@ class Admin::ProjectsController < AdminController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-
 end

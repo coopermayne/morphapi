@@ -1,18 +1,16 @@
 class Admin::PeopleController < AdminController
-
-  ## optional filters for defining usage according to Casein::AdminUser access_levels
-  # before_filter :needs_admin, :except => [:action1, :action2]
-  # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
+  helper_method :sort_column, :sort_direction
 
   def index
-
-    #@is_collaborator = params[:is_collaborator]
-    #@is_consultant = params[:is_consultant]
-    @casein_page_title = 'People'
-
     @people = Person.where(nil)
+    @types = ["is_morphosis", "is_employed", "is_collaborator", "is_consultant"]
 
-    @people = @people.order(sort_order(:name)).paginate :page => params[:page]
+    if @types.include? params[:type]
+      @type = params[:type]
+      @people = @people.where(params[:type]=> true)
+    end
+
+    @people = @people.order(sort_column + " " + sort_direction).paginate :page => params[:page]
   end
 
   def show
@@ -63,6 +61,14 @@ class Admin::PeopleController < AdminController
 
   def person_params
     params.require(:person).permit(:name, :birthday, :description, :email, :is_morphosis, :is_employed, :is_collaborator, :is_consultant, :start_date, :end_date, :website, :location)
+  end
+
+  def sort_column
+    Person.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end
