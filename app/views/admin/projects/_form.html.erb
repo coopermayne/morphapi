@@ -15,7 +15,7 @@
         <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
           <tr>
 
-            <td><%= builder.input :rank, label:false, :input_html => {:style => 'width: 50px'}  %></td>
+            <td><%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %></td>
 
             <td>
               <a class="btn" rel="popover" data-img=<%= builder.object.name.mobile.url %>>
@@ -55,8 +55,6 @@
 
   <% end %>
 </div>
-
-<%= link_to_add_fields "Upload files", f, :uploads%>
 
 <div class="row">
   <h2>Roles</h2>
