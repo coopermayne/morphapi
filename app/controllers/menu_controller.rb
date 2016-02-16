@@ -64,6 +64,7 @@ class MenuController < ApplicationController
       title: 'Morphosis',
       slides: morph_slides,
       url: "about",
+      content: Section.find_by_title( "Morphosis" ).content,
       sorting: [ {
         title: 'Awards',
         items: ''
@@ -144,7 +145,6 @@ class MenuController < ApplicationController
     ]
     render json: res
   end
-
 
 end
 
