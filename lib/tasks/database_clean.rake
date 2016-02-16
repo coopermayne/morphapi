@@ -72,7 +72,6 @@ namespace :db do
       model.all.each do |instance|
         instance.autocreate_searchable
         instance.update_search_content
-        ap instance.search_result
       end
     end
   end
