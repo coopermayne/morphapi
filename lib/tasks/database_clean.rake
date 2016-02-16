@@ -66,11 +66,13 @@ namespace :db do
   end
 
   task generate_search_results: :environment do
+    SearchResult.destroy_all
+
     [Award, BibliographyItem, NewsItem, Person, Project].each do |model|
       model.all.each do |instance|
         instance.autocreate_searchable
         instance.update_search_content
-        puts instance.search_result
+        ap instance.search_result
       end
     end
   end

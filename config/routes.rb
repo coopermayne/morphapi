@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search' =>  'search_results#index'
+
   #no sign up
   devise_for :users, path_prefix: 'd',  controllers: { registrations: "registrations"}
 

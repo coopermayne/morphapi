@@ -16,4 +16,17 @@ class SearchResult < ActiveRecord::Base
   #searchable modeles include; Award, BibliographyItem, NewsItem, Person, Project
   
 
+  def self.search(search)
+    search = search.downcase
+
+    results = where("lower(title) LIKE ?", "%#{search}%") + where("lower(content) LIKE ?", "%#{search}%")
+    ranked = Hash.new(0)
+
+    results.each do |result|
+      ranked[result] += 1
+      ranked[result] += 1 if result.searchable_type == "Project"
+    end
+
+    ranked.to_a.sort_by{|item| item[1]}.reverse.slice(0,15).map(&:first)
+  end
 end

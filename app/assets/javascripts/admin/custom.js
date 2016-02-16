@@ -67,7 +67,7 @@ $(document).ready(function(){
 
 var applyTextBox = function(jquery_el){
   jquery_el.trumbowyg({
-    autogrow: true,
+    autogrow: false,
     fullscreenable: false,
     semantic: true,
     btns:[

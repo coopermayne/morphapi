@@ -85,6 +85,7 @@ class Project < ActiveRecord::Base
     self.create_search_result
   end
   def update_search_content
-    search_result.update_attributes(title: title, content: "#{title} #{project_types.map(&:title).join(" ")}")
+    img_url = primary_image ? primary_image.name.thumb.url : nil
+    search_result.update_attributes(title: title, content: "#{title} #{project_types.map(&:title).join(" ")}", thumb: img_url, description: overview)
   end
 end
