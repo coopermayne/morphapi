@@ -2,3 +2,14 @@
  @import "bootstrap";
  @import 'trumbowyg/trumbowyg';
  @import "font-awesome";
+
+.thumby {
+  height: 60px;
+}
+
+.popover-content {
+  width: 500px;
+  border: 0px;
+  padding: 0;
+  overflow: visible;
+}

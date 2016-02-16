@@ -1,8 +1,22 @@
-// CASEIN CUSTOM
-// Use this file for your project-specific Casein JavaScript
-//
-
 $(document).ready(function(){
+
+  $('a[rel=popover]').popover({
+    html: true,
+    trigger: 'hover',
+    placement: 'auto top',
+    template: '<div class="popover"> <div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
+    content: function(){return '<img src="'+$(this).data('img') + '" />';}
+  });
+
+
+
+  //hover on thumb get big image
+  $('.thumby').on('mouseenter', function(event){
+    console.log("you are in!");
+  })
+
+
+
   $('form').on('click', '.add_fields', function(event) {
     //add the form partial
     var regexp, time;
@@ -47,6 +61,8 @@ $(document).ready(function(){
   })
 
   applyTextBox($('textarea'))
+
+
 })
 
 var applyTextBox = function(jquery_el){
@@ -64,3 +80,4 @@ var applyTextBox = function(jquery_el){
     ]
   })
 }
+
