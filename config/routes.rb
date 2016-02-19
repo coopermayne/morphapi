@@ -10,6 +10,11 @@ Rails.application.routes.draw do
 		resources :people
 		resources :news_items
 		resources :projects
+    resources :project_types do
+      collection do
+        put :rank
+      end
+    end
     resources :users
     resources :awards
     resources :bibliography_items

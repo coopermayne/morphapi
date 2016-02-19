@@ -3,18 +3,16 @@ class Admin::ProjectsController < AdminController
 
   def index
     @section_id = params[:type]
-    @projects = Project.where(nil)
+    @projects = Project.includes(:section, :primary_image).where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
     @projects = @projects.order(sort_column+ " " + sort_direction).paginate :page => params[:page]
   end
 
   def show
-    @casein_page_title = 'View project'
     @project = Project.includes(:section, :project_types, roles:[:position, :person], uploads: [:file_type]).find params[:id]
   end
 
   def new
-    @casein_page_title = 'Add a new project'
     @project = Project.new
   end
 
@@ -31,8 +29,6 @@ class Admin::ProjectsController < AdminController
   end
 
   def update
-    @casein_page_title = 'Update project'
-
     @project = Project.find params[:id]
 
     if @project.update_attributes project_params

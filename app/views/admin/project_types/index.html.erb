@@ -1,0 +1,18 @@
+<%= form_tag "/admin/project_types/rank", method: :put do  %>
+  <% ProjectType.roots.group_by{|pt| pt.section}.each do |section, project_types| %>
+
+    <h1><%= section.title %></h1>
+    <% project_types.sort_by{|pt| pt.rank}.each do |pt| %>
+      <%= fields_for "project_types[]", pt do |f| %>
+        <%= f.number_field :rank %> <%= f.text_field :title %><br>
+      <% end %><%# field_for(roots) %>
+      <% pt.children.sort_by{|pt| pt.rank}.each do |pt| %>
+        <%= fields_for "project_types[]", pt do |f| %>
+          ---<%= f.number_field :rank %><%= f.text_field :title %><br>
+        <% end %><%# field_for(children) %>
+      <% end %>
+    <% end %><%# project_type(roots)%>
+  <% end %><%# end section loop%> 
+  <%= submit_tag "Update Types" %>
+<% end %> <%# end form %> 
+

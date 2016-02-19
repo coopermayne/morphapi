@@ -65,6 +65,34 @@ namespace :db do
     end
   end
 
+  task get_pdfs: :environment do
+    #TODO
+  end
+
+  task get_docs: :environment do
+    #TODO
+  end
+
+  task get_flvs: :environment do
+    #TODO
+  end
+
+  task connect_bib_and_people: :environment do
+    #TODO
+  end
+
+  task include_timestamps: :environment do
+    #TODO
+  end
+
+  task include_timestamps: :environment do
+    #TODO
+  end
+
+  task connect_news_items_and_projects: :environment do
+    #TODO
+  end
+
   task generate_search_results: :environment do
     SearchResult.destroy_all
 

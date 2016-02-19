@@ -14,4 +14,6 @@ class Section < ActiveRecord::Base
   has_many :projects
   has_many :slides
   has_many :project_types
+
+  accepts_nested_attributes_for :project_types
 end
