@@ -1,0 +1,27 @@
+<%= link_to 'New Position', new_admin_position_path %>
+<br>
+
+<p id="notice"><%= notice %></p>
+<h1>Positions</h1>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Rank</th>
+      <th>Roles</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @positions.sort_by{|pos| pos.rank}.each do |position| %>
+      <tr>
+        <td><%= position.title %></td>
+        <td><%= position.rank %></td>
+        <td><%= position.roles.count %></td>
+        <td><%= link_to 'Edit', edit_admin_position_path(position) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

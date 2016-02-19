@@ -58,7 +58,8 @@ class Admin::ProjectTypesController < AdminController
   def project_type_params
     params.require(:project_type).permit(
       :title,
-      :ancestor,
+      :section_id,
+      :parent_id,
       :rank
     )
   end

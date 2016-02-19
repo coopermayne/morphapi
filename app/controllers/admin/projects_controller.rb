@@ -21,7 +21,7 @@ class Admin::ProjectsController < AdminController
 
     if @project.save
       flash[:notice] = 'Project created'
-      redirect_to admin_projects_path
+      redirect_to :back
     else
       flash.now[:warning] = 'There were problems when trying to create a new project'
       render :action => :new

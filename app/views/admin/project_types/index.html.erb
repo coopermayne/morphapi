@@ -1,3 +1,8 @@
+<%= link_to 'New Type', new_admin_project_type_path %>
+
+<p id="notice"><%= notice %></p>
+<h1>Project Types</h1>
+
 <%= form_tag "/admin/project_types/rank", method: :put do  %>
   <% ProjectType.roots.group_by{|pt| pt.section}.each do |section, project_types| %>
 
