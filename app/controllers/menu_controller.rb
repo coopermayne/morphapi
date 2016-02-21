@@ -9,14 +9,13 @@ class MenuController < ApplicationController
       {id: item.id, title: item.title, image: img }
     end
 
-    types = Hash.new []
-    Project.includes(:project_types, :section).each do |p|
-      next if !p.section
-      types[p.section.title] =  (types[p.section.title] + p.project_types.map(&:title)).uniq
-    end
-    types.each{|k,v| v.select!{|vv|vv != k}}
+    #types = Hash.new []
+    #Project.includes(:project_types, :section).each do |p|
+      #next if !p.section
+      #types[p.section.title] =  (types[p.section.title] + p.project_types.map(&:title)).uniq
+    #end
+    #types.each{|k,v| v.select!{|vv|vv != k}}
 
-    
     arch_slides = Section.includes(slides: [:image, :project]).find_by_title("Architecture").slides.map do |slide|
       {
         project_id: slide.project.id,
@@ -89,7 +88,7 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: types["Architecture"]
+        items: Section.find_by_title("Architecture").project_types.map{|pt| {title: pt.title, rank: pt.rank, children: pt.children.map{|ch| { title: ch.title, rank: ch.rank } } }}
       }, {
         title: 'Location',
         items: []
@@ -108,7 +107,7 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: types["Urban"]
+        items: Section.find_by_title("Urban").project_types.map{|pt| {title: pt.title, rank: pt.rank, children: pt.children.map{|ch| { title: ch.title, rank: ch.rank } } }}
       }, {
         title: 'Location',
         items: []
@@ -127,15 +126,15 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: types["Tangents"]
+        items: Section.find_by_title("Tangents").project_types.map{|pt| {title: pt.title, rank: pt.rank, children: pt.children.map{|ch| { title: ch.title, rank: ch.rank } } }}
       } ]
     }, {
       title: 'Research',
       slides: arch_slides,
       url: 'research',
       sorting: [{
-          title: "Now Institute",
-          items: types["Research"]
+          #title: "Now Institute",
+          #items: types["Research"]
       }]
     }, {
       title: 'News',
