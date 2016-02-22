@@ -1,0 +1,33 @@
+<div class="row section">
+  <h2>Section / Type</h2>
+  <div class="col-md-6">
+    <%=  f.input :section_id, collection: Section.all.select{|sec| !sec.projects.empty?}, prompt: "select a category" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+
+    <%= hidden_field_tag "project[project_type_ids][]", nil %>
+    <% ProjectType.roots.group_by{|pt| pt.section}.each do |section, project_types| %>
+      <div class='types <%= "section" + section.id.to_s %>'>
+        <%= f.label "Types" %>
+        <% project_types.each do |project_type| %>
+          <div class="type">
+            <%= check_box_tag "project[project_type_ids][]", project_type.id, f.object.project_type_ids.include?(project_type.id), id: dom_id(project_type) %>
+            <%= label_tag dom_id(project_type), project_type.title %><br>
+
+            <% project_type.children.each do |child| %>
+              <div class="subtype">
+                &nbsp;&nbsp;&nbsp;&nbsp;<%= check_box_tag "project[project_type_ids][]", child.id, f.object.project_type_ids.include?(child.id), id: dom_id(child) %>
+              <%= label_tag dom_id(child), child.title %><br>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+  <h2>Roles</h2>
+  <div class="col-md-6">
+    <table class='table'>
+      <thead>
+        <tr>
+          <th> Person </th>
+          <th> Position </th>
+          <th> &nbsp; </th>
+        </tr>
+      </thead>
+      <%= f.fields_for :roles do |builder| %>
+        <%= render "form_for_roles", f:builder %>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<%= link_to_add_fields "Add Role", f, :roles %>
