@@ -27,6 +27,7 @@ class Person < ActiveRecord::Base
 
   has_many :roles
   has_many :educations
+  has_and_belongs_to_many :bibliography_items
 
   has_many :uploads, as: :uploadable
   belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id

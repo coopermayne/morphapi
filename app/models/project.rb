@@ -39,7 +39,7 @@ class Project < ActiveRecord::Base
   after_commit :update_search_content
 
   has_many :components
-  has_many :roles
+  has_many :roles, dependent: :destroy
 
 
   belongs_to :section

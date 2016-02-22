@@ -23,6 +23,8 @@
 
 class BibliographyItem < ActiveRecord::Base
   has_and_belongs_to_many :projects
+  has_and_belongs_to_many :people
+
   has_one :search_result, as: :searchable
 
   has_many :uploads, as: :uploadable

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216211639) do
+ActiveRecord::Schema.define(version: 20160222212602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "primary_id"
+    t.integer  "old_id"
   end
 
   create_table "awards_projects", id: false, force: :cascade do |t|
@@ -52,6 +53,12 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "primary_id"
+    t.integer  "old_id"
+  end
+
+  create_table "bibliography_items_people", id: false, force: :cascade do |t|
+    t.integer "bibliography_item_id", null: false
+    t.integer "person_id",            null: false
   end
 
   create_table "bibliography_items_projects", id: false, force: :cascade do |t|
@@ -66,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "old_id"
   end
 
   create_table "components", force: :cascade do |t|
@@ -75,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.datetime "updated_at",        null: false
     t.integer  "project_id"
     t.integer  "component_type_id"
+    t.integer  "old_id"
   end
 
   add_index "components", ["component_type_id"], name: "index_components_on_component_type_id", using: :btree
@@ -85,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "old_id"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -102,18 +112,8 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.integer  "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "old_id"
   end
-
-  create_table "galleries", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "rank"
-    t.boolean  "visible"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "project_id"
-  end
-
-  add_index "galleries", ["project_id"], name: "index_galleries_on_project_id", using: :btree
 
   create_table "news_items", force: :cascade do |t|
     t.string   "title"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.integer  "news_type_id"
     t.integer  "primary_id"
     t.boolean  "in_news_box",    default: false
+    t.integer  "old_id"
   end
 
   add_index "news_items", ["news_type_id"], name: "index_news_items_on_news_type_id", using: :btree
@@ -142,6 +143,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.integer  "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "old_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -162,6 +164,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.integer  "hit"
     t.string   "location"
     t.integer  "primary_id"
+    t.integer  "old_id"
   end
 
   create_table "positions", force: :cascade do |t|
@@ -169,6 +172,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "rank"
+    t.integer  "old_id"
   end
 
   create_table "project_types", force: :cascade do |t|
@@ -176,6 +180,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.integer "rank"
     t.string  "ancestry"
     t.integer "section_id"
+    t.integer "old_id"
   end
 
   add_index "project_types", ["section_id"], name: "index_project_types_on_section_id", using: :btree
@@ -207,6 +212,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.string   "state"
     t.string   "country"
     t.integer  "primary_id"
+    t.integer  "old_id"
   end
 
   add_index "projects", ["section_id"], name: "index_projects_on_section_id", using: :btree
@@ -225,6 +231,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.integer  "person_id"
     t.integer  "project_id"
     t.integer  "position_id"
+    t.integer  "old_id"
   end
 
   add_index "roles", ["person_id"], name: "index_roles_on_person_id", using: :btree
@@ -251,6 +258,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.datetime "updated_at", null: false
     t.integer  "rank"
     t.text     "content"
+    t.integer  "old_id"
   end
 
   create_table "slides", force: :cascade do |t|
@@ -284,6 +292,7 @@ ActiveRecord::Schema.define(version: 20160216211639) do
     t.string   "uploadable_type"
     t.boolean  "in_gallery"
     t.boolean  "is_featured"
+    t.integer  "old_id"
   end
 
   add_index "uploads", ["credit_id"], name: "index_uploads_on_credit_id", using: :btree
@@ -315,7 +324,6 @@ ActiveRecord::Schema.define(version: 20160216211639) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "educations", "people"
-  add_foreign_key "galleries", "projects"
   add_foreign_key "project_types", "sections"
   add_foreign_key "projects", "sections"
   add_foreign_key "roles", "people"
