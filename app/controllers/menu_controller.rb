@@ -9,13 +9,6 @@ class MenuController < ApplicationController
       {id: item.id, title: item.title, image: img }
     end
 
-    #types = Hash.new []
-    #Project.includes(:project_types, :section).each do |p|
-      #next if !p.section
-      #types[p.section.title] =  (types[p.section.title] + p.project_types.map(&:title)).uniq
-    #end
-    #types.each{|k,v| v.select!{|vv|vv != k}}
-
     arch_slides = Section.includes(slides: [:image, :project]).find_by_title("Architecture").slides.map do |slide|
       {
         project_id: slide.project.id,
@@ -88,7 +81,7 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: Section.find_by_title("Architecture").project_types.map{|pt| {title: pt.title, rank: pt.rank, children: pt.children.map{|ch| { title: ch.title, rank: ch.rank } } }}
+        items: Section.find_by_title("Architecture").get_types
       }, {
         title: 'Location',
         items: []
@@ -107,7 +100,7 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: Section.find_by_title("Urban").project_types.map{|pt| {title: pt.title, rank: pt.rank, children: pt.children.map{|ch| { title: ch.title, rank: ch.rank } } }}
+        items: Section.find_by_title("Urban").get_types
       }, {
         title: 'Location',
         items: []
@@ -126,7 +119,7 @@ class MenuController < ApplicationController
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
         title: 'Type',
-        items: Section.find_by_title("Tangents").project_types.map{|pt| {title: pt.title, rank: pt.rank, children: pt.children.map{|ch| { title: ch.title, rank: ch.rank } } }}
+        items: Section.find_by_title("Tangents").get_types
       } ]
     }, {
       title: 'Research',

@@ -16,4 +16,14 @@ class Section < ActiveRecord::Base
   has_many :project_types
 
   accepts_nested_attributes_for :project_types
+
+  def get_types
+
+    project_types.sort_by{|pt| pt.rank}.map do |pt|
+      {
+        title: pt.title,
+        children: pt.children.sort_by{|ch| ch.rank}.map{|ch| { title: ch.title } }
+      }
+    end
+  end
 end
