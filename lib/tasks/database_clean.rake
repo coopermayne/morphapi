@@ -1040,4 +1040,20 @@ namespace :db do
       end
     end
   end
+
+  task remove_duplicate_of_primary_image: :environment do
+    [Award, BibliographyItem, NewsItem, Person, Project].each do |model|
+      model.all.each do |item|
+
+        if item.primary_image && item.primary_image.name_url
+          dup = item.uploads.select{|u| File.basename(u.name_url) == File.basename(item.primary_image.name_url)}
+          if dup.count > 0
+            puts [dup.first.id, dup.first.name_url, item.primary_image.id, item.primary_image.name_url]
+          end
+        end
+
+      end
+    end
+  end
+
 end
