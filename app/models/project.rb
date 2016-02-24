@@ -32,6 +32,7 @@
 #
 
 class Project < ActiveRecord::Base
+  include Primaryable
 
   has_one :search_result, as: :searchable
 
@@ -41,15 +42,10 @@ class Project < ActiveRecord::Base
   has_many :components
   has_many :roles, dependent: :destroy
 
-
   belongs_to :section
   has_and_belongs_to_many :project_types, join_table: "projects_project_types"
   has_and_belongs_to_many :awards
   has_and_belongs_to_many :bibliography_items
-
-  has_many :uploads, as: :uploadable
-  belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
-
 
   accepts_nested_attributes_for :roles, allow_destroy: true
   accepts_nested_attributes_for :uploads, allow_destroy: true

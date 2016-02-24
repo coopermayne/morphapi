@@ -286,7 +286,9 @@ def get_credits
 end
 
 def get_files
-  errors = 0
+  counter = 0
+  errors = []
+  successes = 0
 
   files = DB['select 
   a.rank, 
@@ -312,9 +314,41 @@ def get_files
              ']
 
   files.each do |file|
+    counter += 1
+    next if counter < 1085
 
+    #check that image is there
+    if ['jpg', 'png', 'jpeg', 'gif', 'png'].include? file[:file_ext]
+      n = file[:file_name] + "-l." + file[:file_ext]
+    else
+      n = file[:file_name] + "." + file[:file_ext]
+      next
+    end
+
+    url = URI.escape("http://morphopedia.com/uploads/" + n)
+    url = url.gsub("[","%5B").gsub("]","%5D")
+    uri = URI(url)
+
+    request = Net::HTTP.new uri.host
+    response= request.request_head uri.path
+
+    #skip if no file at url
+    if response.code.to_i != 200
+      errors << url
+      msg = { status: "fail", file: url, image_title: file[:image_title]}
+      LOGGER.debug { msg }
+      next
+    else
+      msg = { status: "success", file: url, image_title: file[:image_title]}
+      LOGGER.debug { msg }
+      successes += 1
+    end
+
+    msg = {errors: errors.count, successes: successes}
+    LOGGER.debug { msg }
+
+    #try to save the file (since we know it exists)
     begin
-      is_primary = file[:image_article_id] && ( file[:image_article_id]==file[:primary_photo_id] )
 
       up = Upload.new
 
@@ -331,9 +365,10 @@ def get_files
         obj =Award.find_by_old_id(file[:article_id])
       end
 
+      is_primary = !obj.nil? && file[:image_article_id] && ( file[:image_article_id]==file[:primary_photo_id] )
+
       if is_primary
         obj.primary_image = up
-        obj.save
       end
 
       up.uploadable = obj
@@ -347,34 +382,11 @@ def get_files
       c_id = file[:credit_id]
       up.file_type = FileType.find_by_old_id(t_id)
       up.credit = Credit.find_by_old_id(c_id)
-
-      #add image to amazon bucket
-      if file[:file_ext]=='jpg'
-        n = file[:file_name] + "-l." + file[:file_ext]
-        next
-      else
-        n = file[:file_name] + "." + file[:file_ext]
-      end
-
-      url = URI.escape("http://morphopedia.com/uploads/" + n)
-      puts url
-      uri = URI(url)
-
-      request = Net::HTTP.new uri.host
-      response= request.request_head uri.path
-      sleep 1
-
-      #skip if no file at url
-      next if response.code.to_i != 200
-
       up.remote_name_url = "http://morphopedia.com/uploads/" + n
 
       if up.save
-        puts 'saved: ' + up.title
-        puts 
+        obj.save
       else
-        puts "no save"
-        puts
         msg =  "file name: " + n
         msg += "...."
         msg += "file title: " + file[:image_title]
@@ -382,12 +394,9 @@ def get_files
       end
 
     rescue => error
-      puts "error"
-      puts
-      errors += 1
+      LOGGER.debug { error }
     end
 
-    #LOGGER.debug {"errors: " + errors.to_s}
   end
 
 end
@@ -404,4 +413,4 @@ end
 #get_news_items
 #get_file_types
 #get_credits
-get_files
+#get_files

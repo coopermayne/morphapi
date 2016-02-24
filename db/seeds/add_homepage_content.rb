@@ -183,7 +183,7 @@ image_slides.each do |sec, image_slides|
     sl = Slide.new()
     sl.section = Section.find_by_title(sec.to_s)
     if image_slide[:project_id]
-      sl.project = Project.find(image_slide[:project_id])
+      sl.project = Project.find_by_old_id(image_slide[:project_id])
     end
 
     u = Upload.new

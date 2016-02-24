@@ -18,6 +18,8 @@
 #
 
 class Slide < ActiveRecord::Base
+  before_save :set_uploads
+
   belongs_to :section
   belongs_to :project
 
@@ -27,4 +29,22 @@ class Slide < ActiveRecord::Base
   belongs_to :mp4, class_name: 'Upload', foreign_key: :vida_upload_id
   belongs_to :webm, class_name: 'Upload', foreign_key: :vidb_upload_id
   belongs_to :gif, class_name: 'Upload', foreign_key: :gif_upload_id
+
+  private
+
+  def set_uploads
+    if self.image && !self.uploads.include?(self.image)
+      self.uploads << self.image
+    end
+    if self.mp4 && !self.uploads.include?(self.mp4)
+      self.uploads << self.mp4
+    end
+    if self.webm && !self.uploads.include?(self.webm)
+      self.uploads << self.webm
+    end
+    if self.gif && !self.uploads.include?(self.gif)
+      self.uploads << self.gif
+    end
+  end
+
 end

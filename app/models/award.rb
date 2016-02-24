@@ -14,11 +14,10 @@
 #
 
 class Award < ActiveRecord::Base
+  include Primaryable
+
   has_one :search_result, as: :searchable
   has_and_belongs_to_many :projects
-
-  belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
-  has_many :uploads, as: :uploadable
 
   def autocreate_searchable
     self.create_search_result

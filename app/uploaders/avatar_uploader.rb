@@ -19,6 +19,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.id}"
   end
 
+  process :resize_to_limit => [1600, 1200], :if => :image?
+
   version :mobile, :if => :image? do
     process :resize_to_limit => [500, 10000]
   end
