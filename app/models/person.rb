@@ -23,14 +23,13 @@
 #
 
 class Person < ActiveRecord::Base
+  include Primaryable
+
   has_one :search_result, as: :searchable
 
   has_many :roles
   has_many :educations
   has_and_belongs_to_many :bibliography_items
-
-  has_many :uploads, as: :uploadable
-  belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
 
   accepts_nested_attributes_for :roles, allow_destroy: true
   accepts_nested_attributes_for :educations, allow_destroy: true
