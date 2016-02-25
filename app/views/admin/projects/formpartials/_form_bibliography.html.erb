@@ -2,7 +2,7 @@
   <h2>Bib</h2>
   <table class='table'>
   <%= f.fields_for :bibliography_items do |builder| %>
-    <%= render "form_for_awards", f:builder %>
+    <%= render "admin/projects/formpartials/form_for_awards", f:builder %>
   <% end %>
   </table>
 </div>

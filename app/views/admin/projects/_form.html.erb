@@ -1,14 +1,18 @@
 <%# varibale f: project simple_form %>
 
-<%= render partial: "form_basic_info", locals: {f: f} %>
+<%= render partial: "admin/projects/formpartials/form_basic_info", locals: {f: f} %>
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-<%= render partial: "form_images", locals: {f: f} %>
-<%= render partial: "form_other_files", locals: {f: f} %>
+
+<%= render partial: "admin/projects/formpartials/form_images", locals: {f: f} %>
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-<%= render partial: "form_roles", locals: {f: f} %>
+
+<%= render partial: "admin/projects/formpartials/form_roles", locals: {f: f} %>
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-<%= render partial: "form_section_type", locals: {f: f} %>
+
+<%= render partial: "admin/projects/formpartials/form_section_type", locals: {f: f} %>
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-<%= render partial: "form_awards", locals: {f: f} %>
+
+<%= render partial: "admin/projects/formpartials/form_awards", locals: {f: f} %>
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-<%= render partial: "form_bibliography", locals: {f: f} %>
+
+<%= render partial: "admin/projects/formpartials/form_bibliography", locals: {f: f} %>

@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <%= f.fields_for :roles do |builder| %>
-        <%= render "form_for_roles", f:builder %>
+        <%= render "admin/projects/formpartials/form_for_roles", f:builder %>
       <% end %>
     </table>
   </div>
