@@ -60,7 +60,32 @@ class Admin::PeopleController < AdminController
   private
 
   def person_params
-    params.require(:person).permit(:name, :birthday, :description, :email, :is_morphosis, :is_employed, :is_collaborator, :is_consultant, :start_date, :end_date, :website, :location)
+    params.require(:person).permit(
+      :name,
+      :birthday,
+      :description,
+      :email,
+      :is_morphosis,
+      :is_employed,
+      :is_collaborator, 
+      :is_consultant, 
+      :start_date,
+      :end_date,
+      :website, 
+      :location,
+      uploads_attributes: [
+        :id,
+        :_destroy,
+        :file_type_id,
+        :rank,
+        :in_gallery,
+        :title,
+        :name,
+        :credit_id,
+        :copyright
+      ]
+
+    )
   end
 
   def sort_column

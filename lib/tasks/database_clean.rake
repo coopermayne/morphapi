@@ -1,6 +1,23 @@
 # lib/tasks/custom_seed.rake
 namespace :db do
-  desc "and in_gallery values to images"
+
+  task clean_content: :environment do
+    c = 0
+    [Component, Section, Award, BibliographyItem, NewsItem, Person, Project].each do |model|
+      model.all.each do |instance|
+        [:title, :overview, :description, :program].each do |method|
+          if instance.respond_to?(method) && !instance.send(method).nil?
+            #puts instance.send(method).gsub!(/\\r\\n/,"") 
+            #puts instance.send(method).gsub!("{break}","") 
+            #c += 1 if instance.send(method).match("{file}") 
+            #instance.save
+          end
+        end
+      end
+    end
+    puts c
+  end
+
   task format_galleries: :environment do
     #set in_gallery true to the images that are currently being displayed on morphopedia...
     featured = Upload.all.select{|u| u.is_featured}

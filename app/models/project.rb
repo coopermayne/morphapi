@@ -48,24 +48,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :bibliography_items
 
   accepts_nested_attributes_for :roles, allow_destroy: true
-  accepts_nested_attributes_for :uploads, allow_destroy: true
   accepts_nested_attributes_for :awards, allow_destroy: true
   accepts_nested_attributes_for :bibliography_items, allow_destroy: true
-
-
-  def getGalleries
-    grouped = self.uploads.select{|u| u.in_gallery}.group_by{|item| item.file_type}
-    res = {}
-    grouped.each{ |k, v| res[k.title.to_sym] = v }
-    res
-  end
-
-  def getAllGalleries
-    grouped = self.uploads.select{|u| u.is_image }.group_by{|item| item.file_type}
-    res = {}
-    grouped.each{ |k, v| res[k.title.to_sym] = v.sort_by{|u| u.rank} }
-    res
-  end
 
   #def select_parents_of_selected_kids
     #self.project_types.each do |pt|
