@@ -1,9 +1,10 @@
+<fieldset>
 <div class='row'>
   <div class='col-md-6'>
 
     <div class='panel panel-default'>
       <div class="panel-heading">
-        <h3 class="panel-title">New Role <%= fa_icon 'close', class: "pull-right" %> </h3>
+        <h3 class="panel-title">New Role <%= link_to "<span class='pull-right'>#{fa_icon 'close'}</span>".html_safe, "#", class: "remove_fields pull-right" %> </h3>
       </div>
 
       <div class='panel-body'>
@@ -17,3 +18,4 @@
     </div>
   </div>
 </div>
+</fieldset>

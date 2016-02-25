@@ -1,0 +1,25 @@
+<fieldset>
+<div class='row'>
+  <div class='col-md-12'>
+
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">New File <%= link_to "<span class='pull-right'>#{fa_icon 'close'}</span>".html_safe, "#", class: "remove_fields pull-right" %> </h3>
+      </div>
+
+      <div class='panel-body'>
+
+        <%= f.input :name, label: false %>
+        <%= f.input :title, placeholder: "leave this empty and i'll make a title for you" %>
+        <%= f.association :credit %>
+        <%= f.association :file_type %>
+        <%= f.input :rank %>
+        <%= f.input :copyright, value: false%>
+        <%= f.input :in_gallery, value: false %>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</fieldset>

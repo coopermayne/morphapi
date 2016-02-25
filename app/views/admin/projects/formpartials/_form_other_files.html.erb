@@ -1,0 +1,22 @@
+<% other_files = f.object.uploads.select{|u| !u.is_image} %>
+<% unless other_files.empty? %>
+  <div class="row">
+    <h2>Other Files</h2>
+    <% other_files.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
+      <h1><%= type.title %></h1>
+      <div class='row'>
+        <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
+
+          <div class='col-md-6'> show? <%= builder.check_box :in_gallery %> </div>
+          <div class='col-md-6'> delete? <%= builder.check_box :_destroy %> </div>
+
+          <%= image_tag builder.object.name.thumb, class: "img-responsive" %>
+          <%= builder.input :rank, size: 3 %>
+          <%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type..." %>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+<% end %>
+<%= link_to_add_fields "Add Files", f, :uploads %>

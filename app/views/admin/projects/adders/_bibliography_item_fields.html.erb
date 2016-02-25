@@ -1,0 +1,31 @@
+<fieldset>
+  <div class='row'>
+    <div class='col-md-12'>
+
+      <div class='panel panel-default'>
+        <div class="panel-heading">
+          <h3 class="panel-title">New Role <%= link_to "<span class='pull-right'>#{fa_icon 'close'}</span>".html_safe, "#", class: "remove_fields pull-right" %> </h3>
+        </div>
+
+        <div class='panel-body'>
+          <%= f.input :title %>
+          <div class='col-md-6'>
+            <%= f.input :description %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :overview %>
+          </div>
+          <div class='col-md-6'><%= f.input :author  %></div>
+          <div class='col-md-6'><%= f.input :article_name %></div>
+          <div class='col-md-6'><%= f.input :book_title   %></div>
+          <div class='col-md-6'><%= f.input :subtitle     %></div>
+          <div class='col-md-6'><%= f.input :publication  %></div>
+          <div class='col-md-6'><%= f.input :publisher    %></div>
+          <div class='col-md-6'><%= f.input :date %></div>
+          <div class='col-md-6'><%= f.input :pub_date, html5:true %></div>
+          <div class='col-md-6'><%= f.input :pages        %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

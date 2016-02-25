@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+  //trumbowyg
+  applyTextBox($('textarea'))
+
+  //image popover on hover
   $('a[rel=popover]').popover({
     html: true,
     trigger: 'hover',
@@ -8,14 +12,10 @@ $(document).ready(function(){
     content: function(){return '<img src="'+$(this).data('img') + '" />';}
   });
 
-
-
   //hover on thumb get big image
   $('.thumby').on('mouseenter', function(event){
     console.log("you are in!");
   })
-
-
 
   $('form').on('click', '.add_fields', function(event) {
     //add the form partial
@@ -34,6 +34,8 @@ $(document).ready(function(){
     event.preventDefault();
   })
 
+
+  //manage type/subtype selection
   $('.subtype input').on('change', function(a,b,c){
     var t_el = $(a.target)
     var isChecked=t_el.is(':checked')
@@ -59,10 +61,6 @@ $(document).ready(function(){
     $('.types').hide()
     $('.section'+el.val()).show()
   })
-
-  applyTextBox($('textarea'))
-
-
 })
 
 var applyTextBox = function(jquery_el){

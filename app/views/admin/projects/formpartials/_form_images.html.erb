@@ -28,10 +28,10 @@
               </a>
             </td>
 
-            <td><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}  %></td>
+            <td><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%></td>
 
-            <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}  %></td>
-            <td><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}  %></td>
+            <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none" %></td>
+            <td><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none"  %></td>
 
             <td><%= builder.check_box :in_gallery %></td>
             <td><%= builder.check_box :copyright %></td>
@@ -43,4 +43,3 @@
     </table>
   <% end %>
 </div>
-<%= link_to_add_fields "Add Files", f, :uploads %>
