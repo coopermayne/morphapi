@@ -1,0 +1,18 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+      <th><%= sortable "title" %></th>
+      <th>Image</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	
+	<% uploads.each do |upload| %>
+		<tr>
+      <td><%= link_to upload.title, admin_upload_path(upload) %>
+
+			<td class="delete">
+			</td>
+		</tr>
+	<% end %>
+</table>

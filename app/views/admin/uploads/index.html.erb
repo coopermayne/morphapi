@@ -1,0 +1,9 @@
+<%= link_to "new file", new_admin_upload_path, class: "pull-right" %><br>
+
+<h2><%= @title %></h2>
+
+<%= render :partial => 'admin/uploads/table', :locals => { :uploads => @uploads } %>
+
+<div class="text-center">
+	<%= will_paginate @uploads %>
+</div>

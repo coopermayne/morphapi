@@ -16,8 +16,8 @@
 #  in_gallery      :boolean
 #  is_featured     :boolean
 #
-
 class Upload < ActiveRecord::Base
+
   before_save :set_some_defaults
 
   mount_uploader :name, AvatarUploader
@@ -34,5 +34,8 @@ class Upload < ActiveRecord::Base
 
   def set_some_defaults
     self.rank ||= 999
+    if self.title.blank?
+      self.title = File.basename(self.name_url, ".*")
+    end
   end
 end

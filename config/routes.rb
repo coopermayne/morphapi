@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   #admin routes
   namespace :admin do
+		resources :uploads
 		resources :people
 		resources :positions
 		resources :news_items

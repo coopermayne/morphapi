@@ -110,6 +110,8 @@ class Admin::ProjectsController < AdminController
         :in_gallery,
         :title,
         :name,
+        :credit_id,
+        :copyright
       ]
     )
   end

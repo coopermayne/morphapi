@@ -1,0 +1,19 @@
+<h1><%= @title %></h1>
+
+<%= simple_form_for @upload, :url => admin_uploads_path do |f| %>
+
+  <%= render :partial => 'admin/uploads/form', :locals => { :f => f, :uploadable_models => @uploadable_models } %>
+	
+  <p class="submits">
+
+  <% if @upload.new_record? %>
+    <%= link_to 'Cancel', admin_uploads_path, :class => 'btn btn-mini btn-danger' %>
+  <% else %>
+    <%= link_to 'Cancel', admin_uploads_path, :class => 'btn btn-mini btn-danger' %>
+    <%= link_to fa_icon("trash", text: "Destroy"), admin_upload_path(@upload), method: :delete, class: 'btn btn-mini btn-danger pull-right', data: { confirm: "are you sure? it'll be gone forever" } %>
+  <% end %>
+
+  <%= f.submit "Save", :class => "btn btn-mini btn-primary" %>
+  </p>
+
+<% end %>

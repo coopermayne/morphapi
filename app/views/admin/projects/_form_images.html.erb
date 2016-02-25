@@ -3,11 +3,18 @@
   <h2>Images</h2>
 
   <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
-    <h1><%= type.title %></h1>
+    <h1><%= type ? type.title : "No Type" %></h1>
     <table class='table table-condensed'>
       <thead>
         <tr>
           <th>rank</th>
+          <th>thmb</th>
+          <th>title</th>
+          <th>type</th>
+          <th>credit</th>
+          <th>in gallery?</th>
+          <th>copyright??</th>
+          <th>delete?</th>
         </tr>
       </thead>
         <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
@@ -21,12 +28,14 @@
               </a>
             </td>
 
-            <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 250px'}  %></td>
+            <td><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}  %></td>
 
-            <td>
-              <div class='col-md-6'> show? <%= builder.check_box :in_gallery %> </div>
-              <div class='col-md-6'> delete? <%= builder.check_box :_destroy %> </div>
-            </td>
+            <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}  %></td>
+            <td><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}  %></td>
+
+            <td><%= builder.check_box :in_gallery %></td>
+            <td><%= builder.check_box :copyright %></td>
+            <td><%= builder.check_box :_destroy %></td>
 
           </tr>
         <% end %>
@@ -34,3 +43,4 @@
     </table>
   <% end %>
 </div>
+<%= link_to_add_fields "Add Files", f, :uploads %>

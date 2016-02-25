@@ -1,0 +1,19 @@
+<%# varibale f: upload simple_form %>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :name %>
+    <%= f.input :title, placeholder: "leave this empty and i'll make a title for you" %>
+    <%= f.association :credit %>
+    <%= f.association :file_type %>
+    <%= f.input :copyright, value: false%>
+    <%= f.input :in_gallery, value: false %>
+    <%= f.grouped_collection_select :uploadable_id, [ BibliographyItem, Project ], :all, :model_name, :id, :title %>
+
+	</div>
+
+  <%#filetype%>
+  <%#credit%>
+  <%#uploadable%>
+
+</div>
