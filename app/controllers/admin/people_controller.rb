@@ -28,7 +28,7 @@ class Admin::PeopleController < AdminController
 
     if @person.save
       flash[:notice] = 'Person created'
-      redirect_to casein_people_path
+      redirect_to admin_people_path
     else
       flash.now[:warning] = 'There were problems when trying to create a new person'
       render :action => :new
@@ -42,7 +42,7 @@ class Admin::PeopleController < AdminController
 
     if @person.update_attributes person_params
       flash[:notice] = 'Person has been updated'
-      redirect_to casein_people_path
+      redirect_to admin_people_path
     else
       flash.now[:warning] = 'There were problems when trying to update this person'
       render :action => :show
@@ -54,7 +54,7 @@ class Admin::PeopleController < AdminController
 
     @person.destroy
     flash[:notice] = 'Person has been deleted'
-    redirect_to casein_people_path
+    redirect_to admin_people_path
   end
 
   private
@@ -73,6 +73,11 @@ class Admin::PeopleController < AdminController
       :end_date,
       :website, 
       :location,
+      educations_attributes: [
+        :id,
+        :_destroy,
+        :title
+      ],
       uploads_attributes: [
         :id,
         :_destroy,

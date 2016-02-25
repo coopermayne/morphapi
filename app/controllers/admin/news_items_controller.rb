@@ -62,7 +62,18 @@ class Admin::NewsItemsController < AdminController
       :street_address,
       :start_date,
       :news_type_id,
-      :in_news_box
+      :in_news_box,
+      uploads_attributes: [
+        :id,
+        :_destroy,
+        :file_type_id,
+        :rank,
+        :in_gallery,
+        :title,
+        :name,
+        :credit_id,
+        :copyright
+      ]
     )
   end
 
