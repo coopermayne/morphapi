@@ -99,9 +99,6 @@ class MenuController < ApplicationController
         title: 'Year',
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
       }, {
-        title: 'Type',
-        items: Section.find_by_title("Urban").get_types
-      }, {
         title: 'Location',
         items: []
       } ]

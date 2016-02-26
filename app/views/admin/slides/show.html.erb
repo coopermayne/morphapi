@@ -1,12 +1,25 @@
-<h2>View slides item</h2>
+<h2><%= @title %></h2>
 
 <%= simple_form_for @slide, :url => admin_slide_path(@slide) do |f| %>
 
+
   <%= render :partial => 'admin/slides/form', :locals => { :f => f } %>
 
-  <p class="submits">
-  <%= link_to 'Cancel', admin_slides_path, :class => 'btn btn-mini btn-danger' %>
-  <%= f.submit "Save changes", :class => "btn btn-mini btn-primary" %>
-  </p>
+
+
+  <div class='row'>
+    <div class="col-md-10">
+      <% if @slide.new_record? %>
+        <%= link_to 'Cancel', admin_slides_path, :class => 'btn btn-mini btn-danger' %>
+      <% else %>
+        <%= link_to 'Cancel', admin_slides_path, :class => 'btn btn-mini btn-danger' %>
+        <%= link_to fa_icon("trash", text: "Destroy"), admin_slide_path(@slide), method: :delete, class: 'btn btn-mini btn-danger pull-right', data: { confirm: "are you sure? it'll be gone forever" } %>
+      <% end %>
+
+      <%= f.submit "Save", :class => "btn btn-mini btn-primary" %>
+      </p>
+    </div>
+
+  </div>
 
 <% end %>

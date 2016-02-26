@@ -2,7 +2,7 @@ class Admin::SlidesController < AdminController
   def index
     @title = "Slide"
     @section_id = params[:type] || Section.find_by_title("Home Page").id.to_s
-    @sections = Section.all.select{|s| !s.slides.empty? }.sort_by{|sec| sec.rank || 999 }
+    @sections = Section.all.select{|s| s.rank }.sort_by{|sec| sec.rank }
 
     @slides = Slide.includes(:section).where(nil)
     @slides = @slides.with_section(@section_id) if @section_id
@@ -23,7 +23,8 @@ class Admin::SlidesController < AdminController
       flash[:notice] = 'Slide created'
       redirect_to admin_slides_path
     else
-      flash.now[:warning] = 'There were problems when trying to create a new slide'
+      #flash.now[:warning] = 'There were problems when trying to create a new slide'
+      flash[:error] = @slide.errors.empty? ? "Error" : @slide.errors.full_messages.to_sentence
       render action: :new
     end
   end

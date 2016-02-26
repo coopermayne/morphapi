@@ -31,14 +31,19 @@ class Slide < ActiveRecord::Base
   accepts_nested_attributes_for :image, :mp4, :webm, :gif, :reject_if => proc { |att| att['id'].blank? && att['name'].blank? }
 
   #validations
-  validates :section_id, :title, presence: true
-  validates :image, presence: true
+  #validates :section_id, :title, presence: true
+  validates :image, presence: {message: "must be present"}
+  validates :mp4, :webm, :gif, presence: {message: "must be present for home page section"}, if: :is_on_home_page?
 
   #hooks
   before_save :set_uploads
 
 
   #methods
+  def is_on_home_page?
+    self.section.title == "Home Page"
+  end
+
   def video_slides_valid?
     self.image.name_url && ['jpg', 'jpeg', 'png'].include?(self.image.name.file.extension)
     self.mp4 && self.mp4.name.file.extension == 'mp4'
