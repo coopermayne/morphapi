@@ -1,0 +1,51 @@
+<h2>sorting</h2>
+<div class="row">
+
+  <div class="col-md-6">
+
+    <%= f.input :title, placeholder: 'optional' %>
+
+    <%= f.association :section, collection: Section.where("rank IS NOT NULL"), prompt: 'required' %>
+    <%= f.association :project, collection: Project.order(created_at: :desc),  prompt: 'semi-optional' %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Image</h3>
+      </div>
+      <div class='panel-body'>
+        <%= f.fields_for :image, Upload.new do |builder| %>
+          <%= builder.input :title, placeholder: 'optional' %>
+          <%= builder.input :name %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Videos (only for home page section)</h3>
+      </div>
+      <div class='panel-body'>
+
+        <%= f.fields_for :mp4, Upload.new do |builder| %>
+          <%= builder.input :title, placeholder: 'optional' %>
+          <%= builder.input :name %>
+        <% end %>
+
+        <hr \>
+
+        <%= f.fields_for :webm, Upload.new do |builder| %>
+          <%= builder.input :title, placeholder: 'optional' %>
+          <%= builder.input :name %>
+        <% end %>
+
+        <hr \>
+
+        <%= f.fields_for :gif, Upload.new do |builder| %>
+          <%= builder.input :title, placeholder: 'optional' %>
+          <%= builder.input :name %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<h2><%= @title %></h2>
+<%= link_to 'New Slide', new_admin_slide_path, class: "pull-right" %>
+<ul class="nav nav-tabs">
+
+  <% @sections.each do |section| %>
+    <li role="presentation" class="<%= 'active' if @section_id==section.id.to_s %>">
+      <%= link_to section.title, admin_slides_path(type: section.id) %>
+    </li>
+  <% end %>
+
+</ul>
+
+<%= render :partial => 'admin/slides/table', :locals => { :slides => @slides } %>

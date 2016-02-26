@@ -18,6 +18,7 @@
 #
 
 class Slide < ActiveRecord::Base
+
   before_save :set_uploads
 
   belongs_to :section
@@ -29,6 +30,9 @@ class Slide < ActiveRecord::Base
   belongs_to :mp4, class_name: 'Upload', foreign_key: :vida_upload_id
   belongs_to :webm, class_name: 'Upload', foreign_key: :vidb_upload_id
   belongs_to :gif, class_name: 'Upload', foreign_key: :gif_upload_id
+
+  accepts_nested_attributes_for :image, :mp4, :webm, :gif
+
 
   private
 
@@ -46,5 +50,7 @@ class Slide < ActiveRecord::Base
       self.uploads << self.gif
     end
   end
+
+  scope :with_section, -> (section_id) { where section_id: section_id }
 
 end

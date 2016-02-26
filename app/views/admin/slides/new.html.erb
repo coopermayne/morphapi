@@ -1,0 +1,12 @@
+<h2>new </h2>
+
+<%= simple_form_for @slide, :url => admin_slides_path(@slide) do |f| %>
+
+  <%= render :partial => 'admin/slides/form', :locals => { :f => f } %>
+
+  <p class="submits">
+  <%= link_to 'Cancel', admin_slides_path, :class => 'btn btn-mini btn-danger' %>
+  <%= f.submit "Save changes", :class => "btn btn-mini btn-primary" %>
+  </p>
+
+<% end %>

@@ -37,12 +37,12 @@ class MenuController < ApplicationController
       }
     end
 
-    vid_slides = Slide.all.select{|s| s.mp4}.map do |s|
+    vid_slides = Section.includes(slides: [:image, :project]).find_by_title("Home Page").slides.map do |slide|
       {
-        mp4: s.mp4.name,
-        webm: s.webm.name,
-        gif: s.gif.name,
-        image: s.image.name
+        mp4: slide.mp4.name,
+        webm: slide.webm.name,
+        gif: slide.gif.name,
+        image: slide.image.name
       }
     end
 

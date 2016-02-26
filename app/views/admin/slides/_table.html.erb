@@ -1,0 +1,36 @@
+
+<p id="notice"><%= notice %></p>
+
+<%= form_tag "/admin/slides/rank", method: :put do %>
+  <table class="table table-striped table-hover table-condensed">
+    <thead>
+      <tr>
+        <th><%= "rank" %></th>
+        <th><%= "title" %></th>
+        <th><%= "image name" %></th>
+        <th><%= "project" %></th>
+        <th><%= "visible" %></th>
+        <th><%= "created_at" %></th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+
+  <% slides.each do |slide| %>
+    <%= fields_for "slides[]", slide do |f| %>
+      <tr>
+        <td><%= f.number_field :rank %> </td>
+        <td><%= f.text_field :title %> </td>
+        <td><%= File.basename slide.uploads.first.name_url %></td>
+        <td><%= slide.project ? slide.project.title : "none" %></td>
+        <td><%= f.check_box :visible %></td>
+        <td><%= slide.created_at.strftime('%x') %></td>
+        <tr>
+    <% end  %>
+  <% end %>
+  </tbody>
+
+  </table>
+
+  <%= submit_tag "Update Types" %>
+<% end  %>
