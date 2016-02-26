@@ -12,7 +12,6 @@ json.array! @items do |item|
     json.types [item.section.title]
 
   elsif item.is_a? Award
-    json.types [item.section.title]
   end
 
 end
