@@ -10,8 +10,6 @@ json.array! @items do |item|
     json.types ["Bibliography"]
   elsif item.is_a? Project
     json.types [item.section.title]
-
-  elsif item.is_a? Award
   end
 
 end
