@@ -19,13 +19,12 @@ class Admin::SlidesController < AdminController
 
   def create
     @slide = Slide.new slide_params
-
     if @slide.save
       flash[:notice] = 'Slide created'
-      redirect_to :back
+      redirect_to admin_slides_path
     else
       flash.now[:warning] = 'There were problems when trying to create a new slide'
-      render :action => :new
+      render action: :new
     end
   end
 
@@ -64,35 +63,29 @@ class Admin::SlidesController < AdminController
 
   def slide_params
     params.require(:slide).permit(
+      :id,
       :title,
       :section_id,
       :project_id,
       mp4_attributes: [
+        :id,
         :title,
         :name
       ],
       image_attributes: [
+        :id,
         :title,
         :name
       ],
       webm_attributes: [
+        :id,
         :title,
         :name
       ],
       gif_attributes: [
+        :id,
         :title,
         :name
-      ],
-      uploads_attributes: [
-        :id,
-        :_destroy,
-        :file_type_id,
-        :rank,
-        :in_gallery,
-        :title,
-        :name,
-        :credit_id,
-        :copyright
       ]
     )
   end

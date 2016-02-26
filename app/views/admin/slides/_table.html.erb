@@ -25,6 +25,7 @@
         <td><%= slide.project ? slide.project.title : "none" %></td>
         <td><%= f.check_box :visible %></td>
         <td><%= slide.created_at.strftime('%x') %></td>
+        <td><%= link_to "edit", admin_slide_path(slide) %></td>
         <tr>
     <% end  %>
   <% end %>

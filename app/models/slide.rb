@@ -18,9 +18,6 @@
 #
 
 class Slide < ActiveRecord::Base
-
-  before_save :set_uploads
-
   belongs_to :section
   belongs_to :project
 
@@ -31,10 +28,29 @@ class Slide < ActiveRecord::Base
   belongs_to :webm, class_name: 'Upload', foreign_key: :vidb_upload_id
   belongs_to :gif, class_name: 'Upload', foreign_key: :gif_upload_id
 
-  accepts_nested_attributes_for :image, :mp4, :webm, :gif
+  accepts_nested_attributes_for :image, :mp4, :webm, :gif, :reject_if => proc { |att| att['id'].blank? && att['name'].blank? }
+
+  #validations
+  validates :section_id, :title, presence: true
+  validates :image, presence: true
+
+  #hooks
+  before_save :set_uploads
+
+
+  #methods
+  def video_slides_valid?
+    self.image.name_url && ['jpg', 'jpeg', 'png'].include?(self.image.name.file.extension)
+    self.mp4 && self.mp4.name.file.extension == 'mp4'
+    self.webm && self.webm.name.file.extension == 'webm'
+    self.gif && self.gif.name.file.extension == 'gif'
+  end
 
 
   private
+
+  def remove_empty
+  end
 
   def set_uploads
     if self.image && !self.uploads.include?(self.image)

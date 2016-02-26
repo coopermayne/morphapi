@@ -9,6 +9,12 @@ class MediaController < ApplicationController
     #bibliography
     bibs = BibliographyItem.includes(:primary_image)
 
-    @items = media + bibs
+
+
+
+    awards = Award.includes(:primary_image)
+    people = Person.where(is_employed: true).includes(:primary_image)
+
+    @items = media + bibs + awards
   end
 end
