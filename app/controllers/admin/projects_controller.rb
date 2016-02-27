@@ -86,6 +86,10 @@ class Admin::ProjectsController < AdminController
         :title,
         :description,
         :overview,
+        primary_image_attributes: [
+          :id,
+          :name
+        ],
       ],
       bibliography_items_attributes: [
         :id,
@@ -100,7 +104,11 @@ class Admin::ProjectsController < AdminController
         :publication,  
         :publisher,    
         :date, 
-        :pub_date 
+        :pub_date,
+        primary_image_attributes: [
+          :id,
+          :name
+        ]
       ],
       uploads_attributes: [
         :id,

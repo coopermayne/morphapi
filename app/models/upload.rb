@@ -31,7 +31,7 @@ class Upload < ActiveRecord::Base
   belongs_to :uploadable, polymorphic: true
 
   def make_primary
-    self.uploadable.primary_image == self
+      self.uploadable && self.uploadable.primary_image == self
   end
 
   def make_primary=(val)
@@ -43,7 +43,7 @@ class Upload < ActiveRecord::Base
   end
 
   def make_index
-    self.uploadable.index_image == self
+    self.uploadable && self.uploadable.index_image == self
   end
 
   def make_index=(val)

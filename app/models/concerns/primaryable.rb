@@ -10,6 +10,8 @@ module Primaryable
     belongs_to :index_image, class_name: 'Upload', foreign_key: :index_image_id
     before_save :set_uploads
     accepts_nested_attributes_for :uploads, allow_destroy: true
+    accepts_nested_attributes_for :primary_image
+    accepts_nested_attributes_for :index_image
   end
 
   def set_uploads
