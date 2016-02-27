@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show]
   resources :awards, only: [:index, :show]
   resources :bibliography_items, only: [:index, :show]
-  resources :news_items, only: [:index, :show]
+  resources :news_items, path: "news", only: [:index, :show]
   resources :people, only: [:index, :show]
   resources :media, only: [:index, :show]
 
