@@ -1,5 +1,15 @@
 $(document).ready(function(){
 
+  $('input.make-primary').on('change', function(e){
+    el = $(e.target)
+    $('input.make-primary').not(el).prop('checked', false)
+  })
+
+  $('input.make-index').on('change', function(e){
+    el = $(e.target)
+    $('input.make-index').not(el).prop('checked', false)
+  })
+
   $('input[type=submit]').on('click', function(e){
     var el = $(e.target)
     el.addClass('btn-info')
@@ -58,6 +68,7 @@ $(document).ready(function(){
       t_el.parents('.type').children('input:checkbox').prop("checked", true)
     }
   })
+
   $('.type input').on('change', function(a,b,c){
     var t_el = $(a.target)
     var isChecked=t_el.is(':checked')

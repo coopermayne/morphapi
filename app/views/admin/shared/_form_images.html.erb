@@ -13,8 +13,10 @@
           <th>type</th>
           <th>credit</th>
           <th>in gallery?</th>
-          <th>copyright??</th>
+          <th>copyright?</th>
           <th>delete?</th>
+          <th>prim</th>
+          <th>index</th>
         </tr>
       </thead>
         <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
@@ -36,7 +38,8 @@
             <td><%= builder.check_box :in_gallery %></td>
             <td><%= builder.check_box :copyright %></td>
             <td><%= builder.check_box :_destroy %></td>
-
+            <td><%= builder.check_box :make_primary, class: "make-primary" %></td>
+            <td><%= builder.check_box :make_index, class: "make-index" %></td>
           </tr>
         <% end %>
 
