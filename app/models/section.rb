@@ -17,6 +17,19 @@ class Section < ActiveRecord::Base
 
   accepts_nested_attributes_for :project_types
 
+  def get_slides
+    self.slides.select(&:visible).sort_by(&:rank).map do |slide|
+      {
+        project_id: slide.project_id,
+        project_title: slide.title,
+        image: slide.image && slide.image.name,
+        mp4: slide.mp4 && slide.mp4.name,
+        webm: slide.webm && slide.webm.name,
+        gif: slide.gif && slide.gif.name
+      }
+    end
+  end
+
   def get_types
 
     project_types.sort_by{|pt| pt.rank}.map do |pt|

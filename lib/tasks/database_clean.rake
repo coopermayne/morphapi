@@ -1,6 +1,17 @@
 # lib/tasks/custom_seed.rake
 namespace :db do
 
+  task seed_index_image_id: :environment do
+    [Project, Award, BibliographyItem, Person, NewsItem].each do |model|
+      model.all.each do |instance|
+        if instance.primary_image
+          instance.index_image = instance.primary_image
+          instance.save
+        end
+      end
+    end
+  end
+
   task clean_content: :environment do
     c = 0
     [Component, Section, Award, BibliographyItem, NewsItem, Person, Project].each do |model|

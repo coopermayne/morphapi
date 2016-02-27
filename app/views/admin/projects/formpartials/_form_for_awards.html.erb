@@ -1,4 +1,11 @@
 <tr>
+  <td>
+    <% if f.object.primary_image && f.object.primary_image.name %>
+      <a class="btn" rel="popover" data-img=<%= f.object.primary_image.name.mobile.url %>>
+        <%= image_tag f.object.primary_image.name.mobile, class: "img-responsive thumby" %>
+      </a>
+    <% end %>
+  </td>
   <td><%= f.object.title %></td>
   <td><%= f.check_box :_destroy %> <%= f.label :_destroy, "Remove" %></td>
 </tr>

@@ -49,7 +49,7 @@
   <div class="row">
     <h2>Other Files</h2>
     <% other_files.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
-      <h1><%= type.title %></h1>
+      <h1><%= type ? type.title : "No Type" %></h1>
       <div class='row'>
         <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
 

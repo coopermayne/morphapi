@@ -7,7 +7,6 @@
       <tr>
         <th><%= "rank" %></th>
         <th><%= "title" %></th>
-        <th><%= "image name" %></th>
         <th><%= "project" %></th>
         <th><%= "visible" %></th>
         <th><%= "created_at" %></th>
@@ -21,7 +20,6 @@
       <tr>
         <td><%= f.number_field :rank %> </td>
         <td><%= f.text_field :title %> </td>
-        <td><%= File.basename slide.uploads.first.name_url %></td>
         <td><%= slide.project ? slide.project.title : "none" %></td>
         <td><%= f.check_box :visible %></td>
         <td><%= slide.created_at.strftime('%x') %></td>

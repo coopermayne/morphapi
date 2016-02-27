@@ -9,42 +9,49 @@ class MenuController < ApplicationController
       {id: item.id, title: item.title, image: img }
     end
 
-    arch_slides = Section.includes(slides: [:image, :project]).find_by_title("Architecture").slides.map do |slide|
-      {
-        project_id: slide.project.id,
-        project_title: slide.project.title,
-        image: slide.image.name
-      }
-    end
+    #arch_slides = Section.includes(slides: [:image, :project]).find_by_title("Architecture").slides.map do |slide|
+      #{
+        #project_id: slide.project.id,
+        #project_title: slide.project.title,
+        #image: slide.image.name
+      #}
+    #end
 
-    urban_slides = Section.includes(slides: [:image, :project]).find_by_title("Urban").slides.map do |slide|
-      {
-        project_id: slide.project.id,
-        project_title: slide.project.title,
-        image: slide.image.name
-      }
-    end
-    tan_slides = Section.includes(slides: [:image, :project]).find_by_title("Tangents").slides.map do |slide|
-      {
-        project_id: slide.project.id,
-        project_title: slide.project.title,
-        image: slide.image.name
-      }
-    end
-    morph_slides = Section.includes(slides: [:image, :project]).find_by_title("Morphosis").slides.map do |slide|
-      {
-        image: slide.image.name
-      }
-    end
+    #urban_slides = Section.includes(slides: [:image, :project]).find_by_title("Urban").slides.map do |slide|
+      #{
+        #project_id: slide.project.id,
+        #project_title: slide.project.title,
+        #image: slide.image.name
+      #}
+    #end
+    #tan_slides = Section.includes(slides: [:image, :project]).find_by_title("Tangents").slides.map do |slide|
+      #{
+        #project_id: slide.project.id,
+        #project_title: slide.project.title,
+        #image: slide.image.name
+      #}
+    #end
+    #morph_slides = Section.includes(slides: [:image, :project]).find_by_title("Morphosis").slides.map do |slide|
+      #{
+        #image: slide.image.name
+      #}
+    #end
 
-    vid_slides = Section.includes(slides: [:image, :project]).find_by_title("Home Page").slides.map do |slide|
-      {
-        mp4: slide.mp4.name,
-        webm: slide.webm.name,
-        gif: slide.gif.name,
-        image: slide.image.name
-      }
-    end
+    #vid_slides = Section.includes(slides: [:image, :project]).find_by_title("Home Page").slides.map do |slide|
+      #{
+        #mp4: slide.mp4.name,
+        #webm: slide.webm.name,
+        #gif: slide.gif.name,
+        #image: slide.image.name
+      #}
+    #end
+    
+    morph_slides = Section.find_by_title("Morphosis").get_slides
+    arch_slides = Section.find_by_title("Architecture").get_slides
+    urban_slides = Section.find_by_title("Urban").get_slides
+    tan_slides = Section.find_by_title("Tangents").get_slides
+    morph_slides = Section.find_by_title("Morphosis").get_slides
+    vid_slides = Section.find_by_title("Home Page").get_slides
 
     res = {}
     res[:landing] = {
@@ -123,8 +130,8 @@ class MenuController < ApplicationController
       slides: arch_slides,
       url: 'research',
       sorting: [{
-          #title: "Now Institute",
-          #items: types["Research"]
+          title: "Now Institute",
+          items: []
       }]
     }, {
       title: 'News',
