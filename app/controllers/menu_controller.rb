@@ -72,7 +72,7 @@ class MenuController < ApplicationController
         items: ''
       }, {
         title: 'Media',
-        items: ['Publications', 'Bibliography', 'Video']
+        items: ['Publications', 'Bibliography', 'Videos']
       } ]
     },
 
