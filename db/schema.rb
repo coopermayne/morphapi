@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222212602) do
+ActiveRecord::Schema.define(version: 20160227174820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,11 @@ ActiveRecord::Schema.define(version: 20160222212602) do
     t.text     "overview"
     t.integer  "hit"
     t.integer  "year"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "primary_id"
     t.integer  "old_id"
+    t.integer  "index_image_id"
   end
 
   create_table "awards_projects", id: false, force: :cascade do |t|
@@ -50,10 +51,11 @@ ActiveRecord::Schema.define(version: 20160222212602) do
     t.string   "date"
     t.date     "pub_date"
     t.string   "pages"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "primary_id"
     t.integer  "old_id"
+    t.integer  "index_image_id"
   end
 
   create_table "bibliography_items_people", id: false, force: :cascade do |t|
@@ -134,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160222212602) do
     t.integer  "primary_id"
     t.boolean  "in_news_box",    default: false
     t.integer  "old_id"
+    t.integer  "index_image_id"
   end
 
   add_index "news_items", ["news_type_id"], name: "index_news_items_on_news_type_id", using: :btree
@@ -165,6 +168,7 @@ ActiveRecord::Schema.define(version: 20160222212602) do
     t.string   "location"
     t.integer  "primary_id"
     t.integer  "old_id"
+    t.integer  "index_image_id"
   end
 
   create_table "positions", force: :cascade do |t|
@@ -213,6 +217,7 @@ ActiveRecord::Schema.define(version: 20160222212602) do
     t.string   "country"
     t.integer  "primary_id"
     t.integer  "old_id"
+    t.integer  "index_image_id"
   end
 
   add_index "projects", ["section_id"], name: "index_projects_on_section_id", using: :btree
