@@ -28,6 +28,6 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @person = Person.includes(roles: [:position, :project]).find(params[:id])
+    @person = Person.includes(:educations, roles: [:position, :project]).find(params[:id])
   end
 end
