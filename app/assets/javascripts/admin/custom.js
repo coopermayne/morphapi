@@ -1,5 +1,24 @@
 $(document).ready(function(){
 
+  $('input[type=submit]').on('click', function(e){
+    var el = $(e.target)
+    el.addClass('btn-info')
+    el.attr('value', 'processing...')
+
+    setTimeout(function(){
+      el.attr('value', 'still going!')
+    }, 2000);
+
+    setTimeout(function(){
+      el.attr('value', 'stay with me...')
+    }, 4000);
+
+    setTimeout(function(){
+      el.attr('value', 'we are getting there')
+    }, 6000);
+
+  });
+
   //trumbowyg
   applyTextBox($('textarea'))
 
@@ -11,11 +30,6 @@ $(document).ready(function(){
     template: '<div class="popover"> <div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
     content: function(){return '<img src="'+$(this).data('img') + '" />';}
   });
-
-  //hover on thumb get big image
-  $('.thumby').on('mouseenter', function(event){
-    console.log("you are in!");
-  })
 
   $('form').on('click', '.add_fields', function(event) {
     //add the form partial
