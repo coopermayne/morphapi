@@ -1,16 +1,9 @@
-<h2>New Slide</h2>
+<h2><%= @title %></h2>
 
-<%= form_for @news_item, :url => casein_news_items_path do |f| %>
+<%= simple_form_for @news_item, :url => admin_news_items_path do |f| %>
 	
-	<%= render :partial => 'casein/news_items/form', :locals => { :f => f } %>
+	<%= render :partial => 'admin/news_items/form', :locals => { :f => f } %>
 	
-	<p class="submits">
-		<%= link_to 'Cancel', casein_news_items_path, :class => 'btn btn-mini btn-danger' %>
-		<%= f.submit "Add new news item", :class => "btn btn-mini btn-primary" %>
-	</p>
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @news_item } %>
 
-<% end %>
-
-<%= content_for :sidebar do %>
-	<li><%= link_to "#{casein_show_icon "th-list"}Back to list".html_safe, casein_news_items_path %></li>
 <% end %>

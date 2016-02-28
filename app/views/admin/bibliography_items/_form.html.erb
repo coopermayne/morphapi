@@ -1,28 +1,42 @@
-<h2>sorting</h2>
-<div class="row">
+<h2><%= @title %></h2>
 
-	<div class="col-md-6">
+<div class='row'>
+  <div class='col-md-12'>
 
-    <%= f.input :title %>
+    <div class='panel panel-default'>
 
-	</div>
-  <% if f.object.primary_image %>
-    <div class="col-md-6">
-      <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
+      <div class='panel-body'>
+        <%= f.input :title %>
+        <div class='col-md-6'>
+          <%= f.input :description %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :overview %>
+        </div>
+        <div class='col-md-6'><%= f.input :author  %></div>
+        <div class='col-md-6'><%= f.input :article_name %></div>
+        <div class='col-md-6'><%= f.input :book_title   %></div>
+        <div class='col-md-6'><%= f.input :subtitle     %></div>
+        <div class='col-md-6'><%= f.input :publication  %></div>
+        <div class='col-md-6'><%= f.input :publisher    %></div>
+        <div class='col-md-6'><%= f.input :date %></div>
+        <div class='col-md-6'><%= f.input :pub_date, html5:true %></div>
+        <div class='col-md-6'><%= f.input :pages        %></div>
+        <div class="col-md-6">
+          <%= f.simple_fields_for :primary_image, f.object.build_primary_image  do |builder| %>
+            <%= builder.input :name, label: false, :input_html => { 
+              :class => 'filestyle', 
+              data: {
+                buttonText: builder.object.name_url ? "Change Image" : "Choose Image",
+                placeholder: builder.object.name_url ? File.basename(builder.object.name_url) :  ""
+              } 
+            }
+          %>
+      <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
-
-<div class="row">
-	<div class="col-md-6">
-		<%= f.input :description, rows: "20" %>
-	</div>
-	<div class="col-md-6">
-		<%= f.input :overview, rows: "20" %>
-	</div>
-</div>
-
-<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 
 <%= render partial: "admin/shared/form_images", locals: {f: f} %>
-<hr style="width: 100%; color: black; height: 1px; background-color:black;" />

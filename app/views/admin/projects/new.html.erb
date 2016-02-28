@@ -1,4 +1,4 @@
-<h1><%= @page_title %></h1>
+<h1><%= @title %></h1>
 
 <%= simple_form_for @project, :url => admin_projects_path do |f| %>
 
@@ -6,14 +6,6 @@
 	
   <p class="submits">
 
-  <% if @project.new_record? %>
-    <%= link_to 'Cancel', admin_projects_path, :class => 'btn btn-mini btn-danger' %>
-  <% else %>
-    <%= link_to 'Cancel', admin_projects_path, :class => 'btn btn-mini btn-danger' %>
-    <%= link_to fa_icon("trash", text: "Destroy"), admin_project_path(@project), method: :delete, class: 'btn btn-mini btn-danger pull-right', data: { confirm: "are you sure? it'll be gone forever" } %>
-  <% end %>
-
-  <%= f.submit "Save", :class => "btn btn-mini btn-primary" %>
-  </p>
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @project } %>
 
 <% end %>

@@ -1,72 +1,88 @@
-<div class="row">
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title"> Files </h3>
+      </div>
+      <div class='panel-body'>
 
-  <h2>Images</h2>
 
-  <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
-    <h1><%= type ? type.title : "No Type" %></h1>
-    <table class='table table-condensed'>
-      <thead>
-        <tr>
-          <th>rank</th>
-          <th>thmb</th>
-          <th>title</th>
-          <th>type</th>
-          <th>credit</th>
-          <th>in gallery?</th>
-          <th>copyright?</th>
-          <th>delete?</th>
-          <th>prim</th>
-          <th>index</th>
-        </tr>
-      </thead>
-        <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
-          <tr>
 
-            <td><%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %></td>
 
-            <td>
-              <a class="btn" rel="popover" data-img=<%= builder.object.name.mobile.url %>>
-                <%= image_tag builder.object.name.mobile, class: "img-responsive thumby" %>
-              </a>
-            </td>
+        <div class="row">
 
-            <td><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%></td>
+          <h2>Images</h2>
 
-            <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none" %></td>
-            <td><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none"  %></td>
+          <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
+            <h1><%= type ? type.title : "No Type" %></h1>
+            <table class='table table-condensed'>
+              <thead>
+                <tr>
+                  <th>rank</th>
+                  <th>thmb</th>
+                  <th>title</th>
+                  <th>type</th>
+                  <th>credit</th>
+                  <th>in gallery?</th>
+                  <th>copyright?</th>
+                  <th>delete?</th>
+                  <th>prim</th>
+                  <th>index</th>
+                </tr>
+              </thead>
+              <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
+                <tr>
 
-            <td><%= builder.check_box :in_gallery %></td>
-            <td><%= builder.check_box :copyright %></td>
-            <td><%= builder.check_box :_destroy %></td>
-            <td><%= builder.check_box :make_primary, class: "make-primary" %></td>
-            <td><%= builder.check_box :make_index, class: "make-index" %></td>
-          </tr>
+                  <td><%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %></td>
+
+                  <td>
+                    <a class="btn" rel="popover" data-img=<%= builder.object.name.mobile.url %>>
+                      <%= image_tag builder.object.name.mobile, class: "img-responsive thumby" %>
+                    </a>
+                  </td>
+
+                  <td><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%></td>
+
+                  <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none" %></td>
+                  <td><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none"  %></td>
+
+                  <td><%= builder.check_box :in_gallery %></td>
+                  <td><%= builder.check_box :copyright %></td>
+                  <td><%= builder.check_box :_destroy %></td>
+                  <td><%= builder.check_box :make_primary, class: "make-primary" %></td>
+                  <td><%= builder.check_box :make_index, class: "make-index" %></td>
+                </tr>
+              <% end %>
+
+            </table>
+          <% end %>
+        </div>
+
+        <% other_files = f.object.uploads.select{|u| !u.is_image} %>
+        <% unless other_files.empty? %>
+          <div class="row">
+            <h2>Other Files</h2>
+            <% other_files.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
+              <h1><%= type ? type.title : "No Type" %></h1>
+              <div class='row'>
+                <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
+
+                  <div class='col-md-6'> show? <%= builder.check_box :in_gallery %> </div>
+                  <div class='col-md-6'> delete? <%= builder.check_box :_destroy %> </div>
+
+                  <%= image_tag builder.object.name.thumb, class: "img-responsive" %>
+                  <%= builder.input :rank, size: 3 %>
+                  <%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type..." %>
+                <% end %>
+              </div>
+
+            <% end %>
+          </div>
         <% end %>
 
-    </table>
-  <% end %>
+        <%= link_to_add_fields "Add Files", f, :uploads %>
+      </div>
+    </div>
+  </div>
 </div>
 
-<% other_files = f.object.uploads.select{|u| !u.is_image} %>
-<% unless other_files.empty? %>
-  <div class="row">
-    <h2>Other Files</h2>
-    <% other_files.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
-      <h1><%= type ? type.title : "No Type" %></h1>
-      <div class='row'>
-        <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
-
-          <div class='col-md-6'> show? <%= builder.check_box :in_gallery %> </div>
-          <div class='col-md-6'> delete? <%= builder.check_box :_destroy %> </div>
-
-          <%= image_tag builder.object.name.thumb, class: "img-responsive" %>
-          <%= builder.input :rank, size: 3 %>
-          <%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type..." %>
-        <% end %>
-      </div>
-
-    <% end %>
-  </div>
-<% end %>
-
-<%= link_to_add_fields "Add Files", f, :uploads %>

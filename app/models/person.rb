@@ -25,6 +25,8 @@
 class Person < ActiveRecord::Base
   include Primaryable
 
+  validates :name, presence: true
+
   has_one :search_result, as: :searchable
 
   has_many :roles

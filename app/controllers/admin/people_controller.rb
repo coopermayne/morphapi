@@ -19,7 +19,7 @@ class Admin::PeopleController < AdminController
   end
 
   def new
-    @casein_page_title = 'Add a new person'
+    @title = 'Add a new person'
     @person = Person.new
   end
 

@@ -1,12 +1,9 @@
 <%# varibale f: project simple_form %>
 
-<%= render partial: "admin/shared/form_primary_index_images", locals: {f: f} %>
-<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-
-<%= render partial: "admin/shared/form_images", locals: {f: f} %>
-<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-
 <%= render partial: "admin/projects/formpartials/form_basic_info", locals: {f: f} %>
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+
+<%= render partial: "admin/shared/form_primary_index_images", locals: {f: f} %>
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 
 <%= render partial: "admin/projects/formpartials/form_roles", locals: {f: f} %>
@@ -20,3 +17,7 @@
 
 <%= render partial: "admin/projects/formpartials/form_bibliography", locals: {f: f} %>
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+
+<%= render partial: "admin/shared/form_images", locals: {f: f} %>
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+
