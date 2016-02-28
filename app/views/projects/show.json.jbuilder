@@ -2,6 +2,7 @@
 
 json.result do |json|
   json.merge! @project.attributes
+  json.types @project.project_types.map{|t| t.title }
   json.primary_image @project.primary_image
 
   #json.components @project.components, :id, :content, :rank, :component_type
@@ -16,5 +17,8 @@ json.result do |json|
   end
 
   json.awards @project.awards, :id, :title, :year
-  json.bibliography_items @project.bibliography_items, :id, :title, :pub_date
+  json.bibliography_items @project.bibliography_items do |bib|
+    json.merge! bib.attributes
+    json.primary_image bib.primary_image
+  end
 end

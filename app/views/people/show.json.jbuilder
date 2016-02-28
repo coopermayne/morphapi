@@ -10,5 +10,7 @@ json.roles @person.roles do |role|
   json.project do |json|
     json.id role.project.id
     json.title role.project.title
+    json.section role.project.section.title
+    json.image role.project.index_image.name
   end
 end
