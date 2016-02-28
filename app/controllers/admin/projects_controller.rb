@@ -5,7 +5,7 @@ class Admin::ProjectsController < AdminController
     @section_id = params[:type]
     @projects = Project.includes(:section, :primary_image).where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
-    @projects = @projects.order(sort_column+ " " + sort_direction).paginate :page => params[:page]
+    @projects = @projects.order(sort_column+ " " + sort_direction)
   end
 
   def show

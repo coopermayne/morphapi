@@ -13,10 +13,7 @@
       <%= link_to sec.title, admin_projects_path(type: sec.id) %>
     </li>
   <% end %>
+
 </ul>
 
 <%= render :partial => 'admin/projects/table', :locals => { :projects => @projects } %>
-
-<div class="text-center">
-	<%= will_paginate @projects %>
-</div>
