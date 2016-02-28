@@ -1,11 +1,7 @@
 class Admin::AwardsController < AdminController
-  helper_method :sort_column, :sort_direction
 
   def index
-
-    @awards = Award.where(nil)
-    @awards = @awards.order(sort_column+ " " + sort_direction).paginate :page => params[:page]
-
+    @awards = Award.all
   end
 
   def show
@@ -71,14 +67,5 @@ class Admin::AwardsController < AdminController
         :copyright
       ]
     )
-  end
-
-
-  def sort_column
-    Award.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 end

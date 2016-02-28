@@ -1,11 +1,9 @@
 class Admin::ProjectsController < AdminController
-  helper_method :sort_column, :sort_direction
 
   def index
     @section_id = params[:type]
     @projects = Project.includes(:section, :primary_image).where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
-    @projects = @projects.order(sort_column+ " " + sort_direction)
   end
 
   def show
@@ -21,7 +19,7 @@ class Admin::ProjectsController < AdminController
 
     if @project.save
       flash[:notice] = 'Project created'
-      redirect_to :back
+      redirect_to :show
     else
       flash.now[:warning] = 'There were problems when trying to create a new project'
       render :action => :new
@@ -126,13 +124,4 @@ class Admin::ProjectsController < AdminController
     )
   end
 
-  private
-
-  def sort_column
-    Project.column_names.include?(params[:sort]) ? params[:sort] : "title"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
 end

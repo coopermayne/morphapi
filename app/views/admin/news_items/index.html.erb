@@ -1,4 +1,6 @@
-<h2>News</h2>
+<h2><%= @title %></h2>
+<%= link_to "new news",  new_admin_news_item_path, class: "pull-right" %><br>
+<%= link_to "manage news types",  admin_news_types_path, class: "pull-right" %><br>
 
 
 <ul class="nav nav-tabs">
@@ -15,7 +17,3 @@
 </ul>
 
 <%= render :partial => 'admin/news_items/table', :locals => { :news_items => @news_items } %>
-
-<div class="text-center">
-	<%= will_paginate @news_items %>
-</div>

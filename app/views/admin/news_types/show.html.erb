@@ -1,0 +1,8 @@
+<h2><%= @title %></h2>
+
+<%= simple_form_for @news_type, :url => admin_news_type_path(@news_type) do |f| %>
+  <%= f.input :title %>
+
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @news_type, hide_destroy: true } %>
+
+<% end %>

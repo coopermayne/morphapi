@@ -1,12 +1,9 @@
 class Admin::NewsItemsController < AdminController
-  helper_method :sort_column, :sort_direction
-
   def index
 
     @news_type_id = params[:type]
     @news_items = NewsItem.where(nil)
     @news_items = @news_items.where(news_type_id: @news_type_id) if @news_type_id
-    @news_items = @news_items.order(sort_column+ " " + sort_direction).paginate :page => params[:page]
 
   end
 
@@ -77,12 +74,4 @@ class Admin::NewsItemsController < AdminController
     )
   end
 
-
-  def sort_column
-    NewsItem.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
 end

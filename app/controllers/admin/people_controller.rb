@@ -1,6 +1,4 @@
 class Admin::PeopleController < AdminController
-  helper_method :sort_column, :sort_direction
-
   def index
     @people = Person.where(nil)
     @types = ["is_morphosis", "is_employed", "is_collaborator", "is_consultant"]
@@ -9,8 +7,6 @@ class Admin::PeopleController < AdminController
       @type = params[:type]
       @people = @people.where(params[:type]=> true)
     end
-
-    @people = @people.order(sort_column + " " + sort_direction).paginate :page => params[:page]
   end
 
   def show
@@ -92,13 +88,4 @@ class Admin::PeopleController < AdminController
 
     )
   end
-
-  def sort_column
-    Person.column_names.include?(params[:sort]) ? params[:sort] : "name"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
-
 end

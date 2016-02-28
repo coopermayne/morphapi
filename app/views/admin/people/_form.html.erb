@@ -104,38 +104,59 @@
 
 <%= render partial: "admin/shared/form_images", locals: {f: f} %>
 
-<div class="row">
-  <h2>Roles</h2>
-  <div class="col-md-12">
-    <table class='table'>
-      <thead>
-        <tr>
-          <th> Project </th>
-          <th> Position </th>
-          <th> &nbsp; </th>
-        </tr>
-      </thead>
-      <%= f.fields_for :roles do |builder| %>
-        <%= render "form_for_roles", f:builder %>
-      <% end %>
-    </table>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Roles</h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+          <div class="col-md-12">
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th> Project </th>
+                  <th> Position </th>
+                  <th> &nbsp; </th>
+                </tr>
+              </thead>
+              <%= f.fields_for :roles do |builder| %>
+                <%= render "form_for_roles", f:builder %>
+              <% end %>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <h2>Ed</h2>
-  <div class="col-md-12">
-    <table class='table'>
-      <thead>
-        <tr>
-          <th> Education </th>
-          <th> &nbsp; </th>
-        </tr>
-      </thead>
-      <%= f.fields_for :educations do |builder| %>
-        <%= render "form_for_educations", f:builder %>
-      <% end %>
-    </table>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Education</h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+          <div class="col-md-12">
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th> Education </th>
+                  <th> &nbsp; </th>
+                </tr>
+              </thead>
+              <%= f.fields_for :educations do |builder| %>
+                <%= render "form_for_educations", f:builder %>
+              <% end %>
+            </table>
+          </div>
+        </div>
+        <%= link_to_add_fields "Add Education", f, :educations %>
+      </div>
+    </div>
   </div>
 </div>
-<%= link_to_add_fields "Add Education", f, :educations %>

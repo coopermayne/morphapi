@@ -1,10 +1,8 @@
 class Admin::BibliographyItemsController < AdminController
-  helper_method :sort_column, :sort_direction
 
   def index
 
     @bibliography_items = BibliographyItem.where(nil)
-    @bibliography_items = @bibliography_items.order(sort_column+ " " + sort_direction).paginate :page => params[:page]
 
   end
 
@@ -72,12 +70,4 @@ class Admin::BibliographyItemsController < AdminController
     )
   end
 
-
-  def sort_column
-    BibliographyItem.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
 end

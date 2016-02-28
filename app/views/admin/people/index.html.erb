@@ -1,7 +1,7 @@
 <%= link_to "new person", new_admin_person_path, class: "pull-right" %><br>
 <%= link_to "manage positions",  admin_positions_path, class: "pull-right" %><br>
 
-<h2>People</h2>
+<h2><%= @title %></h2>
 
 <ul class="nav nav-tabs">
   <li role="presentation" class="<%= 'active' unless @type %>">
@@ -17,7 +17,3 @@
 </ul>
 
 <%= render :partial => 'admin/people/table', :locals => { :people => @people } %>
-
-<div class="text-center">
-  <%= will_paginate @people %>
-</div>

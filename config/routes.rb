@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         put :rank
       end
     end
+    resources :news_types
     resources :users
     resources :awards
     resources :bibliography_items

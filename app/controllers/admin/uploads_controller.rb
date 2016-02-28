@@ -1,5 +1,4 @@
 class Admin::UploadsController < AdminController
-  helper_method :sort_column, :sort_direction
 
   def index
     @title = "Files"
@@ -10,7 +9,6 @@ class Admin::UploadsController < AdminController
       #@people = @people.where(params[:type]=> true)
     #end
 
-    @uploads = @uploads.order(sort_column + " " + sort_direction).paginate :page => params[:page]
   end
 
   def show
@@ -64,14 +62,6 @@ class Admin::UploadsController < AdminController
 
   def upload_params
     params.require(:upload).permit(:title, :name, :copyright, :rank, :file_type_id, :credit_id, :uploadable_id, :uploadable_type, :in_gallery)
-  end
-
-  def sort_column
-    Upload.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 
 end

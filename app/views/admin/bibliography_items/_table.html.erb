@@ -1,11 +1,10 @@
-<table class="table table-striped table-hover table-condensed">
+<table class="table table-striped table-hover table-condensed index-table">
 	<thead>
 		<tr>
-			<th><%= sortable "title" %></th>
-			<th><%= sortable "article_name", "Article Name" %></th>
-			<th><%= sortable "date" %></th>
-			<th><%= sortable "created_at", "Created" %></th>
-      <th><%= "Primary Image" %></th>
+			<th>title</th>
+			<th>article</th>
+			<th>created</th>
+      <th>image</th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
@@ -14,7 +13,6 @@
 		<tr>
 			<td><%= link_to bibliography_item.title, admin_bibliography_item_path(bibliography_item) %></td>
 			<td><%= link_to bibliography_item.article_name, admin_bibliography_item_path(bibliography_item) %></td>
-			<td><%= bibliography_item.date %></td>
 			<td><%= bibliography_item.created_at.strftime('%x') %></td>
       <td><%= bibliography_item.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
 			<td class="delete">
