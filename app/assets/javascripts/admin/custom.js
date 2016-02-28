@@ -1,10 +1,9 @@
 $(document).ready(function(){
-
-  $(document).ready(function(){
-      $('table').DataTable({
-        "lengthMenu": [ 15, 25, 50 ]
-      });
-  });
+  if ( $(".index-table").length ){
+    $('.index-table').DataTable({
+      "lengthMenu": [ 15, 25, 50 ]
+    });
+  }
 
   $('input.make-primary').on('change', function(e){
     el = $(e.target)
