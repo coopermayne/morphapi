@@ -8,17 +8,17 @@
 
         <div class="row">
           <div class='col-md-6'>
-            <em>featured image</em>
-            <% if f.object.primary_image %>
-              <div class='preview-primary' style="height: 180px; width: 150px; background-image: url('<%= f.object.primary_image.name.mobile %>'); overflow: hidden; background-position: center center; background-size: cover;"></div>
+            <em>index image</em>
+            <% if f.object.index_image %>
+              <div class='' style="height: 180px; width: 150px; background-image: url('<%= f.object.index_image.name.mobile %>'); overflow: hidden; background-position: center center; background-size: cover;"></div>
             <% else %>
               none
             <% end %>
           </div>
           <div class='col-md-6'>
-            <em>index page image</em>
-            <% if f.object.index_image %>
-              <div class='preview-primary' style="height: 180px; width: 360px; background-image: url('<%= f.object.index_image.name.mobile %>'); overflow: hidden; background-position: center center; background-size: cover;"></div>
+            <em>featured image</em>
+            <% if f.object.primary_image %>
+              <div class='' style="height: 180px; width: 360px; background-image: url('<%= f.object.primary_image.name.mobile %>'); overflow: hidden; background-position: center center; background-size: cover;"></div>
             <% else %>
               none
             <% end %>
