@@ -1,0 +1,8 @@
+<h2><%= @title %></h2>
+
+<%= simple_form_for @file_type, :url => admin_file_types_path do |f| %>
+  <%= f.input :title %>
+  <%= f.input :rank %>
+
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @file_type } %>
+<% end %>

@@ -17,12 +17,18 @@ Rails.application.routes.draw do
 		resources :positions
 		resources :news_items
 		resources :projects
+
     resources :project_types do
       collection do
         put :rank
       end
     end
+
+    #minor
     resources :news_types
+    resources :file_types
+    resources :credits
+
     resources :users
     resources :awards
     resources :bibliography_items

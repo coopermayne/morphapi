@@ -21,7 +21,6 @@ gem 'fog'
 gem 'figaro'
 gem 'ancestry'
 gem 'trumbowyg_rails'
-gem 'will_paginate', '~> 3.0.6'
 gem 'devise'
 
 gem 'bootstrap-sass', '~> 3.2.0'

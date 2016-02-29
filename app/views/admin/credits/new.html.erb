@@ -1,0 +1,8 @@
+<h2><%= @title %></h2>
+
+<%= simple_form_for @credit, :url => admin_credits_path do |f| %>
+  <%= f.input :name %>
+  <%= f.input :url, label: 'website' %>
+
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @credit } %>
+<% end %>

@@ -1,13 +1,8 @@
 class Admin::UploadsController < AdminController
 
   def index
-    @title = "Files"
+    @title = "Homeless Files"
     @uploads = Upload.where(:uploadable => nil)
-
-    #if @types.include? params[:type]
-      #@type = params[:type]
-      #@people = @people.where(params[:type]=> true)
-    #end
 
   end
 
