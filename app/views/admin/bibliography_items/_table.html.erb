@@ -1,10 +1,11 @@
-<table class="table table-striped table-hover table-condensed index-table">
+<table class="table table-striped table-hover table-condensed table-bordered index-table">
 	<thead>
 		<tr>
 			<th>title</th>
 			<th>article</th>
+			<th>publication</th>
 			<th>created</th>
-      <th>image</th>
+			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
@@ -12,11 +13,11 @@
 	<% bibliography_items.each do |bibliography_item| %>
 		<tr>
 			<td><%= link_to bibliography_item.title, admin_bibliography_item_path(bibliography_item) %></td>
-			<td><%= link_to bibliography_item.article_name, admin_bibliography_item_path(bibliography_item) %></td>
+			<td><%= bibliography_item.article_name %></td>
+      <td><%= bibliography_item.publication %></td>
 			<td><%= bibliography_item.created_at.strftime('%x') %></td>
-      <td><%= bibliography_item.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
-			<td class="delete">
-			</td>
-		</tr>
+      <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_bibliography_item_path(bibliography_item)%></td>
+      <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_bibliography_item_path(bibliography_item), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
+    </tr>
 	<% end %>
 </table>

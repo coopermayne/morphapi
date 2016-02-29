@@ -35,7 +35,7 @@ class Admin::SlidesController < AdminController
     if @slide.update_attributes slide_params
       flash[:notice] = 'Slide has been updated'
       #redirect_to admin_slides_path
-      redirect_to :back
+      redirect_to admin_slide_path(@slide)
     else
       flash.now[:warning] = 'There were problems when trying to update this slide'
       render :action => :show

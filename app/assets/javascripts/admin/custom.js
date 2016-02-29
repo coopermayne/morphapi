@@ -1,7 +1,11 @@
 $(document).ready(function(){
+
   if ( $(".index-table").length ){
     $('.index-table').DataTable({
-      "lengthMenu": [ 15, 25, 50 ]
+      "lengthMenu": [ 15, 25, 50 ],
+      "columnDefs": [
+        { "orderable": false, "targets": [-1, -2] }
+      ]
     });
   }
 

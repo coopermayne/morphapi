@@ -32,7 +32,7 @@ class Admin::ProjectsController < AdminController
     if @project.update_attributes project_params
       flash[:notice] = 'Project has been updated'
       #redirect_to admin_projects_path
-      redirect_to :back
+      redirect_to admin_project_path(@project)
     else
       flash.now[:warning] = 'There were problems when trying to update this project'
       render :action => :show

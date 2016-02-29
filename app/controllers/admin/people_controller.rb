@@ -10,7 +10,7 @@ class Admin::PeopleController < AdminController
   end
 
   def show
-    @casein_page_title = 'View person'
+    @title = 'View person'
     @person = Person.find params[:id]
   end
 
@@ -32,13 +32,13 @@ class Admin::PeopleController < AdminController
   end
 
   def update
-    @casein_page_title = 'Update person'
+    @title = 'Update person'
 
     @person = Person.find params[:id]
 
     if @person.update_attributes person_params
       flash[:notice] = 'Person has been updated'
-      redirect_to admin_people_path
+      redirect_to admin_person_path(@person)
     else
       flash.now[:warning] = 'There were problems when trying to update this person'
       render :action => :show

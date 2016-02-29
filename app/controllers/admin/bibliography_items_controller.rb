@@ -32,7 +32,7 @@ class Admin::BibliographyItemsController < AdminController
 
     if @bibliography_item.update_attributes bibliography_item_params
       flash[:notice] = 'BibliographyItem item has been updated'
-      redirect_to admin_bibliography_items_path
+      redirect_to admin_bibliography_item_path(@bibliography_item)
     else
       flash.now[:warning] = 'There were problems when trying to update this BibliographyItem item'
       render :action => :show
@@ -52,9 +52,17 @@ class Admin::BibliographyItemsController < AdminController
   def bibliography_item_params
     params.require(:bibliography_item).permit(
       :title,
+      :author,
+      :article_name,
+      :book_title,
+      :subtitle,
+      :publication,
+      :publisher,
+      :date,
+      :pub_date,
+      :pages,
       :description,
       :overview,
-      :projects_ids,
       :primary_id,
       uploads_attributes: [
         :id,
@@ -65,8 +73,10 @@ class Admin::BibliographyItemsController < AdminController
         :title,
         :name,
         :credit_id,
+        :make_primary, 
+        :make_index,
         :copyright
-      ]
+      ],
     )
   end
 

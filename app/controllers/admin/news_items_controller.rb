@@ -33,7 +33,7 @@ class Admin::NewsItemsController < AdminController
 
     if @news_item.update_attributes news_item_params
       flash[:notice] = 'News item has been updated'
-      redirect_to admin_news_items_path
+      redirect_to admin_news_item_path(@news_item)
     else
       flash.now[:warning] = 'There were problems when trying to update this news item'
       render :action => :show

@@ -31,7 +31,7 @@ class Admin::FileTypesController < AdminController
 
     if @file_type.update_attributes file_type_params
       flash[:notice] = 'Type item has been updated'
-      redirect_to admin_file_types_path
+      redirect_to admin_file_type_path(@file_type)
     else
       flash.now[:warning] = 'There were problems when trying to update this Type item'
       render :action => :show

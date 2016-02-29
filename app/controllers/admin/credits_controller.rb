@@ -31,7 +31,7 @@ class Admin::CreditsController < AdminController
 
     if @credit.update_attributes credit_params
       flash[:notice] = 'Type item has been updated'
-      redirect_to admin_credits_path
+      redirect_to admin_credit_path(@credit)
     else
       flash.now[:warning] = 'There were problems when trying to update this Type item'
       render :action => :show

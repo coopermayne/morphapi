@@ -31,7 +31,7 @@ class Admin::ProjectTypesController < AdminController
 
     if @project_type.update_attributes project_type_params
       flash[:notice] = 'Type item has been updated'
-      redirect_to admin_project_types_path
+      redirect_to admin_project_type_path(@project_type)
     else
       flash.now[:warning] = 'There were problems when trying to update this Type item'
       render :action => :show

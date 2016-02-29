@@ -30,7 +30,7 @@ class Admin::AwardsController < AdminController
 
     if @award.update_attributes award_params
       flash[:notice] = 'Award item has been updated'
-      redirect_to admin_awards_path
+      redirect_to admin_award_path(@award)
     else
       flash.now[:warning] = 'There were problems when trying to update this Award item'
       render :action => :show

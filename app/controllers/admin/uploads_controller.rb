@@ -32,13 +32,13 @@ class Admin::UploadsController < AdminController
   end
 
   def update
-    @casein_page_title = 'Update upload'
+    @title = 'Update upload'
 
     @upload = Upload.find params[:id]
 
     if @upload.update_attributes upload_params
       flash[:notice] = 'Upload has been updated'
-      redirect_to casein_people_path
+      redirect_to admin_upload_path(@upload)
     else
       flash.now[:warning] = 'There were problems when trying to update this upload'
       render :action => :show
@@ -50,7 +50,7 @@ class Admin::UploadsController < AdminController
 
     @upload.destroy
     flash[:notice] = 'Upload has been deleted'
-    redirect_to casein_people_path
+    redirect_to admin_uploads_path
   end
 
   private
