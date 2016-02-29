@@ -1,6 +1,6 @@
 class Admin::SlidesController < AdminController
   def index
-    @title = "Slide"
+    @title = "Slides"
     @section_id = params[:type] || Section.find_by_title("Home Page").id.to_s
     @sections = Section.all.select{|s| s.rank }.sort_by{|sec| sec.rank }
 
@@ -10,10 +10,12 @@ class Admin::SlidesController < AdminController
   end
 
   def show
+    @title = "Edit Slide"
     @slide = Slide.includes(:section).find params[:id]
   end
 
   def new
+    @title = "New Slide"
     @slide = Slide.new
   end
 

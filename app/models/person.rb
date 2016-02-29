@@ -29,7 +29,7 @@ class Person < ActiveRecord::Base
 
   has_one :search_result, as: :searchable
 
-  has_many :roles
+  has_many :roles, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_and_belongs_to_many :bibliography_items
 

@@ -1,14 +1,17 @@
 class Admin::AwardsController < AdminController
 
   def index
+    @title = "Awards"
     @awards = Award.all
   end
 
   def show
+    @title = "Edit Award"
     @award = Award.find params[:id]
   end
 
   def new
+    @title = "New Award"
     @award = Award.new
   end
 

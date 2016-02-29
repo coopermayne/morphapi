@@ -1,5 +1,6 @@
 class Admin::PeopleController < AdminController
   def index
+    @title = "People"
     @people = Person.where(nil)
     @types = ["is_morphosis", "is_employed", "is_collaborator", "is_consultant"]
 
@@ -10,12 +11,12 @@ class Admin::PeopleController < AdminController
   end
 
   def show
-    @title = 'View person'
+    @title = 'Edit Person'
     @person = Person.find params[:id]
   end
 
   def new
-    @title = 'Add a new person'
+    @title = 'New Person'
     @person = Person.new
   end
 

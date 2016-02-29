@@ -1,16 +1,19 @@
 class Admin::ProjectsController < AdminController
 
   def index
+    @title = "Projects"
     @section_id = params[:type]
     @projects = Project.includes(:section, :primary_image).where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
   end
 
   def show
+    @title = "Edit Project"
     @project = Project.includes(:section, :project_types, roles:[:position, :person], uploads: [:file_type]).find params[:id]
   end
 
   def new
+    @title = "New Project"
     @project = Project.new
   end
 

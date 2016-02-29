@@ -1,16 +1,18 @@
 class Admin::BibliographyItemsController < AdminController
 
   def index
-
+    @title = "Bibs"
     @bibliography_items = BibliographyItem.where(nil)
 
   end
 
   def show
+    @title = "Edit Bib"
     @bibliography_item = BibliographyItem.find params[:id]
   end
 
   def new
+    @title = "New Bib"
     @bibliography_item = BibliographyItem.new
   end
 
