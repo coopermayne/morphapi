@@ -1,5 +1,7 @@
 <h2><%= @title %></h2>
 
+<%= link_to 'New User', new_admin_user_path, class: "pull-right" %>
+
 <table class='table'>
   <thead>
     <tr>
@@ -18,12 +20,14 @@
         <td><%= user.email %></td>
         <td><%= user.admin ? "yup" : "nope" %></td>
         <td><%= user.last_sign_in_at ? user.last_sign_in_at.strftime("%m/%d/%Y") : "never" %></td>
-        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% unless user.admin %>
+            <%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New User', new_admin_user_path %>
