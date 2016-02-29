@@ -30,7 +30,7 @@ class Person < ActiveRecord::Base
   has_one :search_result, as: :searchable
 
   has_many :roles
-  has_many :educations
+  has_many :educations, dependent: :destroy
   has_and_belongs_to_many :bibliography_items
 
   accepts_nested_attributes_for :roles, allow_destroy: true
