@@ -1,7 +1,5 @@
 json.array! @news_items do |item|
-
-  json.(item, :id, :title)
+  json.merge! item.attributes
   json.type item.news_type
   json.image item.primary_image
-
 end
