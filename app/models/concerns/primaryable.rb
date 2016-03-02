@@ -21,7 +21,7 @@ module Primaryable
   end
 
   def getGalleries
-    grouped = self.uploads.select{|u| u.in_gallery}.group_by{|item| item.file_type}
+    grouped = self.uploads.select{|u| u.in_gallery && u.is_image}.group_by{|item| item.file_type}
     res = {}
     grouped.each{ |k, v| res[k.title.to_sym] = v }
     res
@@ -33,4 +33,9 @@ module Primaryable
     grouped.each{ |k, v| res[k.title.to_sym] = v.sort_by{|u| u.rank} }
     res
   end
+
+  def getDocuments
+    self.uploads.select{|u| u.is_document}
+  end
+
 end

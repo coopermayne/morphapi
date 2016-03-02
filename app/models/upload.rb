@@ -58,6 +58,10 @@ class Upload < ActiveRecord::Base
     self.name_url && [".jpg", ".jpeg", ".png"].include?(File.extname(self.name_url))
   end
 
+  def is_document
+    self.name_url && [".pdf"].include?(File.extname(self.name_url))
+  end
+
   def set_some_defaults
     self.rank ||= 999
     if self.title.blank?
