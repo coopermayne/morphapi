@@ -9,7 +9,7 @@ module Searchable
   end
 
   def autocreate_searchable
-    self.create_search_result
+    self.search_result = SearchResult.create!
   end
 
   def update_search_content
@@ -51,8 +51,19 @@ module Searchable
                }
 
              when self.class == Project
+               if self.section.nil?
+                 sec = nil
+                 st = nil
+               elsif ["Publications", "Videos"].include? self.section.title
+                 sec = "about"
+                 st = "media"
+               else
+                 sec = self.section.title.downcase
+                 st = nil
+               end
                {
-                 section: self.section.title,
+                 section: sec,
+                 sorting_type: st,
                  content: "#{title} #{self.project_types.map(&:title).join(" ")}"
                }
              else
