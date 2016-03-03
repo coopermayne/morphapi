@@ -28,5 +28,6 @@ class SearchResult < ActiveRecord::Base
       ranked[result] += 1 if result.searchable_type == "Project"
     end
 
+    ranked.to_a.sort_by{|item| item[1]}.reverse.slice(0,100).map(&:first)
   end
 end

@@ -52,7 +52,7 @@ module Searchable
 
              when self.class == Project
                {
-                 section: self.section,
+                 section: self.section.title,
                  content: "#{title} #{self.project_types.map(&:title).join(" ")}"
                }
              else
