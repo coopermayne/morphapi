@@ -23,6 +23,7 @@
 #
 
 class NewsItem < ActiveRecord::Base
+  include Searchable
   include Primaryable
 
   has_one :search_result, as: :searchable
@@ -30,11 +31,4 @@ class NewsItem < ActiveRecord::Base
 
   accepts_nested_attributes_for :news_type
 
-  def autocreate_searchable
-    self.create_search_result
-  end
-
-  def update_search_content
-    search_result.update_attributes(title: title, content: "")
-  end
 end

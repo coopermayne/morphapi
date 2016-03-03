@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227174820) do
+ActiveRecord::Schema.define(version: 20160303204034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,6 +253,9 @@ ActiveRecord::Schema.define(version: 20160227174820) do
     t.integer  "weight",          default: 0
     t.string   "thumb"
     t.string   "description"
+    t.string   "uid"
+    t.string   "section"
+    t.string   "sorting_type"
   end
 
   add_index "search_results", ["searchable_type", "searchable_id"], name: "index_search_results_on_searchable_type_and_searchable_id", using: :btree

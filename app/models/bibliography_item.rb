@@ -22,6 +22,7 @@
 #
 
 class BibliographyItem < ActiveRecord::Base
+  include Searchable
   include Primaryable
 
   has_and_belongs_to_many :projects
@@ -29,11 +30,4 @@ class BibliographyItem < ActiveRecord::Base
 
   has_one :search_result, as: :searchable
 
-  def autocreate_searchable
-    self.create_search_result
-  end
-
-  def update_search_content
-    search_result.update_attributes(title: title, content: "#{projects.map(&:title).join(" ")} #{article_name}")
-  end
 end

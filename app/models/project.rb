@@ -32,12 +32,10 @@
 #
 
 class Project < ActiveRecord::Base
+  include Searchable
   include Primaryable
 
   has_one :search_result, as: :searchable
-
-  after_create :autocreate_searchable
-  after_commit :update_search_content
 
   has_many :components
   has_many :roles, dependent: :destroy
@@ -65,11 +63,4 @@ class Project < ActiveRecord::Base
     self.constr_edate || self.constr_sdate || self.design_edate || self.design_sdate
   end
 
-  def autocreate_searchable
-    self.create_search_result
-  end
-  def update_search_content
-    img_url = primary_image ? primary_image.name.thumb.url : nil
-    search_result.update_attributes(title: title, content: "#{title} #{project_types.map(&:title).join(" ")}", thumb: img_url, description: overview)
-  end
 end

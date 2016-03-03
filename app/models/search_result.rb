@@ -12,6 +12,7 @@
 #
 
 class SearchResult < ActiveRecord::Base
+  attr_accessor :rank
   belongs_to :searchable, polymorphic: true
   #searchable modeles include; Award, BibliographyItem, NewsItem, Person, Project
   
@@ -27,6 +28,5 @@ class SearchResult < ActiveRecord::Base
       ranked[result] += 1 if result.searchable_type == "Project"
     end
 
-    ranked.to_a.sort_by{|item| item[1]}.reverse.slice(0,15).map(&:first)
   end
 end
