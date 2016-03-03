@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th><%= "rank" %></th>
-        <th><%= "title" %></th>
+        <th>&nbsp;</th>
         <th><%= "project" %></th>
         <th><%= "visible" %></th>
         <th><%= "created_at" %></th>
@@ -15,8 +15,14 @@
   <% slides.each do |slide| %>
     <%= fields_for "slides[]", slide do |f| %>
       <tr>
-        <td><%= f.number_field :rank %> </td>
-        <td><%= f.text_field :title %> </td>
+        <td><%= f.number_field :rank, { max: 1 } %> </td>
+        <td> 
+          <% if f.object.image && f.object.image.name  %>
+            <a class="btn" rel="popover" data-img=<%= f.object.image.name.mobile.url %>>
+              <%= image_tag f.object.image.name.mobile, class: "img-responsive thumby" %>
+            </a> 
+          <% end %>
+        </td>
         <td><%= slide.project ? slide.project.title : "none" %></td>
         <td><%= f.check_box :visible %></td>
         <td><%= slide.created_at.strftime('%x') %></td>
