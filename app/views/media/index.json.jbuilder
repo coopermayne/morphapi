@@ -10,6 +10,7 @@ json.array! @items do |item|
 
     json.types ["Bibliography"]
   elsif item.is_a? Project
+    json.pub_date item.superdate
     json.types [item.section.title]
   end
 
