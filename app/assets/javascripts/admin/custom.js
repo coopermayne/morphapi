@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	$("[type='checkbox']").bootstrapSwitch();
+
 	$('.assoc').on('change', function(){
 		var optionSelected = $(this).find("option:selected");
 		var textSelected   = optionSelected.text();
