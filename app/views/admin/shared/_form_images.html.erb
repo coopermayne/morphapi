@@ -11,81 +11,67 @@
 
           <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
             <h1><%= type ? type.title : "No Type" %></h1>
-            <table class='table table-condensed'>
-              <thead>
-                <tr>
-                  <th>rank</th>
-                  <th>thmb</th>
-                  <th>title</th>
-                  <th>type</th>
-                  <th>credit</th>
-                  <th>in gallery?</th>
-                  <th>copyright?</th>
-                  <th>prim</th>
-                  <th>index</th>
-                  <th>delete?</th>
-                </tr>
-              </thead>
               <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
-                <tr>
+                <div class="row">
+									<div class="col-md-4">
+										<%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %>
 
-                  <td><%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %></td>
+										<a class="btn" rel="popover" data-img=<%= builder.object.name.mobile.url %>>
+											<%= image_tag builder.object.name.mobile, class: "img-responsive thumby" %>
+										</a>
 
-                  <td>
-                    <a class="btn" rel="popover" data-img=<%= builder.object.name.mobile.url %>>
-                      <%= image_tag builder.object.name.mobile, class: "img-responsive thumby" %>
-                    </a>
-                  </td>
+									</div>
+									<div class="col-md-8">
 
-                  <td><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%></td>
+										<span><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%></span>
 
-                  <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none" %></td>
-                  <td><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none"  %></td>
+										<span><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none" %></span>
+										<span><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none"  %></span>
 
-									<td><%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
-										{
-											"on-color": "success",
-											"on-text": "#{fa_icon 'eye'}",
-											"off-text": "#{fa_icon "eye-slash"}"
-										} 
-										%></td>
-									<td><%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
-										{
-											"on-color": "primary",
-											"on-text": 'yes',
-											"off-text": 'no'
-										}
-										%></td>
+										<span><%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+											{
+												"on-color": "success",
+												"on-text": "#{fa_icon 'eye'}",
+												"off-text": "#{fa_icon "eye-slash"}"
+											} 
+											%></span>
+										<span><%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+											{
+												"on-color": "primary",
+												"on-text": 'yes',
+												"off-text": 'no'
+											}
+											%></span>
 
-									<td><%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data: 
-										{
-											"on-color": "success",
-											"on-text": "yes",
-											"off-text": "no",
-											"label-text":'primary'
-										}
-										%></td>
+										<span><%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data: 
+											{
+												"on-color": "success",
+												"on-text": "yes",
+												"off-text": "no",
+												"label-text":'primary'
+											}
+											%></span>
 
-									<td><%= builder.check_box :make_index, class: "make-index fancy-checkbox", data: 
-										{
-											"on-color": "success",
-											"on-text": "yes",
-											"off-text": "no",
-											"label-text":'index'
-										}
-										%></td>
+										<span><%= builder.check_box :make_index, class: "make-index fancy-checkbox", data: 
+											{
+												"on-color": "success",
+												"on-text": "yes",
+												"off-text": "no",
+												"label-text":'index'
+											}
+											%></span>
 
-									<td><%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
-										{
-											"on-color": "danger",
-											"on-text": "#{fa_icon "trash-o"}",
-											"off-text": "#{fa_icon "trash-o"}"
-										}
-									%></td>
-                </tr>
+										<span><%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+											{
+												"on-color": "danger",
+												"on-text": "#{fa_icon "trash-o"}",
+												"off-text": "#{fa_icon "trash-o"}"
+											}
+										%></span>
+									</div>
+                </div>
               <% end %>
 
-            </table>
           <% end %>
         </div> <%# row %>
 
