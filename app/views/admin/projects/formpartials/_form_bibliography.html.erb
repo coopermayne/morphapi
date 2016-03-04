@@ -9,7 +9,7 @@
         <div class="row">
           <table class='table'>
             <%= f.fields_for :bibliography_items do |builder| %>
-              <%= render "admin/projects/formpartials/form_for_awards", f:builder %>
+              <%= render "admin/projects/formpartials/form_for_bibliography_item", f:builder %>
             <% end %>
           </table>
         </div>

@@ -6,7 +6,6 @@
         <th>&nbsp;</th>
         <th><%= "project" %></th>
         <th><%= "visible" %></th>
-        <th><%= "created_at" %></th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -25,7 +24,6 @@
         </td>
         <td><%= slide.project ? slide.project.title : "none" %></td>
         <td><%= f.check_box :visible %></td>
-        <td><%= slide.created_at.strftime('%x') %></td>
         <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_slide_path(slide) %></td>
         <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_slide_path(slide), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
         <tr>
