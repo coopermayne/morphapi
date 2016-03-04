@@ -7,6 +7,7 @@
         <th><%= "project" %></th>
         <th><%= "visible" %></th>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +19,7 @@
         <td> 
           <% if f.object.image && f.object.image.name  %>
             <a class="btn" rel="popover" data-img=<%= f.object.image.name.mobile.url %>>
-              <%= image_tag f.object.image.name.mobile, class: "img-responsive thumby" %>
+              <%= image_tag f.object.image.name.thumb, class: "img-responsive thumby" %>
             </a> 
           <% end %>
         </td>

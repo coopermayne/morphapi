@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+	$('.assoc').on('change', function(){
+		var optionSelected = $(this).find("option:selected");
+		var textSelected   = optionSelected.text();
+		$("#slide_title").val(textSelected)
+	})
+
   if ( $(".index-table").length ){
     $('.index-table').DataTable({
       "lengthMenu": [ 15, 25, 50 ],
@@ -10,12 +16,12 @@ $(document).ready(function(){
   }
 
   $('input.make-primary').on('change', function(e){
-    el = $(e.target)
+    var el = $(e.target)
     $('input.make-primary').not(el).prop('checked', false)
   })
 
   $('input.make-index').on('change', function(e){
-    el = $(e.target)
+    var el = $(e.target)
     $('input.make-index').not(el).prop('checked', false)
   })
 

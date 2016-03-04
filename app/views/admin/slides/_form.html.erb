@@ -7,10 +7,9 @@
             <h3 class="panel-title">Fields</h3>
           </div>
           <div class='panel-body'>
-            <%= f.input :title, placeholder: 'for your eyes only' %>
-
+            <%= f.input :title, placeholder: 'custom slide title' %>
             <%= f.association :section, collection: Section.where("rank IS NOT NULL"), prompt: 'required' %>
-            <%= f.association :project, collection: Project.order(created_at: :desc),  prompt: 'semi-optional' %>
+						<%= f.association :project, collection: Project.order(created_at: :desc),  prompt: 'semi-optional', input_html: { class: 'assoc'}%>
 
 
           </div>
