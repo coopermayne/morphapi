@@ -1,6 +1,9 @@
 $(document).ready(function(){
 
-	$("[type='checkbox']").bootstrapSwitch();
+	$.fn.bootstrapSwitch.defaults.size = 'small';
+	$.fn.bootstrapSwitch.defaults.labelWidth = 'auto';
+
+	$(".fancy-checkbox").bootstrapSwitch();
 
 	$('.assoc').on('change', function(){
 		var optionSelected = $(this).find("option:selected");

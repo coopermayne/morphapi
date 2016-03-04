@@ -24,7 +24,7 @@
           <% end %>
         </td>
         <td><%= slide.project ? slide.project.title : "none" %></td>
-        <td><%= f.check_box :visible %></td>
+				<td><%= f.check_box :visible, class: 'fancy-checkbox', data: {"on-color": "success", size: 'mini', "on-text": 'vis', "off-text": 'invis', "label-width": 0} %></td>
         <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_slide_path(slide) %></td>
         <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_slide_path(slide), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
         <tr>

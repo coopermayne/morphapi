@@ -21,9 +21,9 @@
                   <th>credit</th>
                   <th>in gallery?</th>
                   <th>copyright?</th>
-                  <th>delete?</th>
                   <th>prim</th>
                   <th>index</th>
+                  <th>delete?</th>
                 </tr>
               </thead>
               <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
@@ -42,11 +42,46 @@
                   <td><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none" %></td>
                   <td><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none"  %></td>
 
-                  <td><%= builder.check_box :in_gallery %></td>
-                  <td><%= builder.check_box :copyright %></td>
-                  <td><%= builder.check_box :_destroy %></td>
-                  <td><%= builder.check_box :make_primary, class: "make-primary" %></td>
-                  <td><%= builder.check_box :make_index, class: "make-index" %></td>
+									<td><%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+										{
+											"on-color": "success",
+											"on-text": "#{fa_icon 'eye'}",
+											"off-text": "#{fa_icon "eye-slash"}"
+										} 
+										%></td>
+									<td><%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+										{
+											"on-color": "primary",
+											"on-text": 'yes',
+											"off-text": 'no'
+										}
+										%></td>
+
+									<td><%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data: 
+										{
+											"on-color": "success",
+											"on-text": "yes",
+											"off-text": "no",
+											"label-text":'primary'
+										}
+										%></td>
+
+									<td><%= builder.check_box :make_index, class: "make-index fancy-checkbox", data: 
+										{
+											"on-color": "success",
+											"on-text": "yes",
+											"off-text": "no",
+											"label-text":'index'
+										}
+										%></td>
+
+									<td><%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+										{
+											"on-color": "danger",
+											"on-text": "#{fa_icon "trash-o"}",
+											"off-text": "#{fa_icon "trash-o"}"
+										}
+									%></td>
                 </tr>
               <% end %>
 
