@@ -36,7 +36,7 @@ class Slide < ActiveRecord::Base
   #validates :mp4, :webm, :gif, presence: {message: "must be present for home page section"}, if: :is_on_home_page?
 
   #hooks
-  before_save :set_uploads, :set_title
+  before_save :set_uploads
 
 
   #methods
@@ -53,12 +53,6 @@ class Slide < ActiveRecord::Base
 
 
   private
-
-  def set_title
-    if self.project && self.title.blank?
-      self.title = project.title
-    end
-  end
 
   def set_uploads
     if self.image && !self.uploads.include?(self.image)
