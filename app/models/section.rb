@@ -18,7 +18,7 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :project_types
 
   def get_slides
-		has_title = !["Home Page", "Morphosis"].include? self.title
+		has_title = !(["Home Page", "Morphosis"].include? self.title)
 
     self.slides.select(&:visible).sort_by(&:rank).map do |slide|
       {
