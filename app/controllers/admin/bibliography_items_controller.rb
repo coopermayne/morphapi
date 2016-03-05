@@ -67,6 +67,7 @@ class Admin::BibliographyItemsController < AdminController
       :description,
       :overview,
       :primary_id,
+      { :project_ids => [] },
       uploads_attributes: [
         :id,
         :_destroy,

@@ -57,7 +57,7 @@ class Admin::AwardsController < AdminController
       :description,
       :overview,
       :year,
-      :projects_ids,
+      { :project_ids => [] },
       :primary_id,
       uploads_attributes: [
         :id,

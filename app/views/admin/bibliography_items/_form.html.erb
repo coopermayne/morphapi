@@ -1,5 +1,3 @@
-<h2><%= @title %></h2>
-
 <%= render partial: "admin/shared/form_primary_index_images", locals: {f: f} %>
 
 <div class='row'>
@@ -11,7 +9,10 @@
       </div>
 
       <div class='panel-body'>
-        <%= f.input :title %>
+				<%= f.input :title %>
+
+				<%= f.association :projects, input_html: {class: 'chosen-select'}  %>
+
         <div class='col-md-6'>
           <%= f.input :description %>
         </div>
