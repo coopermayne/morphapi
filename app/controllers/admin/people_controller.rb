@@ -8,6 +8,8 @@ class Admin::PeopleController < AdminController
       @type = params[:type]
       @people = @people.where(params[:type]=> true)
     end
+
+    @people = @people.order(created_at: :desc)
   end
 
   def show

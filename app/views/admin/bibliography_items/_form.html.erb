@@ -27,18 +27,6 @@
         <div class='col-md-6'><%= f.input :date %></div>
         <div class='col-md-6'><%= f.input :pub_date, html5:true %></div>
         <div class='col-md-6'><%= f.input :pages        %></div>
-        <div class="col-md-6">
-          <%= f.simple_fields_for :primary_image, f.object.build_primary_image  do |builder| %>
-            <%= builder.input :name, label: false, :input_html => { 
-              :class => 'filestyle', 
-              data: {
-                buttonText: builder.object.name_url ? "Change Image" : "Choose Image",
-                placeholder: builder.object.name_url ? File.basename(builder.object.name_url) :  ""
-              } 
-            }
-          %>
-      <% end %>
-        </div>
       </div>
     </div>
   </div>

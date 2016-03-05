@@ -5,6 +5,7 @@ class Admin::ProjectsController < AdminController
     @section_id = params[:type]
     @projects = Project.includes(:section, :primary_image).where(nil)
     @projects = @projects.with_section(@section_id) if @section_id
+    @projects = @projects.order(created_at: :desc)
   end
 
   def show

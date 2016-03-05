@@ -2,7 +2,8 @@ class Admin::AwardsController < AdminController
 
   def index
     @title = "Awards"
-    @awards = Award.all
+    @awards = Award.where(nil)
+    @awards = @awards.order(created_at: :desc)
   end
 
   def show

@@ -2,8 +2,8 @@
 	<thead>
 		<tr>
 			<th>title</th>
-			<th>created</th>
       <th>image</th>
+			<th>created</th>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>
@@ -12,8 +12,8 @@
 	<% awards.each do |award| %>
 		<tr>
 			<td><%= link_to award.title, admin_award_path(award) %></td>
-			<td><%= award.created_at.strftime('%x') %></td>
       <td><%= award.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
+			<td><%= award.created_at.strftime('%x') %></td>
       <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_award_path(award) %></td>
       <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_award_path(award), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
 		</tr>

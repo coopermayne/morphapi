@@ -1,8 +1,9 @@
 class Admin::BibliographyItemsController < AdminController
 
   def index
-    @title = "Bibs"
+    @title = "Bibliography Items"
     @bibliography_items = BibliographyItem.where(nil)
+    @bibliography_items = @bibliography_items.order(created_at: :desc)
 
   end
 
