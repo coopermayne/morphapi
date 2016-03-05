@@ -1,4 +1,5 @@
 json.array! @items do |item|
+	json.uid item.class.name.first.downcase + item.id.to_s
   json.( item, :id, :title, :description, :overview, :created_at, :updated_at )
   json.image item.primary_image && item.primary_image.name
   json.documents item.getDocuments if !item.getDocuments.empty?

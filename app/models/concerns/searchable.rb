@@ -20,7 +20,7 @@ module Searchable
     end
 
     attr = {
-      uid: self.id,
+      uid: self.class.name.first.downcase + self.id.to_s,
       title: self.class==Person ? self.name : self.title,
       thumb: img_url,
       description: self.class==Person ? self.description : self.overview
