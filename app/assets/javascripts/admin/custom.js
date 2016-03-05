@@ -14,6 +14,7 @@ $(document).ready(function(){
   if ( $(".index-table").length ){
     $('.index-table').DataTable({
       "lengthMenu": [ 15, 25, 50 ],
+			"order": [],
       "columnDefs": [
         { "orderable": false, "targets": [-1, -2] }
       ]
@@ -70,6 +71,7 @@ $(document).ready(function(){
     $(this).before($(this).data('fields').replace(regexp, time));
     //add trumbowyg
     applyTextBox($('textarea'))
+		$(".filestyle").filestyle();
     event.preventDefault();
   });
 
