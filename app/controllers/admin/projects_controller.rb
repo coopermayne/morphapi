@@ -113,7 +113,7 @@ class Admin::ProjectsController < AdminController
       ],
 			components_attributes: [
 				:id,
-				:_destroy
+				:_destroy,
 				:title,
 				:rank,
 				:content,

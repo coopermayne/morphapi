@@ -42,5 +42,10 @@
 
   </table>
 
-  <%= submit_tag "Update Slides" %>
+	<%= simple_fields_for @morph_section do |builder| %>
+		<%= builder.input :id, as: :hidden %>
+		<%= builder.input :content %>
+	<% end %>
+
+  <%= submit_tag "Update Slides", class: "btn btn-primary" %>
 <% end  %>

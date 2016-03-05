@@ -7,6 +7,8 @@ class Admin::SlidesController < AdminController
     @slides = Slide.includes(:section).where(nil)
     @slides = @slides.with_section(@section_id) if @section_id
     @slides = @slides.sort_by{|sl|sl.rank || 999}
+
+		@morph_section = Section.find_by_title("Morphosis")
   end
 
   def show
@@ -53,13 +55,22 @@ class Admin::SlidesController < AdminController
   end
 
   def rank
-    pp = params[:slides]
-    if Slide.update(pp.keys, pp.values)
+		about_params = params[:section]
+    slides_params = params[:slides]
+
+		s = Section.find(about_params[:id])
+		s.content = about_params[:content]
+
+		res1 = s.save
+		res2 = Slide.update(slides_params.keys, slides_params.values)
+
+    if res1 && res2
       flash[:notice] = 'Type items have been updated'
     else
       flash[:notice] = 'Problems'
     end
-    redirect_to admin_slides_path
+
+    redirect_to :back
   end
 
   private
