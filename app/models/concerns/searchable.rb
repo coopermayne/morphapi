@@ -4,9 +4,10 @@ module Searchable
   extend ActiveSupport::Concern
 
   included do
-    after_create :autocreate_searchable
-    after_commit :update_search_content
 		has_one :search_result, as: :searchable, dependent: :destroy
+
+    after_create :autocreate_searchable, :update_search_content
+    after_update :update_search_content
   end
 
   def autocreate_searchable
