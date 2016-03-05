@@ -7,13 +7,12 @@
       <div class='panel-body'>
         <div class="row">
 
-          <h2>Images</h2>
-
           <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
             <h1><%= type ? type.title : "No Type" %></h1>
               <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
-                <div class="row">
-									<div class="col-md-4">
+
+                <div class="row image-table-row">
+									<div class="col-sm-4 inline-inputs">
 										<%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %>
 
 										<a class="btn" rel="popover" data-img=<%= builder.object.name.mobile.url %>>
@@ -21,53 +20,61 @@
 										</a>
 
 									</div>
-									<div class="col-md-8">
+									<div class="col-sm-8">
+										<div class="row inline-inputs">
+											<%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%>
+											/
+											<%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 250px'}  %>
+											/
+											<%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'} %>
 
-										<span><%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%></span>
+											
+										</div>
+										<div class="row">
 
-										<span><%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none" %></span>
-										<span><%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 150px'}, prompt: "none"  %></span>
+											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "success",
+													"on-text": "#{fa_icon 'eye'}",
+													"off-text": "#{fa_icon "eye-slash"}"
+												} 
+											%>
+											<%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "primary",
+													"on-text": 'yes',
+													"off-text": 'no',
+													"label-text":'copyright'
+												}
+											%>
 
-										<span><%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
-											{
-												"on-color": "success",
-												"on-text": "#{fa_icon 'eye'}",
-												"off-text": "#{fa_icon "eye-slash"}"
-											} 
-											%></span>
-										<span><%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
-											{
-												"on-color": "primary",
-												"on-text": 'yes',
-												"off-text": 'no'
-											}
-											%></span>
+											<%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data: 
+												{
+													"on-color": "info",
+													"on-text": "yes",
+													"off-text": "no",
+													"label-text":'primary'
+												}
+											%>
 
-										<span><%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data: 
-											{
-												"on-color": "success",
-												"on-text": "yes",
-												"off-text": "no",
-												"label-text":'primary'
-											}
-											%></span>
+											<%= builder.check_box :make_index, class: "make-index fancy-checkbox", data: 
+												{
+													"on-color": "warning",
+													"on-text": "yes",
+													"off-text": "no",
+													"label-text":'index'
+												}
+											%>
 
-										<span><%= builder.check_box :make_index, class: "make-index fancy-checkbox", data: 
-											{
-												"on-color": "success",
-												"on-text": "yes",
-												"off-text": "no",
-												"label-text":'index'
-											}
-											%></span>
-
-										<span><%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
-											{
-												"on-color": "danger",
-												"on-text": "#{fa_icon "trash-o"}",
-												"off-text": "#{fa_icon "trash-o"}"
-											}
-										%></span>
+											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "danger",
+													"on-text": "#{fa_icon "trash-o"}",
+													"off-text": "#{fa_icon "trash-o"}"
+												}
+											%>
+											
+										</div>
 									</div>
                 </div>
               <% end %>

@@ -8,5 +8,13 @@
   </td>
   <td><%= f.object.title %></td>
 	<td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_bibliography_item_path(f.object), :target => 'new'%></td>
-  <td><%= f.check_box :_destroy %> <%= f.label :_destroy, "Remove" %></td>
+	<td>
+		<%= f.check_box :_destroy, class: 'fancy-checkbox', data: 
+			{
+				"on-color": "danger",
+				"on-text": "#{fa_icon "trash-o"}",
+				"off-text": "#{fa_icon "trash-o"}"
+			}
+		%>
+	</td>
 </tr>

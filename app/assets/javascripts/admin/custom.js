@@ -20,15 +20,17 @@ $(document).ready(function(){
     });
   }
 
-  $('input.make-primary').on('change', function(e){
-    var el = $(e.target)
-    $('input.make-primary').not(el).prop('checked', false)
-  })
-
-  $('input.make-index').on('change', function(e){
-    var el = $(e.target)
-    $('input.make-index').not(el).prop('checked', false)
-  })
+	//only allow one make-primary and one make-index selection
+	$('input.make-primary').on('switchChange.bootstrapSwitch', function(event, state) {
+		if(state){
+			$('.make-primary').not($(this)).bootstrapSwitch('state', false)
+		}
+	});
+	$('input.make-index').on('switchChange.bootstrapSwitch', function(event, state) {
+		if(state){
+			$('.make-index').not($(this)).bootstrapSwitch('state', false)
+		}
+	});
 
   $('input[type=submit]').on('click', function(e){
     var el = $(e.target)

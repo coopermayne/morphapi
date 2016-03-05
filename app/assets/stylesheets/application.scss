@@ -4,7 +4,7 @@
  @import "font-awesome";
 
 .thumby {
-  height: 60px;
+  height: 100px;
 }
 
 .popover-content {
@@ -12,4 +12,20 @@
   border: 0px;
   padding: 0;
   overflow: visible;
+}
+
+.inline-inputs * {
+	display: inline
+}
+
+.image-table-row {
+	margin-bottom: 25px;
+}
+
+.image-table-row .col-sm-8 .row {
+	margin: 20px;
+}
+
+.right {
+	text-align: right;
 }
