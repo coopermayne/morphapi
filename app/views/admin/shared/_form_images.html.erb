@@ -15,21 +15,12 @@
 									<div class="col-sm-4 inline-inputs">
 										<%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %>
 
-										<a class="btn" rel="popover" data-img=<%= builder.object.name.mobile.url %>>
-											<%= image_tag builder.object.name.mobile, class: "img-responsive thumby" %>
+										<a class="btn" rel="popover" data-placement="right" data-img=<%= builder.object.name.mobile.url %>>
+											<%= image_tag builder.object.name.thumb, class: "img-responsive thumby" %>
 										</a>
 
 									</div>
 									<div class="col-sm-8">
-										<div class="row inline-inputs">
-											<%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%>
-											/
-											<%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 250px'}  %>
-											/
-											<%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'} %>
-
-											
-										</div>
 										<div class="row">
 
 											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
@@ -73,6 +64,15 @@
 													"off-text": "#{fa_icon "trash-o"}"
 												}
 											%>
+											
+										</div>
+										<div class="row inline-inputs">
+											<%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%>
+											/
+											<%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 250px'}  %>
+											/
+											<%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'} %>
+
 											
 										</div>
 									</div>

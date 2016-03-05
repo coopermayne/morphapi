@@ -58,7 +58,6 @@ $(document).ready(function(){
   $('a[rel=popover]').popover({
     html: true,
     trigger: 'hover',
-    placement: 'auto top',
     template: '<div class="popover"> <div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
     content: function(){return '<img src="'+$(this).data('img') + '" />';}
   });
