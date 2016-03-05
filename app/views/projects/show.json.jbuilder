@@ -8,6 +8,7 @@ json.result do |json|
   #json.components @project.components, :id, :content, :rank, :component_type
   #
   json.galleries @project.getGalleries
+
   json.documents @project.getDocuments
 
   json.people @project.roles do |role|
@@ -22,4 +23,8 @@ json.result do |json|
     json.merge! bib.attributes
     json.primary_image bib.primary_image
   end
+
+	json.components @project.components do |comp|
+		json.merge! comp.attributes
+	end
 end

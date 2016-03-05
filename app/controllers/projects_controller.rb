@@ -32,7 +32,7 @@
 
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.includes(:primary_image, :project_types, :section)
+    @projects = Project.includes(:primary_image, :project_types, :section, :components)
   end
 
   def show
