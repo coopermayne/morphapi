@@ -15,7 +15,7 @@ module Searchable
   def update_search_content
     img_url = self.primary_image ? self.primary_image.name.thumb.url : nil
 
-    if self.index_image_id
+    if self.index_image
       img_url = self.index_image.name.thumb.url
     end
 
