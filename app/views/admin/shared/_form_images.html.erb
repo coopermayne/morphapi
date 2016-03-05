@@ -66,13 +66,10 @@
 											%>
 											
 										</div>
-										<div class="row inline-inputs">
-											<%= builder.input :title, label: false, :input_html => {:style => 'width: 250px'}, prompt: "none"%>
-											/
-											<%= builder.input :credit_id, collection: Credit.all, prompt: "Select credit", label: false, :input_html => {:style => 'width: 250px'}  %>
-											/
-											<%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type...", label: false, :input_html => {:style => 'width: 150px'} %>
-
+										<div class="row">
+											<%= builder.input :title %>
+											<%= builder.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+											<%= builder.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
 											
 										</div>
 									</div>
