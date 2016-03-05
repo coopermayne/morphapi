@@ -14,6 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 
+gem 'chosen-rails'
 gem 'simple_form'
 gem 'carrierwave', '0.10.0'
 gem 'mini_magick'

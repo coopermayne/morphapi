@@ -109,6 +109,14 @@ $(document).ready(function(){
     $('.types').hide()
     $('.section'+el.val()).show()
   })
+
+
+	$('.chosen-select').chosen({
+		allow_single_deselect: true,
+		no_result_text: 'No results matched',
+		width: '200px'
+	});
+
 })
 
 var applyTextBox = function(jquery_el){

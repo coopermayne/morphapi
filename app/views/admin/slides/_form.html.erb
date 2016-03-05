@@ -9,7 +9,8 @@
           <div class='panel-body'>
             <%= f.input :title, placeholder: 'custom slide title' %>
             <%= f.association :section, collection: Section.where("rank IS NOT NULL"), prompt: 'required' %>
-						<%= f.association :project, collection: Project.order(created_at: :desc),  prompt: 'semi-optional', input_html: { class: 'assoc'}%>
+
+						<%= f.association :project, collection: Project.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
 
 
           </div>
