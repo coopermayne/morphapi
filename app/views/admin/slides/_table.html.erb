@@ -15,7 +15,7 @@
   <% slides.each do |slide| %>
     <%= fields_for "slides[]", slide do |f| %>
       <tr>
-        <td><%= f.number_field :rank, { max: 1 } %> </td>
+        <td><%= f.number_field :rank %> </td>
         <td> 
           <% if f.object.image && f.object.image.name  %>
             <a class="btn" rel="popover" data-img=<%= f.object.image.name.mobile.url %>>
@@ -24,7 +24,15 @@
           <% end %>
         </td>
         <td><%= slide.project ? slide.project.title : "none" %></td>
-				<td><%= f.check_box :visible, class: 'fancy-checkbox', data: {"on-color": "success", size: 'mini', "on-text": 'vis', "off-text": 'invis', "label-width": 0} %></td>
+				<td>
+					<%= f.check_box :visible, class: 'fancy-checkbox', data: 
+						{
+							"on-color": "success",
+							"on-text": "#{fa_icon 'eye'}",
+							"off-text": "#{fa_icon "eye-slash"}"
+						} 
+					%>
+				</td>
         <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_slide_path(slide) %></td>
         <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_slide_path(slide), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
         <tr>
