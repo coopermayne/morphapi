@@ -114,6 +114,18 @@ $(document).ready(function(){
     $('.section'+el.val()).show()
   })
 
+	$("#geocomplete").geocomplete({map: ".map_canvas"})
+		.bind("geocode:result", function(event, result){
+			var formatted = result.formatted_address
+			var lat = result.geometry.location.lat()
+			var lng = result.geometry.location.lng()
+
+			$('#lat input').val(lat)
+			$('#lon input').val(lng)
+
+			console.log(formatted)
+			console.log({lat: lat, lng: lng})
+		})
 })
 
 var applyChosen = function(){
