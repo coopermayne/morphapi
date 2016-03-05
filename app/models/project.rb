@@ -35,8 +35,6 @@ class Project < ActiveRecord::Base
   include Searchable
   include Primaryable
 
-  has_one :search_result, as: :searchable
-
   has_many :components
   has_many :roles, dependent: :destroy
 

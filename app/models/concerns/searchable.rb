@@ -6,6 +6,7 @@ module Searchable
   included do
     after_create :autocreate_searchable
     after_commit :update_search_content
+		has_one :search_result, as: :searchable, dependent: :destroy
   end
 
   def autocreate_searchable

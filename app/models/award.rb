@@ -17,7 +17,6 @@ class Award < ActiveRecord::Base
   include Searchable
   include Primaryable
 
-  has_one :search_result, as: :searchable
   has_and_belongs_to_many :projects
 
 end

@@ -26,7 +26,6 @@ class NewsItem < ActiveRecord::Base
   include Searchable
   include Primaryable
 
-  has_one :search_result, as: :searchable
   belongs_to :news_type
 
   accepts_nested_attributes_for :news_type
