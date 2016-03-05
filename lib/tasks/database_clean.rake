@@ -1,6 +1,15 @@
 # lib/tasks/custom_seed.rake
 namespace :db do
 
+	task clean_component_text: :environment do
+		Component.all.each do |comp|
+			method = :content
+			comp.send(method).gsub!(/\\r\\n/,"") 
+			comp.send(method).gsub!("{break}","") 
+			comp.save
+		end
+	end
+
 	task add_titles_to_components: :environment do
 		Component.all.each do |comp|
 			comp.title = comp.component_type.title
@@ -23,7 +32,7 @@ namespace :db do
     c = 0
     [Component, Section, Award, BibliographyItem, NewsItem, Person, Project].each do |model|
       model.all.each do |instance|
-        [:title, :overview, :description, :program].each do |method|
+        [:title, :overview, :description, :program, :content].each do |method|
           if instance.respond_to?(method) && !instance.send(method).nil?
             #puts instance.send(method).gsub!(/\\r\\n/,"") 
             #puts instance.send(method).gsub!("{break}","") 

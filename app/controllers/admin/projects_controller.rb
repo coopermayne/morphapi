@@ -111,6 +111,13 @@ class Admin::ProjectsController < AdminController
           :name
         ]
       ],
+			components_attributes: [
+				:id,
+				:_destroy
+				:title,
+				:rank,
+				:content,
+			],
       uploads_attributes: [
         :id,
         :_destroy,
