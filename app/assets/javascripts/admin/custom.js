@@ -55,6 +55,9 @@ $(document).ready(function(){
   //trumbowyg
   applyTextBox($('textarea'))
 
+	//chosen
+	applyChosen();
+
   //image popover on hover
   $('a[rel=popover]').popover({
     html: true,
@@ -70,8 +73,9 @@ $(document).ready(function(){
     regexp = new RegExp($(this).data('id'), 'g');
     $(this).before($(this).data('fields').replace(regexp, time));
     //add trumbowyg
-    applyTextBox($('textarea'))
-		$(".filestyle").filestyle();
+
+		//apply javascript stuff
+		applyJsStuff()
     event.preventDefault();
   });
 
@@ -110,14 +114,16 @@ $(document).ready(function(){
     $('.section'+el.val()).show()
   })
 
+})
 
+var applyChosen = function(){
 	$('.chosen-select').chosen({
 		allow_single_deselect: true,
 		no_result_text: 'No results matched',
 		width: '200px'
 	});
+}
 
-})
 
 var applyTextBox = function(jquery_el){
   jquery_el.trumbowyg({
@@ -135,3 +141,8 @@ var applyTextBox = function(jquery_el){
   })
 }
 
+var applyJsStuff = function(){
+	applyTextBox($('textarea'))
+	applyChosen();
+	$(".filestyle").filestyle();
+}

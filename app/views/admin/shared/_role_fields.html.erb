@@ -8,10 +8,10 @@
 
       <div class='panel-body'>
         <div class='col-md-6'>
-          <%= f.input :person_id, collection: Person.all, prompt: "Select a person" %>
+					<%= f.input :person_id, collection: Person.all, include_blank: true, input_html: {class: 'chosen-select'}%>
         </div>
         <div class='col-md-6'>
-          <%= f.input :position_id, collection: Position.all, prompt: "Select a position" %>
+					<%= f.input :position_id, collection: Position.all, include_blank: true, input_html: {class: 'chosen-select'}%>
         </div>
       </div>
     </div>
