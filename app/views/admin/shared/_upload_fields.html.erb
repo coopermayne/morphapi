@@ -11,8 +11,8 @@
 
         <%= f.input :name, label: false %>
         <%= f.input :title, placeholder: "leave this empty and i'll make a title for you" %>
-        <%= f.association :credit %>
-        <%= f.association :file_type %>
+				<%= f.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+				<%= f.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
         <%= f.input :rank %>
         <%= f.input :copyright, value: false%>
         <%= f.input :in_gallery, value: false %>
