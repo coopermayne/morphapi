@@ -1,7 +1,14 @@
-<%= link_to "new person", new_admin_person_path, class: "pull-right" %><br>
-<%= link_to "manage positions",  admin_positions_path, class: "pull-right" %><br>
+<div class="row">
+	<div class="col-sm-6">
+		<h2><%= @title %></h2>
+	</div>
 
-<h2><%= @title %></h2>
+	<div class="col-sm-6 right">
+		<%= link_to fa_icon("plus", text: "add person").html_safe, new_admin_person_path, class: "btn btn-primary" %><br>
+		<%= link_to "manage positions",  admin_positions_path %><br>
+	</div>
+</div>
+
 
 <ul class="nav nav-tabs">
   <li role="presentation" class="<%= 'active' unless @type %>">

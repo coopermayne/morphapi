@@ -1,7 +1,13 @@
-<h2><%= @title %></h2>
-<%= link_to "new news",  new_admin_news_item_path, class: "pull-right" %><br>
-<%= link_to "manage news types",  admin_news_types_path, class: "pull-right" %><br>
+<div class="row">
+	<div class="col-sm-6">
+		<h2><%= @title %></h2>
+	</div>
 
+	<div class="col-sm-6 right">
+		<%= link_to fa_icon("plus", text: "new news").html_safe, new_admin_news_item_path, class: "btn btn-primary" %><br>
+		<%= link_to "manage news types",  admin_news_types_path, class: "pull-right" %><br>
+	</div>
+</div>
 
 <ul class="nav nav-tabs">
 
