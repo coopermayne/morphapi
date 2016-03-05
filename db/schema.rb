@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303204034) do
+ActiveRecord::Schema.define(version: 20160305010138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20160303204034) do
     t.integer  "project_id"
     t.integer  "component_type_id"
     t.integer  "old_id"
+    t.string   "title"
   end
 
   add_index "components", ["component_type_id"], name: "index_components_on_component_type_id", using: :btree

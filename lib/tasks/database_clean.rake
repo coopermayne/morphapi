@@ -1,6 +1,13 @@
 # lib/tasks/custom_seed.rake
 namespace :db do
 
+	task add_titles_to_components: :environment do
+		Component.all.each do |comp|
+			comp.title = comp.component_type.title
+			comp.save
+		end
+	end
+
   task seed_index_image_id: :environment do
     [Project, Award, BibliographyItem, Person, NewsItem].each do |model|
       model.all.each do |instance|
