@@ -115,8 +115,8 @@ $(document).ready(function(){
   })
 
 
-	var el_lat = $('#lat input')
-	var el_lon = $('#lon input')
+	var el_lat = $('input[name="project[lat]"]')
+	var el_lon = $(' input[name="project[lon]"]')
 
 	$("#geocomplete").geocomplete(
 		{
@@ -124,6 +124,7 @@ $(document).ready(function(){
 				draggable: true
 			},
 			map: ".map_canvas",
+			types: ['geocode','establishment'],
 			location: new google.maps.LatLng(el_lat.val(),el_lon.val())
 		}
 	)
@@ -133,7 +134,18 @@ $(document).ready(function(){
 			var lng = result.geometry.location.lng()
 
 			el_lat.val(lat)
-			el_on.val(lng)
+			el_lon.val(lng)
+
+
+			var address_components = result.address_components;
+			var components={}; 
+			jQuery.each(address_components, function(k,v1) {jQuery.each(v1.types, function(k2, v2){components[v2]=v1.long_name});})
+
+			$(' input[name="project[street_address]"]').val([ components.street_number, components.route ].join(" "))
+			$(' input[name="project[city]"]').val(components.locality)
+			$(' input[name="project[state]"]').val(components.administrative_area_level_1)
+			$(' input[name="project[country]"]').val(components.country)
+			$(' input[name="project[zip]"]').val(components.postal_code)
 
 		})
 		.bind("geocode:dragged", function(event, latLng){

@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class='col-md-12'>
+  <div class='col-sm-12'>
     <div class='panel panel-default'>
       <div class="panel-heading">
         <h3 class="panel-title">Basics</h3>
@@ -7,17 +7,17 @@
       <div class='panel-body'>
         <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :title %>
           </div>
 
-          <div class="col-md-12">
+          <div class="col-sm-12">
             <%= f.input :overview %>
           </div>
-          <div class="col-md-12">
+          <div class="col-sm-12">
             <%= f.input :description %>
           </div>
-          <div class="col-md-12">
+          <div class="col-sm-12">
             <%= f.input :program %>
           </div>
         </div>
@@ -29,7 +29,7 @@
 
 
 <div class='row'>
-  <div class='col-md-12'>
+  <div class='col-sm-12'>
     <div class='panel panel-default'>
       <div class="panel-heading">
         <h3 class="panel-title">Details</h3>
@@ -37,18 +37,18 @@
       <div class='panel-body'>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :client %>
           </div>
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :size %>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :height %>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :site_area %>
           </div>
 
@@ -60,23 +60,43 @@
 </div>
 
 <div class='row'>
-  <div class='col-md-12'>
+  <div class='col-sm-12'>
     <div class='panel panel-default'>
       <div class="panel-heading">
 				<h3 class="panel-title">Location</h3>
       </div>
       <div class='panel-body'>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-sm-6">
 						<%= f.input :address, input_html: {id: "geocomplete", placeholder: "Type in an address"}%>
 					</div>
-					<div class="col-md-6 map_canvas"> </div>
-					<div class="col-md-6" id="lat">
+
+					<div class="col-sm-6 map_canvas"> </div>
+
+					<div class="col-sm-6">
 						<%= f.input :lat %>
 					</div>
-					<div class="col-md-6" id="lon">
+					<div class="col-sm-6">
 						<%= f.input :lon %>
 					</div>
+
+					<div class="col-sm-6">
+						<%= f.input :street_address %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :city %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :state %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :country %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :zip %>
+					</div>
+
+
 				</div>
       </div>
     </div>
@@ -84,23 +104,23 @@
 </div>
 
 <div class='row'>
-  <div class='col-md-12'>
+  <div class='col-sm-12'>
     <div class='panel panel-default'>
       <div class="panel-heading">
         <h3 class="panel-title">Dates</h3>
       </div>
       <div class='panel-body'>
         <div class='row'>
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :constr_sdate, html5: true %>
           </div>
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :constr_edate, html5: true %>
           </div>
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :design_sdate, html5: true %>
           </div>
-          <div class="col-md-6">
+          <div class="col-sm-6">
             <%= f.input :design_sdate, html5: true %>
           </div>
         </div>

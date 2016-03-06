@@ -2,8 +2,10 @@
 	<thead>
 		<tr>
       <th>title</th>
-      <th>design</th>
-      <th>con</th>
+			<th>design (start)</th>
+			<th>design (end)</th>
+			<th>constr (start)</th>
+			<th>constr (end)</th>
       <th>created</th>
       <th></th>
       <th></th>
@@ -13,7 +15,9 @@
 	<% projects.each do |project| %>
 		<tr>
       <td><%= link_to project.title, admin_project_path(project) %>
+      <td><%= project.design_sdate %>
       <td><%= project.design_edate %>
+      <td><%= project.constr_sdate %>
       <td><%= project.constr_edate %>
       <td><%= project.created_at.strftime("%m/%d/%Y") %>
       <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_project_path(project) %></td>
