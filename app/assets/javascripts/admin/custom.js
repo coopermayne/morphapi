@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  $('#sidebar').affix()
+
 	$.fn.bootstrapSwitch.defaults.size = 'small';
 	$.fn.bootstrapSwitch.defaults.labelWidth = 'auto';
 

@@ -1,7 +1,36 @@
+
 <%= simple_form_for @project, :url => admin_project_path(@project) do |f| %>
 
+  <% content_for :sidebar do %>
+
+    <% if @project.class.name == "Project" %>
+      
+    <ul class="nav nav-stacked" id="sidebar">
+      <li><a href="#anchor-basics">Basics</a></li>
+      <li><a href="#anchor-location">Location</a></li>
+      <li><a href="#anchor-dates">Dates</a></li>
+      <li><a href="#anchor-roles">Roles</a></li>
+      <li><a href="#anchor-section">Section/Types</a></li>
+      <li><a href="#anchor-awards">Awards</a></li>
+      <li><a href="#anchor-bibliography">Bibliography</a></li>
+      <li><a href="#anchor-files">Files</a></li>
+      <li><a href="#anchor-components">Components</a></li>
+
+      <hr \>
+      <%= f.submit "Save", :class => "btn btn-primary" %>
+      <%= link_to 'Cancel', send("admin_#{f.object.class.to_s.pluralize.underscore}_path"), :class => 'btn btn-danger' %>
+
+      <hr \>
+      <% unless @project.new_record? %>
+        <%= link_to fa_icon("trash", text: "Destroy"), send("admin_#{f.object.class.to_s.underscore}_path", @project), method: :delete, class: 'btn btn-danger', data: { confirm: "are you sure? it'll be gone forever" } %>
+      <% end %>
+    </ul>
+
+
+    <% end %>
+
+  <% end %>
+
   <%= render :partial => 'admin/projects/form', :locals => { :f => f } %>
-	
-  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @project } %>
 
 <% end %>

@@ -4,6 +4,15 @@
  @import 'chosen';
  @import "font-awesome";
 
+.container {
+  width: 90%;
+  max-width: 1600px;
+}
+
+.sidebar {
+  position: fixed;
+}
+
 .thumby {
   height: 120px;
 }
