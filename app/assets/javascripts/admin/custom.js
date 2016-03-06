@@ -1,12 +1,25 @@
 $(document).ready(function(){
 
+  //for project page scrolling to anchors
+  var $root = $('html, body');
+  $('a').click(function() {
+    if ($.attr(this, 'href').indexOf("#")!=-1&&$.attr(this, 'href')!="#")
+      {
+        $root.animate({
+          scrollTop: $( $.attr(this, 'href') ).offset().top
+        }, 500);
+        return false;
+      }
+  });
+
+  //project page fixeed sidebar
   $('#sidebar').affix()
 
+  //bootstrap switch default settings
 	$.fn.bootstrapSwitch.defaults.size = 'small';
 	$.fn.bootstrapSwitch.defaults.labelWidth = 'auto';
 
-	$(".fancy-checkbox").bootstrapSwitch();
-
+  //set slide title to project title
 	$('.assoc').on('change', function(){
 		var optionSelected = $(this).find("option:selected");
 		var textSelected   = optionSelected.text();
@@ -35,6 +48,7 @@ $(document).ready(function(){
 		}
 	});
 
+  //add some feedback to submit buttons
   $('input[type=submit]').on('click', function(e){
     var el = $(e.target)
     el.addClass('btn-info')
@@ -54,11 +68,15 @@ $(document).ready(function(){
 
   });
 
-  //trumbowyg
+  // apply trumbowyg
   applyTextBox($('textarea'))
 
-	//chosen
+	// apply chosen
 	applyChosen();
+  
+  // apply bootstrap switch initiate
+	$(".fancy-checkbox").bootstrapSwitch();
+
 
   //image popover on hover
   $('a[rel=popover]').popover({
