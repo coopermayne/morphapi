@@ -18,7 +18,7 @@ class MenuController < ApplicationController
 
     res = {}
     res[:landing] = {
-      slides: vid_slides
+			slides: vid_slides
     }
 
     res[:sections] = [
@@ -104,6 +104,11 @@ class MenuController < ApplicationController
     ]
     render json: res
   end
+
+	def videos
+    vid_slides = Section.find_by_title("Home Page").get_slides
+		render json: vid_slides
+	end
 
 end
 

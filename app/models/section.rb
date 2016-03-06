@@ -23,6 +23,7 @@ class Section < ActiveRecord::Base
     self.slides.select(&:visible).sort_by(&:rank).map do |slide|
       {
         project_id: slide.project_id,
+        rank: slide.rank,
         project_title:  has_title ? slide.title : nil,
         image: slide.image && slide.image.name,
         mp4: slide.mp4 && slide.mp4.name,
