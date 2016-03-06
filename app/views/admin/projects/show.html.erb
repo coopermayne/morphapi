@@ -1,4 +1,3 @@
-
 <%= simple_form_for @project, :url => admin_project_path(@project) do |f| %>
 
   <% content_for :sidebar do %>
@@ -17,7 +16,7 @@
       <li><a href="#anchor-components">Components</a></li>
 
       <hr \>
-      <%= f.submit "Save", :class => "btn btn-primary" %>
+      <%= f.submit "Save", :class => "btn btn-primary", :id => "detatched-submit" %>
       <%= link_to 'Cancel', send("admin_#{f.object.class.to_s.pluralize.underscore}_path"), :class => 'btn btn-danger' %>
 
       <hr \>

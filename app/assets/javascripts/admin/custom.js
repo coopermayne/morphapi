@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+  //detatched submit button
+  $("#detatched-submit").on("click", function(e){
+    $('form').submit()
+  })
+
   //for project page scrolling to anchors
   var $root = $('html, body');
   $('a').click(function() {
