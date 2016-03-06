@@ -114,17 +114,31 @@ $(document).ready(function(){
     $('.section'+el.val()).show()
   })
 
-	$("#geocomplete").geocomplete({map: ".map_canvas"})
+
+	var el_lat = $('#lat input')
+	var el_lon = $('#lon input')
+
+	$("#geocomplete").geocomplete(
+		{
+			markerOptions: {
+				draggable: true
+			},
+			map: ".map_canvas",
+			location: new google.maps.LatLng(el_lat.val(),el_lon.val())
+		}
+	)
 		.bind("geocode:result", function(event, result){
 			var formatted = result.formatted_address
 			var lat = result.geometry.location.lat()
 			var lng = result.geometry.location.lng()
 
-			$('#lat input').val(lat)
-			$('#lon input').val(lng)
+			el_lat.val(lat)
+			el_on.val(lng)
 
-			console.log(formatted)
-			console.log({lat: lat, lng: lng})
+		})
+		.bind("geocode:dragged", function(event, latLng){
+			el_lat.val(latLng.lat())
+			el_lon.val(latLng.lng())
 		})
 })
 

@@ -65,6 +65,7 @@ class Admin::ProjectsController < AdminController
       :lat,
       :lon,
       :street_address,
+      :address,
       :zip,
       :design_sdate,
       :design_edate,
