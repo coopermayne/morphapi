@@ -4,11 +4,7 @@ class MenuController < ApplicationController
 
   def index
 
-    news = NewsItem.where.not(primary_image: nil).order(created_at: :desc).limit(10).map do |item|
-      img = item.primary_image ? item.primary_image.name : nil
-      {id: item.id, title: item.title, image: img }
-    end
-    
+    news = NewsItem.news_box_items     
     morph_slides = Section.find_by_title("Morphosis").get_slides
     arch_slides = Section.find_by_title("Architecture").get_slides
     urban_slides = Section.find_by_title("Urban").get_slides

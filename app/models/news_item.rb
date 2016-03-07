@@ -32,4 +32,11 @@ class NewsItem < ActiveRecord::Base
 
   accepts_nested_attributes_for :news_type
 
+  def self.news_box_items
+    self.where.not(primary_image: nil).where(in_news_box: true).order(created_at: :desc).map do |item|
+      img = item.primary_image ? item.primary_image.name : nil
+      {id: item.id, title: item.title, image: img }
+    end
+  end
+
 end
