@@ -11,6 +11,8 @@ json.array! @items do |item|
 
     json.types ["Bibliography"]
   elsif item.is_a? Project
+    json.searchable_type "Project"
+    json.searchable_id item.id
     json.pub_date item.getSuperDate
     json.types [item.section.title]
   end
