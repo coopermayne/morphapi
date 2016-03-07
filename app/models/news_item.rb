@@ -26,6 +26,8 @@ class NewsItem < ActiveRecord::Base
   include Searchable
   include Primaryable
 
+  attr_accessor :address
+
   belongs_to :news_type
 
   accepts_nested_attributes_for :news_type
