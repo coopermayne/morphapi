@@ -2,7 +2,7 @@
   <div class='col-md-12'>
     <div class='panel panel-default'>
       <div class="panel-heading">
-        <h3 class="panel-title"> Files </h3>
+        <h3 class="panel-title"> Image Galleries </h3>
       </div>
       <div class='panel-body'>
         <div class="row">
@@ -79,33 +79,78 @@
           <% end %>
         </div> <%# row %>
 
-        <% other_files = f.object.uploads.select{|u| !u.is_image} %>
-        <% if false && !other_files.empty? %>
-          <div class="row">
-            <h2>Other Files</h2>
-            <% other_files.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
-              <h1><%= type ? type.title : "No Type" %></h1>
-              <div class='row'>
-                <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
 
-                  <div class='col-md-6'> show? <%= builder.check_box :in_gallery %> </div>
-                  <div class='col-md-6'> delete? <%= builder.check_box :_destroy %> </div>
-
-                  <%= link_to File.basename builder.object.name.path, builder.object.name.path %>
-
-                  <%= builder.input :rank, size: 3 %>
-                  <%= builder.input :file_type_id, collection: FileType.all, prompt: "Select a type..." %>
-                <% end %>
-              </div>
-
-            <% end %>
-          </div>
-        <% end %>
-
-        <%= link_to_add_fields "Add Files", f, :uploads %>
 
       </div> <%# panel- body %>
   </div> <%# panel %>
 </div> <%# col %>
 </div> <%# row %>
 
+<div class='row' id="anchor-files">
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title"> Image Galleries </h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+
+          <% f.object.uploads.select{|u| u.is_document}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
+            <h1><%= type ? type.title : "No Type" %></h1>
+              <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
+
+                <div class="row image-table-row">
+									<div class="col-sm-4 inline-inputs">
+										<%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %>
+
+									</div>
+									<div class="col-sm-8">
+										<div class="row">
+                      <%= link_to fa_icon("file", text: "link to file").html_safe, builder.object.name.url, target: "_blank", class: "btn btn-info"%>
+
+											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "success",
+													"on-text": "#{fa_icon 'eye'}",
+													"off-text": "#{fa_icon "eye-slash"}"
+												} 
+											%>
+											<%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "primary",
+													"on-text": 'yes',
+													"off-text": 'no',
+													"label-text":'copyright'
+												}
+											%>
+
+											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "danger",
+													"on-text": "#{fa_icon "trash-o"}",
+													"off-text": "#{fa_icon "trash-o"}"
+												}
+											%>
+											
+										</div>
+										<div class="row">
+											<%= builder.input :title %>
+											<%= builder.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+											<%= builder.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+											
+										</div>
+									</div>
+                </div>
+              <% end %>
+
+          <% end %>
+        </div> <%# row %>
+
+
+
+      </div> <%# panel- body %>
+  </div> <%# panel %>
+</div> <%# col %>
+</div> <%# row %>
+
+<%= link_to_add_fields "Add Files", f, :uploads %>
