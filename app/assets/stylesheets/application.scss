@@ -42,6 +42,9 @@
 
 
 
+.chosen-container {
+  width: 100% !important;
+}
 
 select.form-control + .chosen-container.chosen-container-single .chosen-single {
 	display: block;

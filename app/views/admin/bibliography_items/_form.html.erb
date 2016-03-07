@@ -9,9 +9,13 @@
       </div>
 
       <div class='panel-body'>
-				<%= f.input :title %>
+        <div class='col-md-6'>
+          <%= f.input :title %>
+        </div>
 
-				<%= f.association :projects, input_html: {class: 'chosen-select'}  %>
+        <div class='col-md-12'>
+          <%= f.association :projects, input_html: {class: 'chosen-select'}  %>
+        </div>
 
         <div class='col-md-6'>
           <%= f.input :description %>
