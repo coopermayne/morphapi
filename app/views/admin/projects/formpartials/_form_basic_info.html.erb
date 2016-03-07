@@ -27,16 +27,14 @@
   </div>
 </div>
 
-
-<div class='row'>
+<div class='row' id="anchor-details-dates">
   <div class='col-sm-12'>
     <div class='panel panel-default'>
       <div class="panel-heading">
-        <h3 class="panel-title">Details</h3>
+        <h3 class="panel-title">Dates</h3>
       </div>
       <div class='panel-body'>
-
-        <div class="row">
+        <div class='row'>
           <div class="col-sm-6">
             <%= f.input :client %>
           </div>
@@ -52,7 +50,22 @@
             <%= f.input :site_area %>
           </div>
 
-
+          <div class="col-sm-6">
+            <%= f.label :constr_sdate %><br \>
+            <%= f.text_field :constr_sdate, class: 'datepicker' %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.label :constr_edate %><br \>
+            <%= f.text_field :constr_edate, class: 'datepicker' %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.label :design_sdate %><br \>
+            <%= f.text_field :design_sdate, class: 'datepicker' %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.label :design_edate%><br \>
+            <%= f.text_field :design_edate, class: 'datepicker' %>
+          </div>
         </div>
       </div>
     </div>
@@ -98,36 +111,6 @@
 
 
 				</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class='row' id="anchor-dates">
-  <div class='col-sm-12'>
-    <div class='panel panel-default'>
-      <div class="panel-heading">
-        <h3 class="panel-title">Dates</h3>
-      </div>
-      <div class='panel-body'>
-        <div class='row'>
-          <div class="col-sm-6">
-            <%= f.label :constr_sdate %><br \>
-            <%= f.text_field :constr_sdate, class: 'datepicker' %>
-          </div>
-          <div class="col-sm-6">
-            <%= f.label :constr_edate %><br \>
-            <%= f.text_field :constr_edate, class: 'datepicker' %>
-          </div>
-          <div class="col-sm-6">
-            <%= f.label :design_sdate %><br \>
-            <%= f.text_field :design_sdate, class: 'datepicker' %>
-          </div>
-          <div class="col-sm-6">
-            <%= f.label :design_edate%><br \>
-            <%= f.text_field :design_edate, class: 'datepicker' %>
-          </div>
-        </div>
       </div>
     </div>
   </div>

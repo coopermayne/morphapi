@@ -1,8 +1,13 @@
 $(document).ready(function(){
 
-  $('.datepicker').datepicker({
-    format: "yyyy/mm/dd"
-  })
+  //apply datepicker
+  if ( $(".datepicker").length ){
+    $('.datepicker').datepicker({
+      format: "yyyy/mm/dd",
+      autoclose: true,
+
+    })
+  }
 
   //detatched submit button
   $("#detatched-submit").on("click", function(e){
