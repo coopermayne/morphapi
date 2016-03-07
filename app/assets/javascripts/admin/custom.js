@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  $('.datepicker').datepicker()
+
   //detatched submit button
   $("#detatched-submit").on("click", function(e){
     $('form').submit()

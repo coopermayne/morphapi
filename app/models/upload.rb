@@ -59,7 +59,7 @@ class Upload < ActiveRecord::Base
   end
 
   def is_document
-    self.name_url && [".pdf"].include?(File.extname(self.name_url))
+    self.name_url && [".pdf", ".doc"].include?(File.extname(self.name_url))
   end
 
   def set_some_defaults
