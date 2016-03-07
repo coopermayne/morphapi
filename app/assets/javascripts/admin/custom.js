@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
-  $('.datepicker').datepicker()
+  $('.datepicker').datepicker({
+    format: "yyyy/mm/dd"
+  })
 
   //detatched submit button
   $("#detatched-submit").on("click", function(e){
@@ -210,4 +212,7 @@ var applyJsStuff = function(){
 	applyTextBox($('textarea'))
 	applyChosen();
 	$(".filestyle").filestyle();
+  $('.datepicker').datepicker({
+    format: "yyyy/mm/dd"
+  })
 }

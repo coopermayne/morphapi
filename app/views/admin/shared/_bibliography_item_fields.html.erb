@@ -22,7 +22,10 @@
           <div class='col-md-6'><%= f.input :publication  %></div>
           <div class='col-md-6'><%= f.input :publisher    %></div>
           <div class='col-md-6'><%= f.input :date %></div>
-          <div class='col-md-6'><%= f.input :pub_date, html5:true %></div>
+          <div class='col-md-6'>
+            <%= f.label :pub_date %><br \>
+            <%= f.text_field :pub_date, class: 'datepicker' %>
+          </div>
           <div class='col-md-6'><%= f.input :pages        %></div>
           <div class="col-md-6">
             <%= f.simple_fields_for :primary_image, f.object.build_primary_image  do |builder| %>
