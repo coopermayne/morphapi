@@ -1,3 +1,8 @@
+<% content_for :head do %>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/js/bootstrap-datepicker.js"></script>
+<% end %>
+
 <h2><%= @title %></h2>
 
 <%= simple_form_for @bibliography_item, :url => admin_bibliography_item_path(@bibliography_item) do |f| %>

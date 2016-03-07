@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305222607) do
+ActiveRecord::Schema.define(version: 20160307150815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20160305222607) do
     t.boolean  "in_news_box",    default: false
     t.integer  "old_id"
     t.integer  "index_image_id"
+    t.string   "address"
   end
 
   add_index "news_items", ["news_type_id"], name: "index_news_items_on_news_type_id", using: :btree
