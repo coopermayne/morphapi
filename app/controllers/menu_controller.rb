@@ -8,7 +8,7 @@ class MenuController < ApplicationController
       img = item.primary_image ? item.primary_image.name : nil
       {id: item.id, title: item.title, image: img }
     end
-    
+
     morph_slides = Section.find_by_title("Morphosis").get_slides
     arch_slides = Section.find_by_title("Architecture").get_slides
     urban_slides = Section.find_by_title("Urban").get_slides
@@ -18,97 +18,99 @@ class MenuController < ApplicationController
 
     res = {}
     res[:landing] = {
-			slides: vid_slides
+      slides: vid_slides
     }
 
     res[:sections] = [
       {
-      title: 'Morphosis',
-      slides: morph_slides,
-      url: "about",
-      content: Section.find_by_title( "Morphosis" ).content,
-      sorting: [ {
-        title: 'Awards',
-        items: ''
-      }, {
-        title: 'People',
-        items: ''
-      }, {
-        title: 'Media',
-        items: ['Publications', 'Bibliography', 'Videos']
-      } ]
-    },
+        title: 'News',
+        url: 'news',
+        items: news
+      },
 
-    {
-      title: 'Architecture',
-      slides: arch_slides,
-      url: "architecture",
-      sorting: [ {
-        title: 'A-Z',
-        items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      {
+        title: 'Morphosis',
+        slides: morph_slides,
+        url: "about",
+        content: Section.find_by_title( "Morphosis" ).content,
+        sorting: [ {
+          title: 'Awards',
+          items: ''
+        }, {
+          title: 'People',
+          items: ''
+        }, {
+          title: 'Media',
+          items: ['Publications', 'Bibliography', 'Videos']
+        } ]
+      },
+
+      {
+        title: 'Architecture',
+        slides: arch_slides,
+        url: "architecture",
+        sorting: [ {
+          title: 'A-Z',
+          items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        }, {
+          title: 'Year',
+          items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
+        }, {
+          title: 'Type',
+          items: Section.find_by_title("Architecture").get_types
+        }, {
+          title: 'Location',
+          items: []
+        } ]
+      }, 
+
+      {
+        title: 'Urban',
+        slides: urban_slides,
+        url: "urban",
+        sorting: [ {
+          title: 'A-Z',
+          items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        }, {
+          title: 'Year',
+          items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
+        }, {
+          title: 'Location',
+          items: []
+        } ]
+      }, 
+
+      {
+        title: 'Tangents',
+        slides: tan_slides,
+        url: "tangents",
+        sorting: [ {
+          title: 'A-Z',
+          items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        }, {
+          title: 'Year',
+          items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
+        }, {
+          title: 'Type',
+          items: Section.find_by_title("Tangents").get_types
+        } ]
       }, {
-        title: 'Year',
-        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
-      }, {
-        title: 'Type',
-        items: Section.find_by_title("Architecture").get_types
-      }, {
-        title: 'Location',
-        items: []
-      } ]
-    }, 
-    
-    {
-      title: 'Urban',
-      slides: urban_slides,
-      url: "urban",
-      sorting: [ {
-        title: 'A-Z',
-        items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-      }, {
-        title: 'Year',
-        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
-      }, {
-        title: 'Location',
-        items: []
-      } ]
-    }, 
-    
-    {
-      title: 'Tangents',
-      slides: tan_slides,
-      url: "tangents",
-      sorting: [ {
-        title: 'A-Z',
-        items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-      }, {
-        title: 'Year',
-        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ]
-      }, {
-        title: 'Type',
-        items: Section.find_by_title("Tangents").get_types
-      } ]
-    }, {
-      title: 'Research',
-      slides: arch_slides,
-      url: 'research',
-      sorting: [{
+        title: 'Research',
+        slides: arch_slides,
+        url: 'research',
+        sorting: [{
           title: "Now Institute",
           items: []
-      }]
-    }, {
-      title: 'News',
-      url: 'news',
-      items: news
-    }
+        }]
+      }
     ]
     render json: res
   end
 
-	def videos
+  def videos
     vid_slides = Section.find_by_title("Home Page").get_slides
-		render json: vid_slides
-	end
+    render json: vid_slides
+  end
 
 end
 
