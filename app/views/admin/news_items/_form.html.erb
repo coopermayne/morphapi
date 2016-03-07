@@ -1,47 +1,94 @@
 <h2><%= @title %></h2>
-<div class="row">
 
-	<div class="col-md-6">
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Basics</h3>
+      </div>
+      <div class='panel-body'>
 
-    <%= f.input :title %>
-    <%= f.input :news_type_id, collection: NewsType.all, prompt: "select a section" %>
-    <%= f.input :in_news_box %>
+        <div class="row">
 
-	</div>
-  <% if f.object.primary_image %>
-    <div class="col-md-6">
-      <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
+          <div class="col-md-6">
+
+            <%= f.input :title %>
+            <%= f.input :news_type_id, collection: NewsType.all, prompt: "select a section" %>
+            <%= f.input :in_news_box %>
+
+          </div>
+          <% if f.object.primary_image %>
+            <div class="col-md-6">
+              <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :description, rows: "20" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :overview, rows: "20" %>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <%= f.label :start_date %><br \>
+            <%= f.text_field :start_date, class: 'datepicker' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :end_date %><br \>
+            <%= f.text_field :end_date, class: 'datepicker' %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
 
-<div class="row">
-	<div class="col-md-6">
-		<%= f.input :description, rows: "20" %>
-	</div>
-	<div class="col-md-6">
-		<%= f.input :overview, rows: "20" %>
-	</div>
+
+<div class='row' id="anchor-location">
+  <div class='col-sm-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+				<h3 class="panel-title">Location</h3>
+      </div>
+      <div class='panel-body'>
+				<div class="row">
+          <div class="col-md-6">
+            <%= f.input :place_name %>
+          </div>
+					<div class="col-sm-6">
+						<%= f.input :address, input_html: {id: "geocomplete", placeholder: "Type in an address"}%>
+					</div>
+
+					<div class="col-sm-6 map_canvas"> </div>
+
+					<div class="col-sm-6">
+						<%= f.input :street_address %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :city %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :state %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :country %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :zip %>
+					</div>
+
+
+				</div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="row">
-	<div class="col-md-6">
-		<%= f.input :place_name %>
-	</div>
-
-	<div class="col-md-6">
-		<%= f.input :street_address %>
-	</div>
-	<div class="col-md-6">
-    <%= f.label :start_date %><br \>
-    <%= f.text_field :start_date, class: 'datepicker' %>
-	</div>
-	<div class="col-md-6">
-    <%= f.label :end_date %><br \>
-    <%= f.text_field :end_date, class: 'datepicker' %>
-	</div>
-</div>
-
 
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 

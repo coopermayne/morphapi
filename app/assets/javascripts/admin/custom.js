@@ -181,6 +181,12 @@ $(document).ready(function(){
 			$(' input[name="project[country]"]').val(components.country)
 			$(' input[name="project[zip]"]').val(components.postal_code)
 
+			$(' input[name="news_item[street_address]"]').val([ components.street_number, components.route ].join(" "))
+			$(' input[name="news_item[city]"]').val(components.locality)
+			$(' input[name="news_item[state]"]').val(components.administrative_area_level_1)
+			$(' input[name="news_item[country]"]').val(components.country)
+			$(' input[name="news_item[zip]"]').val(components.postal_code)
+
 		})
 		.bind("geocode:dragged", function(event, latLng){
 			el_lat.val(latLng.lat())
