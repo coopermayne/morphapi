@@ -32,7 +32,7 @@ module Searchable
              when self.class == Award
                {
                  section: "about",
-                 sorting_type: "award",
+                 sorting_type: "awards",
                  content: "#{self.projects.map(&:title).join(" ")}"
                }
              when self.class == BibliographyItem
