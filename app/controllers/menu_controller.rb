@@ -50,7 +50,7 @@ class MenuController < ApplicationController
         items: Section.find_by_title("Architecture").get_types
       }, {
         title: 'Location',
-        items: []
+        items: ['America', 'Europe', 'Asia']
       } ]
     }, 
     
