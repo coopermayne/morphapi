@@ -3,7 +3,7 @@ class MediaController < ApplicationController
   #custom controller gives back all stuff in media section
   def index
     page = params[:p] #(nil or a number)
-    type = params[:type] #(publications/bibliography/videos)
+    type = params[:q] #(publications/bibliography/videos)
     sorting = params[:sub] #(pub_date)/(title)
 
     #set page vars
