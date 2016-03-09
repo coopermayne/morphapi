@@ -60,10 +60,13 @@ class Admin::SlidesController < AdminController
 		about_params = params[:section]
     slides_params = params[:slides]
 
-		s = Section.find(about_params[:id])
-		s.content = about_params[:content]
+    res1 = true
+    if about_params
+      s = Section.find(about_params[:id])
+      s.content = about_params[:content]
+      res1 = s.save
+    end
 
-		res1 = s.save
 		res2 = Slide.update(slides_params.keys, slides_params.values)
 
     if res1 && res2
