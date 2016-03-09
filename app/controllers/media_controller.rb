@@ -9,6 +9,6 @@ class MediaController < ApplicationController
     #bibliography
     bibs = BibliographyItem.includes(:uploads, :primary_image)
 
-    @items = bibs
+    @items = media + bibs
   end
 end
