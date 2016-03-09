@@ -28,4 +28,7 @@ class BibliographyItem < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :people
 
+  def date
+    pub_date
+  end
 end

@@ -58,6 +58,10 @@ class Project < ActiveRecord::Base
 
   scope :with_section, -> (section_id) { where section_id: section_id }
 
+  def date
+    self.constr_edate || self.constr_sdate || self.design_edate || self.design_sdate
+  end
+
   def getSuperDate
     self.constr_edate || self.constr_sdate || self.design_edate || self.design_sdate
   end
