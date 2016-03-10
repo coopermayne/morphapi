@@ -51,6 +51,9 @@ class MediaController < ApplicationController
     end
     
     #paginating
+    @total_pages = ( @items.count/30 ).ceil
+    @current_page = page || 0
     @items = @items.slice(starting_page, per_page)
+
   end
 end
