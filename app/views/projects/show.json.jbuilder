@@ -1,6 +1,15 @@
 #json.(@project, :id, :title, :overview, :description, :program, :client, :size, :site_area, :lat)
 
 json.result do |json|
+
+  json.galleries @project.getGalleries do |title, images|
+    json.title title
+    json.images images do |image|
+      json.extract! image, :id, :name, :title
+      json.credit image.credit ? image.credit.name : nil
+    end
+  end
+
   json.merge! @project.attributes
   json.types @project.project_types.map{|t| t.title }
   json.primary_image @project.primary_image
@@ -24,7 +33,7 @@ json.result do |json|
     json.primary_image bib.primary_image
   end
 
-	json.components @project.components do |comp|
-		json.merge! comp.attributes
-	end
+  json.components @project.components do |comp|
+    json.merge! comp.attributes
+  end
 end
