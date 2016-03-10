@@ -14,10 +14,6 @@ json.result do |json|
   json.types @project.project_types.map{|t| t.title }
   json.primary_image @project.primary_image
 
-  #json.components @project.components, :id, :content, :rank, :component_type
-  #
-  json.galleries @project.getGalleries
-
   json.documents @project.getDocuments
 
   json.people @project.roles do |role|
