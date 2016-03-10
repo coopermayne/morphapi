@@ -41,10 +41,11 @@ class MediaController < ApplicationController
     @items = []
     @items += media if media
     @items += bibs if bibs
+    @items = @items.select{|i| !i.title.blank? }
 
     #sorting
     if params[:sub] == 'title'
-      @items = @items.select{|i| !i.title.blank? }.sort_by{|i| i.title.strip.downcase }
+      @items = @items.sort_by{|i| i.title.strip.downcase }
     else
       @items.sort_by!{|i| i.date || Time.parse("20-08-1000") }.reverse!
     end
