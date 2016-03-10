@@ -1,6 +1,25 @@
 # lib/tasks/custom_seed.rake
 namespace :db do
 
+  task sub_images: :environment do
+    Component.all.select{|c| c.content.match("{file}")}.each do |comp|
+      r = /{file}(\d*)\|.+?{\/file}/
+      cc = comp.content
+
+      def doIt(mat)
+        the_source = Upload.find_by_old_id mat
+        if the_source
+          "<img src='" + the_source.name.mobile.url + "'></img" 
+        else
+          ""
+        end
+      end
+
+      comp.content = cc.gsub(r){ doIt(Regexp.last_match[1]) }
+      comp.save
+    end
+  end
+
 	task clean_component_text: :environment do
 		Component.all.each do |comp|
 			method = :content

@@ -4,6 +4,14 @@
  @import 'chosen';
  @import "font-awesome";
 
+
+.trumbowyg-box{
+  img {
+    width: 250px;
+  }
+}
+
+
 .container {
   width: 90%;
   max-width: 1600px;
