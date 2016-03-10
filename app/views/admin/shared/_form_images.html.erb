@@ -1,3 +1,5 @@
+<% if f.object.uploads.select{|u| u.is_image}.count > 0 %>
+  
 <div class='row' id="anchor-files">
   <div class='col-md-12'>
     <div class='panel panel-default'>
@@ -85,7 +87,9 @@
   </div> <%# panel %>
 </div> <%# col %>
 </div> <%# row %>
+<% end %><%# end if %>
 
+<% if f.object.uploads.select{|u| u.is_document}.count > 0 %>
 <div class='row' id="anchor-files">
   <div class='col-md-12'>
     <div class='panel panel-default'>
@@ -165,3 +169,4 @@
     </div>
   </div>
 </div>
+<% end %><%# end if %>
