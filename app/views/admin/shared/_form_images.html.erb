@@ -90,7 +90,7 @@
   <div class='col-md-12'>
     <div class='panel panel-default'>
       <div class="panel-heading">
-        <h3 class="panel-title"> Image Galleries </h3>
+        <h3 class="panel-title"> Documents </h3>
       </div>
       <div class='panel-body'>
         <div class="row">
@@ -100,14 +100,14 @@
               <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
 
                 <div class="row image-table-row">
-									<div class="col-sm-4 inline-inputs">
+									<div class="col-sm-2 inline-inputs">
 										<%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %>
 
 									</div>
-									<div class="col-sm-8">
-										<div class="row">
+									<div class="col-sm-10">
+										<div class="col-sm-12">
+                      <%= File.basename( builder.object.name.url ) %>
                       <%= link_to fa_icon("file", text: "link to file").html_safe, builder.object.name.url, target: "_blank", class: "btn btn-info"%>
-
 											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
 												{
 													"on-color": "success",
@@ -133,7 +133,7 @@
 											%>
 											
 										</div>
-										<div class="row">
+										<div class="col-sm-12">
 											<%= builder.input :title %>
 											<%= builder.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
 											<%= builder.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
