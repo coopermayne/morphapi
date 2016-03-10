@@ -7,6 +7,7 @@ class MenuController < ApplicationController
     news = NewsItem.news_box_items     
     morph_slides = Section.find_by_title("Morphosis").get_slides
     arch_slides = Section.find_by_title("Architecture").get_slides
+    research_slides = Section.find_by_title("Research").get_slides
     urban_slides = Section.find_by_title("Urban").get_slides
     tan_slides = Section.find_by_title("Tangents").get_slides
     morph_slides = Section.find_by_title("Morphosis").get_slides
@@ -86,7 +87,7 @@ class MenuController < ApplicationController
       } ]
     }, {
       title: 'Research',
-      slides: arch_slides,
+      slides: research_slides,
       url: 'research',
       sorting: [{
           title: "Now Institute",
