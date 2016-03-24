@@ -23,7 +23,7 @@ json.result do |json|
     json.person role.person, :id, :name, :last_name, :is_morphosis, :is_collaborator, :is_consultant
   end
 
-  json.awards @project.awards, :id, :title, :year
+  json.awards @project.awards.sort_by{|a| a.year || 0 }.reverse, :id, :title, :year
   json.bibliography_items @project.bibliography_items do |bib|
     json.merge! bib.attributes
     json.primary_image bib.primary_image
