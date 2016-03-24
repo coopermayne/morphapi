@@ -1,18 +1,12 @@
 <% content_for :head do %>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.css" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/js/bootstrap-datepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/js/bootstrap-datepicker.js"></script>
 <% end %>
 
 <h2><%= @title %></h2>
 
 <%= simple_form_for @project, :url => admin_projects_path do |f| %>
-
-
-
   <% content_for :sidebar do %>
-
-    <% if @project.class.name == "Project" %>
-      
     <ul class="nav nav-stacked" id="sidebar">
       <li><a href="#anchor-basics">Basics</a></li>
       <li><a href="#anchor-details-dates">Details & Dates</a></li>
@@ -34,18 +28,6 @@
         <%= link_to fa_icon("trash", text: "Destroy"), send("admin_#{f.object.class.to_s.underscore}_path", @project), method: :delete, class: 'btn btn-danger', data: { confirm: "are you sure? it'll be gone forever" } %>
       <% end %>
     </ul>
-
-
-    <% end %>
-
   <% end %>
-
-
-
-
-
   <%= render :partial => 'admin/projects/form', :locals => { :f => f } %>
-	
-
-
 <% end %>
