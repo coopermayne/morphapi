@@ -46,7 +46,11 @@
     
 	<%= simple_fields_for @morph_section do |builder| %>
 		<%= builder.input :id, as: :hidden %>
-		<%= builder.input :content %>
+
+		<%= builder.input :contact %>
+		<%= builder.input :about %>
+		<%= builder.input :employment %>
+
 	<% end %>
 
   <% end %>

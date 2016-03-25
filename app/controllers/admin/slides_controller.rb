@@ -63,7 +63,11 @@ class Admin::SlidesController < AdminController
     res1 = true
     if about_params
       s = Section.find(about_params[:id])
-      s.content = about_params[:content]
+
+      s.contact = about_params[:contact]
+      s.about = about_params[:about]
+      s.employment = about_params[:employment]
+
       res1 = s.save
     end
 
