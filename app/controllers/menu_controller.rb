@@ -23,7 +23,9 @@ class MenuController < ApplicationController
       title: 'Morphosis',
       slides: morph_slides,
       url: "about",
-      content: Section.find_by_title( "Morphosis" ).content,
+      contact: Section.find_by_title( "Morphosis" ).contact,
+      about: Section.find_by_title( "Morphosis" ).about,
+      employment: Section.find_by_title( "Morphosis" ).employment,
       sorting: [ {
         title: 'Awards',
         items: ''
