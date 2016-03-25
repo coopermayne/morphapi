@@ -61,6 +61,9 @@ class Admin::PeopleController < AdminController
   def person_params
     params.require(:person).permit(
       :name,
+      :last_name,
+      :make_primary,
+      :make_index,
       :birthday,
       :description,
       :email,
