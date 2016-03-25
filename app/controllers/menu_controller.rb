@@ -31,7 +31,7 @@ class MenuController < ApplicationController
         items: ''
       }, {
         title: 'People',
-        items: ''
+        items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       }, {
         title: 'Media',
         items: ['Publications', 'Bibliography', 'Videos']
