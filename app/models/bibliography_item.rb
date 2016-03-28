@@ -22,7 +22,6 @@
 #
 
 class BibliographyItem < ActiveRecord::Base
-  include Searchable
   include Primaryable
 
   has_and_belongs_to_many :projects
