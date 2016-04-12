@@ -11,7 +11,12 @@ json.results @items do |item|
 
     #add document gallery
 
+    json.projects item.projects.each do |project|
+      json.(project, :id, :title)
+    end
+
     json.types ["Bibliography"]
+
   elsif item.is_a? Project
     json.searchable_type "Project"
     json.searchable_id item.id
