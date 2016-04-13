@@ -16,6 +16,25 @@ json.result do |json|
 
   json.documents @project.getDocuments
 
+  morphosites = @project.roles.select{|r| r.person.is_morphosis}
+  contractors = @project.roles.select{|r| !r.person.is_morphosis}
+
+  gr_morph = morphosites.group_by{|n| n.position}.sort_by{|k,v| k.rank}.each{|it| it[0] = it[0].title}
+  json.morph_team gr_morph do |gr|
+    json.role_title gr.first
+    json.people gr.last do |role|
+      json.person role.person, :id, :name, :last_name
+    end
+  end
+
+  gr_con = contractors.group_by{|n| n.position}.sort_by{|k,v| k.rank}.each{|it| it[0] = it[0].title}
+  json.contractors gr_con do |gr|
+    json.role_title gr.first
+    json.people gr.last do |role|
+      json.person role.person, :id, :name, :last_name
+    end
+  end
+
   json.people @project.roles do |role|
     json.role_title role.position.title
     json.role_rank role.position.rank
