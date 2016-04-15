@@ -14,7 +14,7 @@ class Admin::PositionsController < AdminController
 
   # GET /admin/positions/new
   def new
-    @admin_position = Position.new
+    @position = Position.new
   end
 
   # GET /admin/positions/1/edit

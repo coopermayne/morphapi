@@ -1,5 +1,9 @@
 <h2><%= @title %></h2>
 
-<%= render 'form' %>
+<%= simple_form_for @position, :url => admin_positions_path do |f| %>
 
-<%= link_to 'Back', admin_positions_path %>
+  <%= render :partial => 'admin/positions/form', :locals => { :f => f } %>
+	
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @position } %>
+
+<% end %>
