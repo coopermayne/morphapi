@@ -41,8 +41,10 @@ class Admin::ProjectTypesController < AdminController
   def destroy
     @project_type = ProjectType.find params[:id]
 
-    @project_type.destroy
-    flash[:notice] = 'Type item has been deleted'
+    if @project_type.roles.count == 0
+      @project_type.destroy
+      flash[:notice] = 'Type item has been deleted'
+    end
     redirect_to admin_project_types_path
   end
 

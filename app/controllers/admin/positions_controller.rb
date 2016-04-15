@@ -55,7 +55,6 @@ class Admin::PositionsController < AdminController
   def destroy
     @admin_position = Position.find(params[:id])
     @admin_position.destroy
-    @admin_position.destroy
     flash[:notice] = 'Position item has been deleted'
     redirect_to admin_positions_path
   end
