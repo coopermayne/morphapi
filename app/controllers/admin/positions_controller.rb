@@ -54,9 +54,16 @@ class Admin::PositionsController < AdminController
   # DELETE /admin/positions/1.json
   def destroy
     @admin_position = Position.find(params[:id])
-    @admin_position.destroy
-    flash[:notice] = 'Position item has been deleted'
+    if @admin_position.roles.count == 0
+      @admin_position.destroy
+      flash[:notice] = 'Position item has been deleted'
+
+    else
+      flash[:notice] = 'Must be empty'
+    end
+
     redirect_to admin_positions_path
+
   end
 
   private
