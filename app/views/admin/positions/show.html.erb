@@ -1,12 +1,9 @@
-<p>
-  <strong>Title:</strong>
-  <%= @admin_position.title %>
-</p>
+<h2><%= @title %></h2>
 
-<p>
-  <strong>Rank:</strong>
-  <%= @admin_position.rank %>
-</p>
+<%= simple_form_for @position, :url => admin_position_path(@position) do |f| %>
 
-<%= link_to 'Edit', edit_admin_position_path(@admin_position) %> |
-<%= link_to 'Back', admin_positions_path %>
+  <%= render :partial => 'admin/positions/form', :locals => { :f => f } %>
+	
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @position } %>
+
+<% end %>

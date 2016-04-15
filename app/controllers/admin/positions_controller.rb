@@ -9,6 +9,7 @@ class Admin::PositionsController < AdminController
   # GET /admin/positions/1
   # GET /admin/positions/1.json
   def show
+    @position = Position.find(params[:id])
   end
 
   # GET /admin/positions/new
@@ -18,6 +19,8 @@ class Admin::PositionsController < AdminController
 
   # GET /admin/positions/1/edit
   def edit
+    #@admin_position = Position.find(params[:id])
+    @position = Position.find(params[:id])
   end
 
   # POST /admin/positions
@@ -37,25 +40,24 @@ class Admin::PositionsController < AdminController
   # PATCH/PUT /admin/positions/1
   # PATCH/PUT /admin/positions/1.json
   def update
-    respond_to do |format|
-      if @admin_position.update(admin_position_params)
-        format.html { redirect_to @admin_position, notice: 'Position was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_position }
-      else
-        format.html { render :edit }
-        format.json { render json: @admin_position.errors, status: :unprocessable_entity }
-      end
+    @position = Position.find(params[:id])
+    if @position.update_attributes admin_position_params
+      flash[:notice] = 'Position item has been updated'
+      redirect_to admin_position_path(@position)
+    else
+      flash.now[:warning] = 'There were problems when trying to update this Position item'
+      render :action => :show
     end
   end
 
   # DELETE /admin/positions/1
   # DELETE /admin/positions/1.json
   def destroy
+    @admin_position = Position.find(params[:id])
     @admin_position.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_positions_url, notice: 'Position was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @admin_position.destroy
+    flash[:notice] = 'Position item has been deleted'
+    redirect_to admin_positions_path
   end
 
   private
