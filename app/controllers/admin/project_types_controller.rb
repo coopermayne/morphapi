@@ -43,7 +43,7 @@ class Admin::ProjectTypesController < AdminController
 
     @project_type.destroy
     flash[:notice] = 'Type item has been deleted'
-    redirect_to admin_project_type_path
+    redirect_to admin_project_types_path
   end
 
   def rank
