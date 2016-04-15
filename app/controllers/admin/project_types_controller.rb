@@ -44,6 +44,8 @@ class Admin::ProjectTypesController < AdminController
     if @project_type.projects.count == 0
       @project_type.destroy
       flash[:notice] = 'Type item has been deleted'
+    else
+      flash[:notice] = 'Must be empty'
     end
     redirect_to admin_project_types_path
   end

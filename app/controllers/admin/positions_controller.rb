@@ -57,7 +57,6 @@ class Admin::PositionsController < AdminController
     if @admin_position.roles.count == 0
       @admin_position.destroy
       flash[:notice] = 'Position item has been deleted'
-
     else
       flash[:notice] = 'Must be empty'
     end
