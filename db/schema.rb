@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325145349) do
+ActiveRecord::Schema.define(version: 20160419221553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,8 +158,8 @@ ActiveRecord::Schema.define(version: 20160325145349) do
     t.date     "birthday"
     t.text     "description"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.boolean  "is_morphosis"
     t.boolean  "is_employed"
     t.boolean  "is_collaborator"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20160325145349) do
     t.integer  "primary_id"
     t.integer  "old_id"
     t.integer  "index_image_id"
+    t.boolean  "is_leadership",   default: false
   end
 
   create_table "positions", force: :cascade do |t|
