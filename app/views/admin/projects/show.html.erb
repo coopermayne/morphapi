@@ -5,19 +5,26 @@
 
 <h2><%= @title %></h2>
 
+<% if @edit_files %>
+  <p><%= link_to "manage project info", admin_project_path(@project) %></p>
+  <% else %>
+    <p><%= link_to "manage project images/files", admin_project_path(@project, :uploads => true) %></p>
+<% end %>
+
 <%= simple_form_for @project, :url => admin_project_path(@project) do |f| %>
+    
   <% content_for :sidebar do %>
     <ul class="nav nav-stacked" id="sidebar">
-      <li><a href="#anchor-basics">Basics</a></li>
-      <li><a href="#anchor-details-dates">Details & Dates</a></li>
-      <li><a href="#anchor-location">Location</a></li>
-      <li><a href="#anchor-roles">Roles</a></li>
-      <li><a href="#anchor-section">Section/Types</a></li>
-      <li><a href="#anchor-awards">Awards</a></li>
-      <li><a href="#anchor-bibliography">Bibliography</a></li>
-      <li><a href="#anchor-image-preview">Image Previews</a></li>
-      <li><a href="#anchor-files">Files</a></li>
-      <li><a href="#anchor-components">Components</a></li>
+      <% unless @edit_files %>
+        <li><a href="#anchor-basics">Basics</a></li>
+        <li><a href="#anchor-details-dates">Details & Dates</a></li>
+        <li><a href="#anchor-location">Location</a></li>
+        <li><a href="#anchor-roles">Roles</a></li>
+        <li><a href="#anchor-section">Section/Types</a></li>
+        <li><a href="#anchor-awards">Awards</a></li>
+        <li><a href="#anchor-bibliography">Bibliography</a></li>
+        <li><a href="#anchor-components">Components</a></li>
+      <% end %>
 
       <hr \>
       <%= f.submit "Save", :class => "btn btn-primary", :id => "detatched-submit" %>

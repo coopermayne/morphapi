@@ -9,6 +9,7 @@ class Admin::ProjectsController < AdminController
   end
 
   def show
+    @edit_files = params["uploads"]
     @title = "Edit Project"
     @project = Project.includes(:section, :project_types, roles:[:position, :person], uploads: [:file_type]).find params[:id]
   end
