@@ -1119,4 +1119,9 @@ namespace :db do
     end
   end
 
+  task add_ranks_to_roles: :environment do
+    Role.all.each do |role|
+    end
+  end
+
 end
