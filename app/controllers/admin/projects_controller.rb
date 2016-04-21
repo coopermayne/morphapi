@@ -105,7 +105,7 @@ class Admin::ProjectsController < AdminController
         :title,
         :description,
         :overview, 
-        :author,  
+        :author, 
         :article_name, 
         :book_title,   
         :subtitle,     
@@ -113,11 +113,11 @@ class Admin::ProjectsController < AdminController
         :publisher,    
         :date, 
         :pub_date,
+        :link,
         primary_image_attributes: [
           :id,
           :name
         ],
-        :link
       ],
 			components_attributes: [
 				:id,
