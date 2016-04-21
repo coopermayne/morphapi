@@ -1120,7 +1120,24 @@ namespace :db do
   end
 
   task add_ranks_to_roles: :environment do
-    Role.all.each do |role|
+    DB = Sequel.connect('postgres://cooper:home3232@localhost:5432/test')
+    roles = DB['select d.rank as rank, a.id as project_id, a.title as project_title, e.id as position_id, e.title as position_title, c.id as person_id, c.title as person_title
+      from article as a
+      join articles_related as b
+      on a.id = b.article_id
+      join article as c
+      on b.article_related_id = c.id
+      join articles_people_positions as d
+      on b.id = d.related_id
+      join people_positions as e
+      on d.position_id = e.id']
+    roles.each do |role|
+      found =  Role.all.select{|r| r.project.old_id == role[:project_id] &&  r.person.old_id == role[:person_id] && r.position.old_id == role[:position_id] }.first
+
+      if found  
+        found.rank = role[:rank]
+        puts found.save
+      end
     end
   end
 

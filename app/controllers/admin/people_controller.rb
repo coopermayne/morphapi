@@ -90,7 +90,9 @@ class Admin::PeopleController < AdminController
         :title,
         :name,
         :credit_id,
-        :copyright
+        :copyright,
+        :make_primary,
+        :make_index
       ]
 
     )
