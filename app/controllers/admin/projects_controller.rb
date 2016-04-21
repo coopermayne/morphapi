@@ -85,7 +85,8 @@ class Admin::ProjectsController < AdminController
         :_destroy,
         :person_id,
         :project_id,
-        :position_id
+        :position_id,
+        :rank
       ],
       awards_attributes: [
         :id,

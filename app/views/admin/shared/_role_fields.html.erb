@@ -1,5 +1,5 @@
 <fieldset>
-  <div class='col-md-6'>
+  <div class='col-md-12'>
 
     <div class='panel panel-default'>
       <div class="panel-heading">
@@ -7,11 +7,14 @@
       </div>
 
       <div class='panel-body'>
-        <div class='col-md-6'>
+        <div class='col-md-4'>
 					<%= f.input :person_id, collection: Person.all, include_blank: true, input_html: {class: 'chosen-select'}%>
         </div>
-        <div class='col-md-6'>
+        <div class='col-md-4'>
 					<%= f.input :position_id, collection: Position.all, include_blank: true, input_html: {class: 'chosen-select'}%>
+        </div>
+        <div class='col-md-4'>
+					<%= f.input :rank %>
         </div>
       </div>
     </div>

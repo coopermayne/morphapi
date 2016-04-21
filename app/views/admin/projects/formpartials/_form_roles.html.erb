@@ -5,36 +5,88 @@
         <h3 class="panel-title">Roles</h3>
       </div>
       <div class='panel-body'>
-        <div class="row">
 
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th> Person </th>
-                  <th> Position </th>
-                  <th> &nbsp; </th>
-                </tr>
-              </thead>
-              <%= f.fields_for :roles do |builder| %>
-                <tr>
-                  <td>
-                    <%= builder.object.person.name if builder.object.person %>
-                  </td>
-                  <td>
-                    <%= builder.object.position.title if builder.object.position %>
-                  </td>
-									<td>
-										<%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
-											{
-												"on-color": "danger",
-												"on-text": "#{fa_icon "trash-o"}",
-												"off-text": "#{fa_icon "trash-o"}"
-											}
-										%>
-									</td>
-                </tr>
-              <% end %>
-            </table>
+        <div class='row'>
+          <div class='col-md-12'>
+            <div class='panel panel-default'>
+              <div class="panel-heading">
+                <h3 class="panel-title">Morph Team</h3>
+              </div>
+              <div class='panel-body'>
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th> Rank </th>
+                      <th> Person </th>
+                      <th> Position </th>
+                      <th> &nbsp; </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <% f.object.roles.select{|r| r.person.is_morphosis}.group_by(&:position).sort_by{|key, val| key.rank}.each do |i| %>
+                    <%= f.fields_for :roles, i[1].sort_by{|r| [ r.rank, r.person.last_name ]} do |builder| %>
+                      <tr>
+                        <td> <%= builder.input :rank, label:false, :input_html => {:style => 'width: 110px'}  %> </td>
+                        <td><%= builder.object.person.name %></td>
+                        <td><%= builder.object.position.title %></td>
+                        <td>
+                          <%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+                            {
+                            "on-color": "danger",
+                            "on-text": "#{fa_icon "trash-o"}",
+                            "off-text": "#{fa_icon "trash-o"}"
+                          }
+                        %>
+                      </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class='row'>
+          <div class='col-md-12'>
+            <div class='panel panel-default'>
+              <div class="panel-heading">
+                <h3 class="panel-title">Consultants</h3>
+              </div>
+              <div class='panel-body'>
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th> Rank </th>
+                      <th> Person </th>
+                      <th> Position </th>
+                      <th> &nbsp; </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= f.fields_for :roles, f.object.roles.select{|r| !r.person.is_morphosis}.sort_by{|r| [ r.rank, r.position.rank ]} do |builder| %>
+                      <tr>
+                        <td> <%= builder.input :rank, label:false, :input_html => {:style => 'width: 110px'}  %> </td>
+                        <td><%= builder.object.person.name %></td>
+                        <td><%= builder.object.position.title %></td>
+                        <td>
+                          <%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+                            {
+                            "on-color": "danger",
+                            "on-text": "#{fa_icon "trash-o"}",
+                            "off-text": "#{fa_icon "trash-o"}"
+                          }
+                        %>
+                      </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
 
         <%= link_to_add_fields "Add Role", f, :roles %>
