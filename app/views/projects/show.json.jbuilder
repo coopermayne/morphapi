@@ -19,27 +19,21 @@ json.result do |json|
   morphosites = @project.roles.select{|r| r.person.is_morphosis}
   contractors = @project.roles.select{|r| !r.person.is_morphosis}
 
-  gr_morph = morphosites.group_by{|n| n.position}.sort_by{|k,v| k.rank}.each{|it| it[0] = it[0].title}
+  gr_morph = morphosites.group_by{|n| n.position}.sort_by{|k,v| k.rank}
+
   json.morph_team gr_morph do |gr|
-    json.role_title gr.first
-    json.people gr.last do |role|
+    json.role_title gr.first.title
+    json.people gr.last.sort_by{|r| [r.rank, r.person.last_name]} do |role|
       json.person role.person, :id, :name, :last_name
     end
   end
 
-  gr_con = contractors.group_by{|n| n.position}.sort_by{|k,v| k.rank}.each{|it| it[0] = it[0].title}
+  gr_con = contractors.group_by{|n| n.position}.sort_by{|k,v| [ v.map(&:rank).min, k.rank ]}
   json.contractors gr_con do |gr|
-    json.role_title gr.first
-    json.people gr.last do |role|
+    json.role_title gr.first.title
+    json.people gr.last.sort_by(&:rank) do |role|
       json.person role.person, :id, :name, :last_name
     end
-  end
-
-  json.people @project.roles do |role|
-    json.role_title role.position.title
-    json.role_rank role.position.rank
-    json.is_morphosis role.person.is_morphosis
-    json.person role.person, :id, :name, :last_name, :is_morphosis, :is_collaborator, :is_consultant
   end
 
   json.awards @project.awards.sort_by{|a| a.year || 0 }.reverse, :id, :title, :year
