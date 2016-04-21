@@ -13,19 +13,11 @@
 
         <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-md-12">
 
             <%= f.input :title %>
             <%= f.input :news_type_id, collection: NewsType.all, prompt: "select a section" %>
             <%= f.input :in_news_box %>
-
-          </div>
-          <% if f.object.primary_image %>
-            <div class="col-md-6">
-              <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
-            </div>
-          <% end %>
-        </div>
 
         <div class="row">
           <div class="col-md-6">
@@ -47,6 +39,13 @@
             <%= f.text_field :end_date, class: 'datepicker' %>
           </div>
         </div>
+
+        <div class='row'>
+          <div class="col-md-6">
+            <%= f.input :link %>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

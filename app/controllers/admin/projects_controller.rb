@@ -116,7 +116,8 @@ class Admin::ProjectsController < AdminController
         primary_image_attributes: [
           :id,
           :name
-        ]
+        ],
+        :link
       ],
 			components_attributes: [
 				:id,

@@ -56,6 +56,7 @@ class Admin::NewsItemsController < AdminController
     params.require(:news_item).permit(
       :title,
       :description,
+      :link,
       :overview,
       :place_name,
       :street_address,

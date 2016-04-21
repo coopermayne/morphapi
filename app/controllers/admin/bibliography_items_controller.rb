@@ -55,6 +55,7 @@ class Admin::BibliographyItemsController < AdminController
   def bibliography_item_params
     params.require(:bibliography_item).permit(
       :title,
+      :link,
       :author,
       :article_name,
       :book_title,
@@ -80,7 +81,7 @@ class Admin::BibliographyItemsController < AdminController
         :make_primary, 
         :make_index,
         :copyright
-      ],
+      ]
     )
   end
 
