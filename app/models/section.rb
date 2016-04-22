@@ -47,7 +47,7 @@ class Section < ActiveRecord::Base
 
   def get_types
 
-    project_types.sort_by{|pt| pt.rank}.map do |pt|
+    project_types.select{|pt| pt.ancestry.nil?}.sort_by{|pt| pt.rank}.map do |pt|
       {
         title: pt.title,
         children: pt.children.sort_by{|ch| ch.rank}.map{|ch| { title: ch.title } }
