@@ -30,4 +30,6 @@ class BibliographyItem < ActiveRecord::Base
   def date
     pub_date
   end
+
+  attr_accessible :link
 end
