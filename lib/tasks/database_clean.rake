@@ -1151,4 +1151,16 @@ namespace :db do
     #end
   end
 
+  task populate_bibliography_links: :environment do
+    BibliographyItem.all.each do |bib|
+      bd = bib.description
+      if bd && bd.match(/a\shref/)
+        mm = bd.match /<a\shref="(.*)"/
+        bib.link = mm[1]
+        bib.save
+      end
+    end
+  end
+  
+
 end
