@@ -31,5 +31,4 @@ class BibliographyItem < ActiveRecord::Base
     pub_date
   end
 
-  attr_accessible :link
 end
