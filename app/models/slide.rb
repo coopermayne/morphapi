@@ -45,7 +45,7 @@ class Slide < ActiveRecord::Base
   end
 
   def video_slides_valid?
-    self.image.name_url && ['jpg', 'jpeg', 'png'].include?(self.image.name.file.extension)
+    self.image.name_url && ['jpg', 'jpeg', 'png'].include?(self.image.name.file.extension.downcase)
     self.mp4 && self.mp4.name.file.extension == 'mp4'
     self.webm && self.webm.name.file.extension == 'webm'
     self.gif && self.gif.name.file.extension == 'gif'

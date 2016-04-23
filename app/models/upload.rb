@@ -55,11 +55,11 @@ class Upload < ActiveRecord::Base
   end
 
   def is_image
-    self.name_url && [".jpg", ".jpeg", ".png"].include?(File.extname(self.name_url))
+    self.name_url && [".jpg", ".jpeg", ".png"].include?(File.extname(self.name_url).downcase)
   end
 
   def is_document
-    self.name_url && [".pdf", ".doc"].include?(File.extname(self.name_url))
+    self.name_url && [".pdf", ".doc"].include?(File.extname(self.name_url).downcase)
   end
 
   def set_some_defaults
