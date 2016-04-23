@@ -9,7 +9,7 @@
       <div class='panel-body'>
         <div class="row">
 
-          <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.sort_by {|k,v| k.rank}.each do |sorted| %>
+          <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.sort_by {|k,v| k.nil? ? 9999 : k.rank}.each do |sorted| %>
             <% type = sorted[0] %>
             <% upload_group = sorted[1] %>
             <h1><%= type ? type.title : "No Type" %></h1>
