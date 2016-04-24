@@ -26,6 +26,7 @@ class MenuController < ApplicationController
       contact: Section.find_by_title( "Morphosis" ).pcontact,
       about: Section.find_by_title( "Morphosis" ).pabout,
       employment: Section.find_by_title( "Morphosis" ).pemployment,
+      media: Section.find_by_title( "Morphosis" ).pmedia,
       sorting: [ {
         title: 'Contact',
         items: ''
