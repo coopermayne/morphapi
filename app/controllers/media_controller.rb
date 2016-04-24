@@ -16,7 +16,7 @@ class MediaController < ApplicationController
     if type == "publications"
       
       #publications #videos
-      media = Project.includes(:uploads, :section, :project_types, :primary_image).select{|p| p.section && p.section.title=="Publications"}
+      media = Project.includes(:uploads, :section, :project_types, :primary_image).select{|p| p.section && p.section.title=="Books"}
       
     elsif type == "bibliography"
 
@@ -30,7 +30,7 @@ class MediaController < ApplicationController
 
     else
       #publications #videos
-      media = Project.includes(:uploads, :section, :project_types, :primary_image).select{|p| p.section && (p.section.title=="Publications" || p.section.title=="Videos"  )}
+      media = Project.includes(:uploads, :section, :project_types, :primary_image).select{|p| p.section && (p.section.title=="Books" || p.section.title=="Videos"  )}
 
       #bibliography
       bibs = BibliographyItem.includes(:uploads, :primary_image)

@@ -34,7 +34,7 @@ class MenuController < ApplicationController
         items: ['Leadership']
       }, {
         title: 'Media',
-        items: ['Publications', 'Bibliography', 'Videos', 'Awards', 'Exhibitions']
+        items: ['Books', 'Bibliography', 'Videos', 'Awards', 'Exhibitions']
       } ]
     },
 
