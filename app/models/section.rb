@@ -18,15 +18,21 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :project_types
 
   def pcontact
-    self.contact.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
+    if self.contact
+      self.contact.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
+    end
   end
 
   def pemployment
-    self.employment.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
+    if self.employment
+      self.employment.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
+    end
   end
 
   def pabout
-    self.about.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
+    if self.about
+      self.about.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
+    end
   end
 
   def get_slides

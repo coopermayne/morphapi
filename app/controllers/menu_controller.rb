@@ -27,14 +27,14 @@ class MenuController < ApplicationController
       about: Section.find_by_title( "Morphosis" ).pabout,
       employment: Section.find_by_title( "Morphosis" ).pemployment,
       sorting: [ {
-        title: 'Awards',
+        title: 'Contact',
         items: ''
       }, {
         title: 'People',
-        items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        items: ['Leadership']
       }, {
         title: 'Media',
-        items: ['Publications', 'Bibliography', 'Videos']
+        items: ['Books', 'Bibliography', 'Videos', 'Awards', 'Exhibitions']
       } ]
     },
 

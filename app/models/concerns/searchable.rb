@@ -56,7 +56,7 @@ module Searchable
                if self.section.nil?
                  sec = nil
                  st = nil
-               elsif ["Publications", "Videos"].include? self.section.title
+               elsif ["Books", "Videos"].include? self.section.title
                  sec = "about"
                  st = "media"
                else
