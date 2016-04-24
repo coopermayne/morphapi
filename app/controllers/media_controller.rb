@@ -3,7 +3,7 @@ class MediaController < ApplicationController
   #custom controller gives back all stuff in media section
   def index
     page = params[:p] #(nil or a number)
-    type = params[:q] #(publications/bibliography/videos)
+    type = params[:q] #(books/bibliography/videos)
     sorting = params[:sub] #(pub_date)/(title)
 
     #set page vars
@@ -13,9 +13,9 @@ class MediaController < ApplicationController
     media = nil
     bibs = nil
 
-    if type == "publications"
+    if type == "books"
       
-      #publications #videos
+      #books #videos
       media = Project.includes(:uploads, :section, :project_types, :primary_image).select{|p| p.section && p.section.title=="Books"}
       
     elsif type == "bibliography"
@@ -25,11 +25,11 @@ class MediaController < ApplicationController
 
     elsif type == "videos"
       #
-      #publications #videos
+      #books #videos
       media = Project.includes(:uploads, :section, :project_types, :primary_image).select{|p| p.section && p.section.title=="Videos"  }
 
     else
-      #publications #videos
+      #books #videos
       media = Project.includes(:uploads, :section, :project_types, :primary_image).select{|p| p.section && (p.section.title=="Books" || p.section.title=="Videos"  )}
 
       #bibliography
