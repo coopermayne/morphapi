@@ -17,6 +17,12 @@ class Section < ActiveRecord::Base
 
   accepts_nested_attributes_for :project_types
 
+  def pmedia
+    if self.media
+      self.media.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
+    end
+  end
+
   def pcontact
     if self.contact
       self.contact.gsub(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/) {|w| "<a href='mailto:" + w +"' target='_blank'>"+ w +"</a>"}
