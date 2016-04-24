@@ -12,6 +12,7 @@ class MediaController < ApplicationController
 
     media = nil
     bibs = nil
+    @awards = nil
 
     if type == "books"
       
@@ -22,6 +23,9 @@ class MediaController < ApplicationController
 
       #bibliography
       bibs = BibliographyItem.includes(:uploads, :primary_image)
+
+    elsif type == "awards"
+      @awards = Award.includes(:primary_image, :projects)
 
     elsif type == "videos"
       #
@@ -51,9 +55,15 @@ class MediaController < ApplicationController
     end
     
     #paginating
-    @total_pages = ( @items.count/30 ).ceil
-    @current_page = page || 0
-    @items = @items.slice(starting_page, per_page)
+    if @awards
+      @total_pages = ( @awards.count/30 ).ceil
+      @current_page = page || 0
+      @awards = @awards.slice(starting_page, per_page)
+    else
+      @total_pages = ( @items.count/30 ).ceil
+      @current_page = page || 0
+      @items = @items.slice(starting_page, per_page)
+    end
 
   end
 end
