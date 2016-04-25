@@ -28,7 +28,7 @@ if @items && @items.count>0
 
   end
 
-else
+elsif @awards && @awards.count > 0
 
   json.results @awards do |award|
 
@@ -37,6 +37,12 @@ else
       json.(project, :id, :title)
     end
 
+  end
+
+else
+
+  json.results @exhibitions do |ex|
+    json.(ex, :id, :title)
   end
 
 end

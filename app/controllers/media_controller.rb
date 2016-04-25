@@ -13,6 +13,7 @@ class MediaController < ApplicationController
     media = nil
     bibs = nil
     @awards = nil
+    @exhibitions = nil
 
     if type == "books"
       
@@ -26,6 +27,9 @@ class MediaController < ApplicationController
 
     elsif type == "awards"
       @awards = Award.includes(:primary_image, :projects)
+
+    elsif type == "exhibitions"
+      @exhibitions = NewsType.find_by_title("Exhibitions").news_items
 
     elsif type == "videos"
       #
@@ -59,6 +63,10 @@ class MediaController < ApplicationController
       @total_pages = ( @awards.count/30 ).ceil
       @current_page = page || 0
       @awards = @awards.slice(starting_page, per_page)
+    elsif @exhibitions
+      @total_pages = ( @exhibitions.count/30 ).ceil
+      @current_page = page || 0
+      @exhibitions = @exhibitions.slice(starting_page, per_page)
     else
       @total_pages = ( @items.count/30 ).ceil
       @current_page = page || 0
