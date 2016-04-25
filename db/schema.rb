@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425152942) do
+ActiveRecord::Schema.define(version: 20160425165146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(version: 20160425152942) do
     t.integer  "old_id"
     t.integer  "index_image_id"
     t.string   "address"
+    t.text     "sustainability"
   end
 
   add_index "projects", ["section_id"], name: "index_projects_on_section_id", using: :btree
