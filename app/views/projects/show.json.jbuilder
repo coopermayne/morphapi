@@ -42,7 +42,7 @@ json.result do |json|
     json.primary_image bib.primary_image
   end
 
-  json.components @project.components do |comp|
+  json.components @project.components.select(&:is_visible) do |comp|
     json.merge! comp.attributes
   end
 end
