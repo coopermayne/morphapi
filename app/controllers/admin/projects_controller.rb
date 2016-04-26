@@ -59,6 +59,7 @@ class Admin::ProjectsController < AdminController
       :title,
       :overview,
       :description,
+      :sustainability,
       :program,
       :client,
       :size,
