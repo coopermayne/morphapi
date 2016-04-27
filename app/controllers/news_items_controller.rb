@@ -25,7 +25,7 @@
 class NewsItemsController < ApplicationController
 
   def index
-    @news_items = NewsItem.includes(:news_type, :primary_image).order(created_at: :desc)
+    @news_items = NewsItem.includes(:news_type, :primary_image).order(created_at: :desc).limit(60)
   end
 
   def show
