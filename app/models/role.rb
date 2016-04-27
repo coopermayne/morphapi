@@ -11,9 +11,13 @@
 #
 
 class Role < ActiveRecord::Base
+
   belongs_to :person
   belongs_to :project
   belongs_to :position
+
+  validates_presence_of :person, :project, :position
+  validates_associated :person, :project, :position
 
   accepts_nested_attributes_for :person
   accepts_nested_attributes_for :position
