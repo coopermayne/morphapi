@@ -8,7 +8,7 @@ class MenuController < ApplicationController
     morph_slides = Section.find_by_title("Morphosis").get_slides
     arch_slides = Section.find_by_title("Architecture").get_slides
     research_slides = Section.find_by_title("Research").get_slides
-    urban_slides = Section.find_by_title("Urban").get_slides
+    planning_slides = Section.find_by_title("Planning").get_slides
     tan_slides = Section.find_by_title("Tangents").get_slides
     morph_slides = Section.find_by_title("Morphosis").get_slides
     vid_slides = Section.find_by_title("Home Page").get_slides
@@ -35,7 +35,8 @@ class MenuController < ApplicationController
         items: ['Leadership']
       }, {
         title: 'Media',
-        items: ['Books', 'Bibliography', 'Videos', 'Awards', 'Exhibitions']
+        items: ['Books', 'Bibliography', 'Awards']
+        #items: ['Books', 'Bibliography', 'Videos', 'Awards', 'Exhibitions']
       } ]
     },
 
@@ -59,9 +60,9 @@ class MenuController < ApplicationController
     }, 
     
     {
-      title: 'Urban',
-      slides: urban_slides,
-      url: "urban",
+      title: 'Planning',
+      slides: planning_slides,
+      url: "planning",
       sorting: [ {
         title: 'A-Z',
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
