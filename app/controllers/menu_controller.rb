@@ -3,29 +3,29 @@ class MenuController < ApplicationController
   end
 
   def index
-
+    all_slides = Slide.get_all_slides
+      
     news = NewsItem.news_box_items     
-    morph_slides = Section.find_by_title("Morphosis").get_slides
-    arch_slides = Section.find_by_title("Architecture").get_slides
-    research_slides = Section.find_by_title("Research").get_slides
-    planning_slides = Section.find_by_title("Planning").get_slides
-    tan_slides = Section.find_by_title("Tangents").get_slides
-    #vid_slides = Section.find_by_title("Home Page").get_slides
+
+
+
+    morph_slides = all_slides["Morphosis"]
+    arch_slides = all_slides["Architecture"]
+    research_slides = all_slides["Research"]
+    planning_slides = all_slides["Planning"]
+    tan_slides = all_slides["Tangents"]
 
     res = {}
-    res[:landing] = {
-      slides: []
-    }
-
+    morph_section = Section.find_by_title( "Morphosis" )
     res[:sections] = [
       {
       title: 'Morphosis',
       slides: morph_slides,
       url: "about",
-      contact: Section.find_by_title( "Morphosis" ).pcontact,
-      about: Section.find_by_title( "Morphosis" ).pabout,
-      employment: Section.find_by_title( "Morphosis" ).pemployment,
-      media: Section.find_by_title( "Morphosis" ).pmedia,
+      contact: morph_section.pcontact,
+      about: morph_section.pabout,
+      employment: morph_section.pemployment,
+      media: morph_section.pmedia,
       sorting: [ {
         title: 'Contact',
         items: ''
