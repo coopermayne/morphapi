@@ -1,5 +1,6 @@
 class SearchResultsController < ApplicationController
   def index
-    @results = SearchResult.search(params[:q])
+    query = params[:q].gsub(/[^0-9a-z ]/i, '')
+    @results = SearchResult.search(query)
   end
 end
