@@ -5,13 +5,12 @@ class MenuController < ApplicationController
   def index
 
     news = NewsItem.news_box_items     
-    #morph_slides = Section.find_by_title("Morphosis").get_slides
-    #arch_slides = Section.find_by_title("Architecture").get_slides
-    #research_slides = Section.find_by_title("Research").get_slides
-    #planning_slides = Section.find_by_title("Planning").get_slides
-    #tan_slides = Section.find_by_title("Tangents").get_slides
+    morph_slides = Section.find_by_title("Morphosis").get_slides
+    arch_slides = Section.find_by_title("Architecture").get_slides
+    research_slides = Section.find_by_title("Research").get_slides
+    planning_slides = Section.find_by_title("Planning").get_slides
+    tan_slides = Section.find_by_title("Tangents").get_slides
     #vid_slides = Section.find_by_title("Home Page").get_slides
-    #@projects = Project.includes(:primary_image, :project_types, :section, :components)
 
     res = {}
     res[:landing] = {
@@ -21,7 +20,7 @@ class MenuController < ApplicationController
     res[:sections] = [
       {
       title: 'Morphosis',
-      slides: [],
+      slides: morph_slides,
       url: "about",
       contact: Section.find_by_title( "Morphosis" ).pcontact,
       about: Section.find_by_title( "Morphosis" ).pabout,
@@ -42,7 +41,7 @@ class MenuController < ApplicationController
 
     {
       title: 'Architecture',
-      slides: [],
+      slides: arch_slides,
       url: "architecture",
       sorting: [ {
         title: 'A-Z',
@@ -61,7 +60,7 @@ class MenuController < ApplicationController
     
     {
       title: 'Planning',
-      slides: [],
+      slides: planning_slides,
       url: "planning",
       sorting: [ {
         title: 'A-Z',
@@ -77,7 +76,7 @@ class MenuController < ApplicationController
     
     {
       title: 'Tangents',
-      slides: [],
+      slides: tan_slides,
       url: "tangents",
       sorting: [ {
         title: 'A-Z',
@@ -91,7 +90,7 @@ class MenuController < ApplicationController
       } ]
     }, {
       title: 'Research',
-      slides: [],
+      slides: research_slides,
       url: 'research',
       sorting: [{
           title: "Now Institute",
