@@ -15,7 +15,7 @@ class MenuController < ApplicationController
 
     res = {}
     res[:landing] = {
-			slides: vid_slides
+      slides: []
     }
 
     res[:sections] = [
