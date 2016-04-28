@@ -36,6 +36,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.includes(roles: :person, uploads: [ :file_type, :credit ], bibliography_items: [:primary_image]).find(params[:id])
+    @project = Project.includes(roles: [:position, :person ], uploads: [ :file_type, :credit ], bibliography_items: [:primary_image]).find(params[:id])
   end
 end
