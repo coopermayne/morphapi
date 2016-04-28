@@ -26,7 +26,7 @@ class MediaController < ApplicationController
       bibs = BibliographyItem.includes(:uploads, :primary_image)
 
     elsif type == "awards"
-      @awards = Award.includes(:primary_image, :projects)
+      @awards = Award.where.not(:year => nil).includes(:primary_image, :projects).order(year: :desc)
 
     elsif type == "exhibitions"
       @exhibitions = NewsType.find_by_title("Exhibitions").news_items
