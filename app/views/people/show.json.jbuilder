@@ -5,13 +5,11 @@ json.educations @person.educations do |education|
   json.title education.title
 end
 
-json.roles @person.roles do |role|
-  json.title role.position.title
-  json.rank role.position.rank
-  json.project do |json|
-    json.id role.project.id
+json.roles @person.getRoles do |pos, roles|
+  json.position_title pos
+  json.roles roles do |role|
+    json.id role.project_id
     json.title role.project.title
     json.section role.project.section.title
-    json.image role.project.index_image.name
   end
 end

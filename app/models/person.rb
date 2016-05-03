@@ -36,4 +36,12 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :educations, allow_destroy: true
   accepts_nested_attributes_for :uploads, allow_destroy: true
 
+  def getRoles
+    grouped = self.roles.group_by(&:position).sort_by{|pos, roles| pos.rank}
+    res = {}
+    grouped.each do |pair|
+      res[pair[0].title] = pair[1]
+    end
+    res
+  end
 end
