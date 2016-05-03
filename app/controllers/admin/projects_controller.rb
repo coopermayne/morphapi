@@ -39,6 +39,7 @@ class Admin::ProjectsController < AdminController
       redirect_to :back
         #redirect_to admin_project_path(@project)
     else
+      @project = Project.find params[:id]
       flash.now[:warning] = 'There were problems when trying to update this project'
       render :action => :show
     end
