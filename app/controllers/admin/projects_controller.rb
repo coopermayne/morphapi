@@ -10,8 +10,8 @@ class Admin::ProjectsController < AdminController
 
   def show
     @edit_files = params["uploads"]
-    @title = "Edit Project"
     @project = Project.includes(:section, :project_types, roles:[:position, :person], uploads: [:file_type]).find params[:id]
+    @title = "Edit Project — " + @project.title
   end
 
   def new
@@ -36,8 +36,8 @@ class Admin::ProjectsController < AdminController
 
     if @project.update_attributes project_params
       flash[:notice] = 'Project has been updated'
-      #redirect_to admin_projects_path
-      redirect_to admin_project_path(@project)
+      redirect_to :back
+        #redirect_to admin_project_path(@project)
     else
       flash.now[:warning] = 'There were problems when trying to update this project'
       render :action => :show
