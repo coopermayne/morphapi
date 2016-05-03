@@ -7,6 +7,7 @@ end
 
 json.roles @person.roles do |role|
   json.title role.position.title
+  json.rank role.position.rank
   json.project do |json|
     json.id role.project.id
     json.title role.project.title
