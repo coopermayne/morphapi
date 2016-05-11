@@ -7,6 +7,7 @@ json.result do |json|
     json.images images do |image|
       json.extract! image, :id, :name, :title
       json.credit image.credit ? image.credit.name : nil
+      json.crediturl image.credit ? image.credit.url : nil
     end
   end
 
