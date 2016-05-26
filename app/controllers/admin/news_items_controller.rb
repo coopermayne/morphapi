@@ -66,6 +66,7 @@ class Admin::NewsItemsController < AdminController
       :country,
       :zip,
       :start_date,
+      :end_date,
       :news_type_id,
       :in_news_box,
       uploads_attributes: [
