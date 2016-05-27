@@ -67,6 +67,7 @@ class Admin::SlidesController < AdminController
       s.contact = about_params[:contact]
       s.about = about_params[:about]
       s.employment = about_params[:employment]
+      s.media = about_params[:media]
 
       res1 = s.save
     end
