@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   #admin routes
   namespace :admin do
+    get 'press_list' => 'press#index'
+
 		resources :uploads
     resources :slides do
       collection do
