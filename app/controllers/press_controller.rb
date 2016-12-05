@@ -11,9 +11,9 @@ class PressController < ApplicationController
 
     unless email
       res = Journalist.create(email: input)
-      render json: {error: 'success'}
+      render json: {success: 'true'}
     else
-      render json: {error: 'success'}
+      render json: {success: 'true'}
     end
 
   end
