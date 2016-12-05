@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   #no sign up
   devise_for :users, path_prefix: 'd',  controllers: { registrations: "registrations"}
 
+  get 'press_list' => 'press#create'
+
   #admin routes
   namespace :admin do
     get 'press_list' => 'press#index'
