@@ -25,7 +25,19 @@
 class NewsItemsController < ApplicationController
 
   def index
-    @news_items = NewsItem.includes(:news_type, :primary_image).order(created_at: :desc).limit(60)
+    page = params[:p] #(nil or a number)
+    type = params[:q] #(books/bibliography/videos)
+    sorting = params[:sub] #(pub_date)/(title)
+
+    #set page vars
+    per_page = 30
+    starting_page = page ? 30*page.to_i : 0
+
+    @news_items = NewsItem.includes(:news_type, :primary_image).order(created_at: :desc)
+    @total_pages = ( @news_items.count/30 ).ceil
+
+    @current_page = page || 0
+    @news_items = @news_items.slice(starting_page, per_page)
   end
 
   def show

@@ -1,6 +1,9 @@
+json.totalPages @total_pages
+json.currentPage @current_page
+
 #temp remove
 #ex = NewsType.find_by_title "Exhibitions"
-json.array! @news_items do |item|
+json.results @news_items do |item|
   #temp remove
   #if ex
     #next if item.news_type_id == ex.id
