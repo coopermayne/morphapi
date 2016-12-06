@@ -1,6 +1,6 @@
 class Journalist < ActiveRecord::Base
   def self.to_csv
-    attributes = %w{email}
+    attributes = %w{email, first_name, last_name, affilliation}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
