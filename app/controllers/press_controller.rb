@@ -1,32 +1,30 @@
 class PressController < ApplicationController
   def create
 
-    emailInput = params['email']
+    email_input = params['email']
 
-    firstNameInput = params['first']
-    lastNameInput = params['last']
-    affiliationInput = params['affilliation']
+    first_name_input = params['first']
+    last_name_input = params['last']
+    affiliation_input = params['affiliation']
 
     #return with error if email is bad
-    unless emailInput =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+    unless email_input =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
       render json: {error: 'bad email'}
       return
     end
 
-    def scanInput(input)
+    def scan_input(input)
       input =~ /[^a-zA-Z\s]/
     end
 
-    firstName = scanInput(firstNameInput) ? "" : firstNameInput
-    lastName = scanInput(lastNameInput) ? "" : lastNameInput
-    affiliationInput = scanInput(affiliationInput) ? "" : affiliationInput
+    first_name = scan_input(first_name_input) ? "" : first_name_input
+    last_name = scan_input(last_name_input) ? "" : last_name_input
+    affiliation = scan_input(affiliation_input) ? "" : affiliation_input
 
-    journalist = Journalist.find_by_email(emailInput)
+    journalist = Journalist.find_by_email(email_input)
 
-    unless email
-      res = Journalist.create(email: emailInput, first_name: firstName, last_name: lastName, affilliation: affilliation)
-      render json: {success: 'true'}
-    else
+    unless journalist
+      res = Journalist.create(email: email_input, first_name: first_name, last_name: last_name, affiliation: affiliation)
       render json: {success: 'true'}
     end
 
