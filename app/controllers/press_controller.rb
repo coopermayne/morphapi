@@ -26,6 +26,8 @@ class PressController < ApplicationController
     unless journalist
       res = Journalist.create(email: email_input, first_name: first_name, last_name: last_name, affiliation: affiliation)
       render json: {success: 'true'}
+		else
+			render json: {error: 'user is already in list'}
     end
 
   end
