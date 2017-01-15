@@ -4,6 +4,7 @@
 			<th>title</th>
 			<th>article</th>
 			<th>publication</th>
+			<th>pub_date</th>
 			<th>created</th>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
@@ -15,6 +16,7 @@
 			<td><%= link_to bibliography_item.title, admin_bibliography_item_path(bibliography_item) %></td>
 			<td><%= bibliography_item.article_name %></td>
       <td><%= bibliography_item.publication %></td>
+			<td><%= bibliography_item.pub_date %></td>
 			<td><%= bibliography_item.created_at.strftime('%x') %></td>
       <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_bibliography_item_path(bibliography_item)%></td>
       <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_bibliography_item_path(bibliography_item), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
