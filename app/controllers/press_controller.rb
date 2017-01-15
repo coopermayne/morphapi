@@ -14,7 +14,7 @@ class PressController < ApplicationController
     end
 
     def scan_input(input)
-      input =~ /[^a-zA-Z\s]/
+      input =~ /[^a-zA-Z\s\d\-]/
     end
 
     first_name = scan_input(first_name_input) ? "" : first_name_input
