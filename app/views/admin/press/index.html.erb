@@ -7,7 +7,10 @@
 <table class='table'>
   <thead>
     <tr>
-      <th>email</th>
+      <th>Email</th>
+      <th>First</th>
+      <th>Last</th>
+      <th>Affilliation</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
     </tr>
@@ -17,6 +20,9 @@
     <% @press_list.each do |journ| %>
       <tr>
         <td><%= journ.email %></td>
+        <td><%= journ.first_name %></td>
+        <td><%= journ.last_name %></td>
+        <td><%= journ.affiliation %></td>
 				<td></td>
         <td> </td>
       </tr>
