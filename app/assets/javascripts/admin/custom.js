@@ -42,6 +42,7 @@ $(document).ready(function(){
 
   if ( $(".index-table").length ){
     $('.index-table').DataTable({
+			"stateSave": true,
       "lengthMenu": [ 15, 25, 50 ],
 			"order": [],
       "columnDefs": [
