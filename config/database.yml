@@ -79,4 +79,6 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: morphAPI_production
+  username: morphAPI
+  password: <%= ENV['MORPHAPI_DATABASE_PASSWORD'] %>
