@@ -32,7 +32,12 @@
 
 class ProjectsController < ApplicationController
   def index
-    sleep(10)
+    n = 100000000
+    total = 0
+    n.times do
+      total += 1
+    end
+
     @projects = Project.includes(:primary_image, :project_types, :section, :components)
   end
 
