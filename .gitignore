@@ -16,3 +16,5 @@
 /config/application.yml
 /db/morph data/
 /public/uploads/
+
+.DS_Store
