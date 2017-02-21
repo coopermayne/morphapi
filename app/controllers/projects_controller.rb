@@ -32,6 +32,7 @@
 
 class ProjectsController < ApplicationController
   def index
+    sleep(10)
     @projects = Project.includes(:primary_image, :project_types, :section, :components)
   end
 
