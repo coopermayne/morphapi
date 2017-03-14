@@ -11,6 +11,7 @@ gem 'pg', '~> 0.15'
 gem 'metamagic'
 gem 'dalli'
 gem 'memcachier'
+gem 'rack-cache'
 
 
 # Use SCSS for stylesheets

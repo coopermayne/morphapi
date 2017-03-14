@@ -271,6 +271,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-cache (1.7.0)
+      rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5)
@@ -400,6 +402,7 @@ DEPENDENCIES
   pg (~> 0.15)
   puma
   quiet_assets
+  rack-cache
   rails (= 4.2.5)
   rails-erd
   rails_12factor
