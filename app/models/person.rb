@@ -23,6 +23,7 @@
 #
 
 class Person < ActiveRecord::Base
+  include Clearcache
   include Searchable
   include Primaryable
 

@@ -11,6 +11,8 @@
 #
 
 class Section < ActiveRecord::Base
+  include Clearcache
+
   has_many :projects
   has_many :slides
   has_many :project_types

@@ -32,6 +32,7 @@
 #
 
 class Project < ActiveRecord::Base
+  include Clearcache
   include Searchable
   include Primaryable
 
