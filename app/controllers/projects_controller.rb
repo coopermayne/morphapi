@@ -32,10 +32,16 @@
 
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.includes(:primary_image, :project_types, :section, :components)
+    render json: Rails.cache.fetch('projects', :expires_in => 1.hours){
+      @projects = Project.includes(:primary_image, :project_types, :section, :components)
+      render_to_string :index
+    }
   end
 
   def show
-    @project = Project.includes(roles: [:position, :person ], uploads: [ :file_type, :credit ], bibliography_items: [:primary_image]).find(params[:id])
+    render json: Rails.cache.fetch("projects#{params[:id]}", :expires_in => 1.hours){
+      @project = Project.includes(roles: [:position, :person ], uploads: [ :file_type, :credit ], bibliography_items: [:primary_image]).find(params[:id])
+      render_to_string :show
+    }
   end
 end
