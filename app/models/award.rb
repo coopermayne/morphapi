@@ -16,6 +16,7 @@
 class Award < ActiveRecord::Base
   include Searchable
   include Primaryable
+  include Clearcache
 
   has_and_belongs_to_many :projects
 

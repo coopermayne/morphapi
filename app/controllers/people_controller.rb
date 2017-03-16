@@ -24,10 +24,16 @@
 
 class PeopleController < ApplicationController
   def index
-    @people = Person.includes(:primary_image).where(is_employed: true)
+    render json: Rails.cache.fetch('people', :expires_in => 30.days){
+      @people = Person.includes(:primary_image).where(is_employed: true)
+      render_to_string :index
+    }
   end
 
   def show
-    @person = Person.includes(:educations, roles: [:position, :project]).find(params[:id])
+    render json: Rails.cache.fetch("people#{params[:id]}", :expires_in => 30.days){
+      @person = Person.includes(:educations, roles: [:position, :project]).find(params[:id])
+      render_to_string :show
+    }
   end
 end

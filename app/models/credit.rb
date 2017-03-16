@@ -10,5 +10,6 @@
 #
 
 class Credit < ActiveRecord::Base
+  include Clearcache
   has_many :uploads
 end

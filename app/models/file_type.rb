@@ -11,5 +11,6 @@
 #
 
 class FileType < ActiveRecord::Base
+  include Clearcache
   has_many :uploads
 end

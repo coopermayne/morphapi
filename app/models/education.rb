@@ -10,5 +10,6 @@
 #
 
 class Education < ActiveRecord::Base
+  include Clearcache
   belongs_to :person
 end

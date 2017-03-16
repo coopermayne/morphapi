@@ -12,6 +12,7 @@
 #
 
 class Component < ActiveRecord::Base
+  include Clearcache
 
   belongs_to :project
 

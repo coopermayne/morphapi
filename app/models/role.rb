@@ -11,6 +11,7 @@
 #
 
 class Role < ActiveRecord::Base
+  include Clearcache
 
   belongs_to :person
   belongs_to :project

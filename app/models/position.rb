@@ -10,5 +10,6 @@
 #
 
 class Position < ActiveRecord::Base
+  include Clearcache
   has_many :roles
 end

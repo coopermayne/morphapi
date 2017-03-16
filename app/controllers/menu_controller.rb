@@ -3,14 +3,15 @@ class MenuController < ApplicationController
   end
 
   def index
-    render json: Rails.cache.fetch('menu', :expires_in => 1.hours){
+    render json: Rails.cache.fetch('menu', :expires_in => 30.days){
       get_menu.to_json
     }
   end
 
 	def videos
-    vid_slides = Section.find_by_title("Home Page").get_slides
-		render json: vid_slides
+    render json: Rails.cache.fetch('videos', :expires_in => 30.days){
+      Section.find_by_title("Home Page").get_slides
+    }
 	end
 
 end

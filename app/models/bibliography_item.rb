@@ -23,6 +23,7 @@
 
 class BibliographyItem < ActiveRecord::Base
   include Primaryable
+  include Clearcache
 
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :people
