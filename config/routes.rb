@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: redirect('admin/projects')
+  root 'pages#main' 
 
   #no sign up
   devise_for :users, path_prefix: 'd',  controllers: { registrations: "registrations"}
