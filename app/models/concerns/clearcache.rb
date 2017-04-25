@@ -14,6 +14,7 @@ module Clearcache
       Rails.cache.delete("people#{self.id}")
     when NewsItem
       Rails.cache.delete('menu')
+      Rails.cache.delete('news')
       (NewsItem.all.count/25).times do |n|
         Rails.cache.delete("news#{n}")
       end
