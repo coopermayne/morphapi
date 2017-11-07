@@ -149,21 +149,25 @@
       </div>
       <div class='panel-body'>
         <div class="row">
-          <div class="col-md-12">
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th> Education </th>
-                  <th> &nbsp; </th>
-                </tr>
-              </thead>
-              <%= f.fields_for :educations do |builder| %>
-                <%= render "form_for_educations", f:builder %>
-              <% end %>
-            </table>
-          </div>
+          <table class='table'>
+            <%= f.fields_for :educations do |builder| %>
+              <tr>
+                <td><%= builder.object.title %></td>
+                <td>
+                  <%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+                    {
+                      "on-color": "danger",
+                      "on-text": "#{fa_icon "trash-o"}",
+                      "off-text": "#{fa_icon "trash-o"}"
+                    }
+                  %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
         </div>
         <%= link_to_add_fields "Add Education", f, :educations %>
+
       </div>
     </div>
   </div>
