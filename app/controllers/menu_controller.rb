@@ -10,7 +10,7 @@ class MenuController < ApplicationController
 
 	def videos
     render json: Rails.cache.fetch('videos', :expires_in => 30.days){
-      Section.find_by_title("Home Page").get_slides
+      Section.find_by_title("Home Page").get_slides.to_json
     }
 	end
 
