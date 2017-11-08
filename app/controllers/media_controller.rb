@@ -5,7 +5,7 @@ class MediaController < ApplicationController
 
     #get params
     page = params[:p] #(nil or a number)
-    type = params[:q] #(books/bibliography/videos)
+    type = params[:q] #(books/bibliography/awards)
     sorting = params[:sub] #(pub_date)/(title)
     
     #set page vars
