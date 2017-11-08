@@ -22,6 +22,10 @@ class Admin::ProjectsController < AdminController
   def create
     @project = Project.new project_params
 
+    if !@project.sustainability.nil? && @project.sustainability.length < 50
+      @project.sustainability = nil
+    end
+
     if @project.save
       flash[:notice] = 'Project created'
       redirect_to admin_project_path(@project)
@@ -35,6 +39,12 @@ class Admin::ProjectsController < AdminController
     @project = Project.find params[:id]
 
     if @project.update_attributes project_params
+
+      if !@project.sustainability.nil? && @project.sustainability.length < 50
+        @project.sustainability = nil
+        @project.save
+      end
+
       flash[:notice] = 'Project has been updated'
       redirect_to :back
         #redirect_to admin_project_path(@project)
