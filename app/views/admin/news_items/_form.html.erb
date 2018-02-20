@@ -51,47 +51,6 @@
   </div>
 </div>
 
-
-<div class='row' id="anchor-location">
-  <div class='col-sm-12'>
-    <div class='panel panel-default'>
-      <div class="panel-heading">
-				<h3 class="panel-title">Location</h3>
-      </div>
-      <div class='panel-body'>
-				<div class="row">
-          <div class="col-md-6">
-            <%= f.input :place_name %>
-          </div>
-					<div class="col-sm-6">
-						<%= f.input :address, input_html: {id: "geocomplete", placeholder: "Type in an address"}%>
-					</div>
-
-					<div class="col-sm-6 map_canvas"> </div>
-
-					<div class="col-sm-6">
-						<%= f.input :street_address %>
-					</div>
-					<div class="col-sm-6">
-						<%= f.input :city %>
-					</div>
-					<div class="col-sm-6">
-						<%= f.input :state %>
-					</div>
-					<div class="col-sm-6">
-						<%= f.input :country %>
-					</div>
-					<div class="col-sm-6">
-						<%= f.input :zip %>
-					</div>
-
-
-				</div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 
 <%= render partial: "admin/shared/form_images", locals: {f: f} %>
