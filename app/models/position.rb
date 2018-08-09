@@ -12,4 +12,11 @@
 class Position < ActiveRecord::Base
   include Clearcache
   has_many :roles
+  before_save :set_rank
+
+  def set_rank
+    if self.rank.nil?
+      self.rank=9999
+    end
+  end
 end
