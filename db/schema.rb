@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206220117) do
+ActiveRecord::Schema.define(version: 20190209202255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20161206220117) do
     t.integer  "old_id"
     t.integer  "index_image_id"
     t.boolean  "is_leadership",   default: false
+    t.boolean  "is_associate",    default: false
   end
 
   create_table "positions", force: :cascade do |t|

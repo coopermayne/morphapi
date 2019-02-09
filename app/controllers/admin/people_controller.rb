@@ -69,6 +69,7 @@ class Admin::PeopleController < AdminController
       :email,
       :is_morphosis,
       :is_leadership,
+      :is_associate,
       :is_employed,
       :is_collaborator, 
       :is_consultant, 

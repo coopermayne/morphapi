@@ -46,7 +46,7 @@ def get_menu
         items: ''
       }, {
         title: 'People',
-        items: ['Leadership']
+        items: ['Leadership', 'Senior Associates']
       }, {
         title: 'Media',
         items: ['Books', 'Bibliography', 'Awards']
