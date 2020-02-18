@@ -46,7 +46,7 @@ def get_menu
         items: ''
       }, {
         title: 'People',
-        items: ['Leadership', 'Senior Associates']
+        items: ['Partners', 'Senior Associates']
       }, {
         title: 'Media',
         items: ['Books', 'Bibliography', 'Awards']
@@ -63,7 +63,7 @@ def get_menu
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       }, {
         title: 'Year',
-        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ].reverse
+        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019','2020-2029' ].reverse
       }, {
         title: 'Type',
         items: Section.find_by_title("Architecture").get_types
