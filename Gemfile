@@ -31,7 +31,7 @@ gem 'ancestry'
 gem 'trumbowyg_rails'
 gem 'devise'
 
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 gem "font-awesome-rails"
 gem 'jquery-datatables-rails', '~> 3.3.0'
