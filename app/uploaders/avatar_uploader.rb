@@ -19,19 +19,18 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.id}"
   end
 
-  # process :resize_to_limit => [1600, 1200], :if => :image?
+  process :resize_to_limit => [1600, 1200], :if => :image?
 
-  # version :mobile, :if => :image? do
-  #   process :resize_to_limit => [500, 10000]
-  # end
-  #
-  # version :thumb, :if => :image? do
-  #   process :resize_to_limit => [10000, 200]
-  # end
-  #
-  # def image?(new_file)
-  #   binding.pry
-  #   new_file.content_type.start_with? 'image'
-  # end
+  version :mobile, :if => :image? do
+    process :resize_to_limit => [500, 10000]
+  end
+
+  version :thumb, :if => :image? do
+    process :resize_to_limit => [10000, 200]
+  end
+
+  def image?(new_file)
+    new_file.content_type.start_with? 'image'
+  end
 
 end

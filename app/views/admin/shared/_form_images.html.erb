@@ -1,5 +1,5 @@
 <% if f.object.uploads.select{|u| u.is_image}.count > 0 %>
-  
+
 <div class='row' id="anchor-files">
   <div class='col-md-12'>
     <div class='panel panel-default'>
@@ -27,14 +27,14 @@
 									<div class="col-sm-8">
 										<div class="row">
 
-											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data:
 												{
 													"on-color": "success",
 													"on-text": "#{fa_icon 'eye'}",
 													"off-text": "#{fa_icon "eye-slash"}"
-												} 
+												}
 											%>
-											<%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+											<%= builder.check_box :copyright, class: 'fancy-checkbox', data:
 												{
 													"on-color": "primary",
 													"on-text": 'yes',
@@ -43,7 +43,7 @@
 												}
 											%>
 
-											<%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data: 
+											<%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data:
 												{
 													"on-color": "info",
 													"on-text": "yes",
@@ -52,7 +52,7 @@
 												}
 											%>
 
-											<%= builder.check_box :make_index, class: "make-index fancy-checkbox", data: 
+											<%= builder.check_box :make_index, class: "make-index fancy-checkbox", data:
 												{
 													"on-color": "warning",
 													"on-text": "yes",
@@ -61,20 +61,20 @@
 												}
 											%>
 
-											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data:
 												{
 													"on-color": "danger",
 													"on-text": "#{fa_icon "trash-o"}",
 													"off-text": "#{fa_icon "trash-o"}"
 												}
 											%>
-											
+
 										</div>
 										<div class="row">
 											<%= builder.input :title %>
 											<%= builder.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
 											<%= builder.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
-											
+
 										</div>
 									</div>
                 </div>
@@ -114,14 +114,14 @@
 										<div class="col-sm-12">
                       <%= File.basename( builder.object.name.url ) %>
                       <%= link_to fa_icon("file", text: "link to file").html_safe, builder.object.name.url, target: "_blank", class: "btn btn-info"%>
-											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data:
 												{
 													"on-color": "success",
 													"on-text": "#{fa_icon 'eye'}",
 													"off-text": "#{fa_icon "eye-slash"}"
-												} 
+												}
 											%>
-											<%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+											<%= builder.check_box :copyright, class: 'fancy-checkbox', data:
 												{
 													"on-color": "primary",
 													"on-text": 'yes',
@@ -130,20 +130,20 @@
 												}
 											%>
 
-											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data:
 												{
 													"on-color": "danger",
 													"on-text": "#{fa_icon "trash-o"}",
 													"off-text": "#{fa_icon "trash-o"}"
 												}
 											%>
-											
+
 										</div>
 										<div class="col-sm-12">
 											<%= builder.input :title %>
 											<%= builder.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
 											<%= builder.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
-											
+
 										</div>
 									</div>
                 </div>
