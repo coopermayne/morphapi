@@ -60,6 +60,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    ancestry (4.0.0)
+      activerecord (>= 5.2.4.5)
     bindex (0.8.1)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
@@ -182,6 +184,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ancestry
   bootsnap (>= 1.4.4)
   byebug
   jbuilder (~> 2.7)
@@ -200,4 +203,4 @@ RUBY VERSION
    ruby 2.7.3p183
 
 BUNDLED WITH
-   2.2.15
+   2.2.16
