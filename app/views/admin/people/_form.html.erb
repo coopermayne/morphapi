@@ -1,0 +1,178 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        Essentials
+      </div>
+      <div class='panel-body'>
+        <div class="col-md-6">
+          <%= f.input :name %>
+          <%= f.input :last_name %>
+          <%= f.input :email %>
+        </div>
+
+        <div class="col-md-3">
+          <% if f.object && f.object.primary_image %>
+            <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
+          <% end %>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.input :website %>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.input :location %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        Person Type
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+          <div class="col-md-3">
+            <%= f.input :is_morphosis %>
+          </div>
+          <div class="col-md-3">
+            <%= f.input :is_employed %>
+          </div>
+
+          <div class="col-md-3">
+            <%= f.input :is_leadership %>
+          </div>
+
+          <div class="col-md-3">
+            <%= f.input :is_associate, as: :boolean %>
+          </div>
+
+          <div class="col-md-3">
+            <%= f.input :is_collaborator %>
+          </div>
+          <div class="col-md-3">
+            <%= f.input :is_consultant %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        Description
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class="col-md-12">
+            <%= f.input :description, label: false %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        Dates
+      </div>
+      <div class='panel-body'>
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <%= f.label :birthday %><br \>
+            <%= f.text_field :birthday, class: 'datepicker' %>
+          </div>
+
+          <div class="col-md-3">
+            <%= f.label :start_date %><br \>
+            <%= f.text_field :start_date, class: 'datepicker' %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :end_date %><br \>
+            <%= f.text_field :end_date, class: 'datepicker' %>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "admin/shared/form_images", locals: {f: f} %>
+
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Roles</h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+          <div class="col-md-12">
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th> Project </th>
+                  <th> Position </th>
+                  <th> &nbsp; </th>
+                </tr>
+              </thead>
+              <%= f.fields_for :roles do |builder| %>
+                <%= render "form_for_roles", f:builder %>
+              <% end %>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Education</h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+          <table class='table'>
+            <%= f.fields_for :educations do |builder| %>
+              <tr>
+                <td><%= builder.object.title %></td>
+                <td>
+                  <%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+                    {
+                      "on-color": "danger",
+                      "on-text": "#{fa_icon "trash-o"}",
+                      "off-text": "#{fa_icon "trash-o"}"
+                    }
+                  %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+        <%= link_to_add_fields "Add Education", f, :educations %>
+
+      </div>
+    </div>
+  </div>
+</div>

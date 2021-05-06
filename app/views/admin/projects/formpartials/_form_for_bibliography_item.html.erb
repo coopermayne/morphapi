@@ -1,0 +1,20 @@
+<tr>
+  <td>
+    <% if f.object.primary_image && f.object.primary_image.name %>
+      <a class="btn" rel="popover" data-img=<%= f.object.primary_image.name.mobile.url %>>
+        <%= image_tag f.object.primary_image.name.mobile, class: "img-responsive thumby" %>
+      </a>
+    <% end %>
+  </td>
+  <td><%= f.object.title %></td>
+	<td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_bibliography_item_path(f.object), :target => 'new'%></td>
+	<td>
+		<%= f.check_box :_destroy, class: 'fancy-checkbox', data: 
+			{
+				"on-color": "danger",
+				"on-text": "#{fa_icon "trash-o"}",
+				"off-text": "#{fa_icon "trash-o"}"
+			}
+		%>
+	</td>
+</tr>

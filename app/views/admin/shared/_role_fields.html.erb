@@ -1,0 +1,22 @@
+<fieldset>
+  <div class='col-md-12'>
+
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">New Role <%= link_to "<span class='pull-right'>#{fa_icon 'close'}</span>".html_safe, "#", class: "remove_fields pull-right" %> </h3>
+      </div>
+
+      <div class='panel-body'>
+        <div class='col-md-4'>
+					<%= f.input :person_id, collection: Person.all, include_blank: true, input_html: {class: 'chosen-select'}%>
+        </div>
+        <div class='col-md-4'>
+					<%= f.input :position_id, collection: Position.all, include_blank: true, input_html: {class: 'chosen-select'}%>
+        </div>
+        <div class='col-md-4'>
+					<%= f.input :rank %>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

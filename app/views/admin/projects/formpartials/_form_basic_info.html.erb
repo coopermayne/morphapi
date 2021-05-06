@@ -1,0 +1,121 @@
+<div class='row' id="anchor-basics">
+  <div class='col-sm-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Basics</h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+
+          <div class="col-sm-6">
+            <%= f.input :title %>
+          </div>
+
+          <div class="col-sm-12">
+            <%= f.input :overview %>
+          </div>
+          <div class="col-sm-12">
+            <%= f.input :description %>
+          </div>
+          <div class="col-sm-12">
+            <%= f.input :sustainability %>
+          </div>
+          <div class="col-sm-12">
+            <%= f.input :program %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row' id="anchor-details-dates">
+  <div class='col-sm-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Dates</h3>
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class="col-sm-6">
+            <%= f.input :client %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.input :size, label: "Size (ft&sup2;)".html_safe %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.input :height, label: "Height (ft)" %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.input :site_area, label: "Site area (acres)" %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.label :constr_sdate %><br \>
+            <%= f.text_field :constr_sdate, class: 'datepicker' %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.label :constr_edate %><br \>
+            <%= f.text_field :constr_edate, class: 'datepicker' %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.label :design_sdate %><br \>
+            <%= f.text_field :design_sdate, class: 'datepicker' %>
+          </div>
+          <div class="col-sm-6">
+            <%= f.label :design_edate%><br \>
+            <%= f.text_field :design_edate, class: 'datepicker' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row' id="anchor-location">
+  <div class='col-sm-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+				<h3 class="panel-title">Location</h3>
+      </div>
+      <div class='panel-body'>
+				<div class="row">
+					<div class="col-sm-6">
+						<%= f.input :address, input_html: {id: "geocomplete", placeholder: "Type in an address"}%>
+					</div>
+
+					<div class="col-sm-6 map_canvas"> </div>
+
+					<div class="col-sm-6">
+						<%= f.input :lat %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :lon %>
+					</div>
+
+					<div class="col-sm-6">
+						<%= f.input :street_address %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :city %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :state %>
+					</div>
+					<div class="col-sm-6">
+            <%= f.label :country%>
+						<%= f.text_field :country %>
+					</div>
+					<div class="col-sm-6">
+						<%= f.input :zip %>
+					</div>
+
+
+				</div>
+      </div>
+    </div>
+  </div>
+</div>

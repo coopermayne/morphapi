@@ -1,0 +1,14 @@
+<% content_for :head do %>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/js/bootstrap-datepicker.js"></script>
+<% end %>
+
+<h2><%= @title %></h2>
+
+<%= simple_form_for @news_item, :url => admin_news_item_path(@news_item) do |f| %>
+
+  <%= render :partial => 'admin/news_items/form', :locals => { :f => f } %>
+
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @news_item } %>
+
+<% end %>

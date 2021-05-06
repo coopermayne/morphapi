@@ -1,0 +1,33 @@
+<h2><%= @title %></h2>
+
+<%= link_to 'Export List', 'press_list.csv', class: "pull-right" %>
+<br>
+<%= link_to 'Clear List', 'clear_press_list', data: { confirm: 'Are you sure? This will delete all press emails' }, class: 'pull-right' %>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>First</th>
+      <th>Last</th>
+      <th>Affilliation</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @press_list.each do |journ| %>
+      <tr>
+        <td><%= journ.email %></td>
+        <td><%= journ.first_name %></td>
+        <td><%= journ.last_name %></td>
+        <td><%= journ.affiliation %></td>
+				<td></td>
+        <td> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

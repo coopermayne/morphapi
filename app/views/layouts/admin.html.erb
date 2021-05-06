@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MorphAPI</title>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzpDRDjUvIz0GUNdThv8Skd3R0AZcSdTM&amp;sensor=false&amp;libraries=places"></script>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+    <%= yield(:head) %>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/dt-1.10.11/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/t/bs/dt-1.10.11/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.6.5/jquery.geocomplete.js"></script>
+
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+    <%= render 'layouts/messages' %>
+
+    <div class="container">
+      <div class="row">
+
+        <% if content_for? :sidebar %>
+          
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+
+        <div class="col-md-3 left col">
+          <%= yield(:sidebar) %>
+        </div>
+
+        <% else %>
+
+        <div class="col-sm-12">
+          <%= yield %>
+        </div>
+          
+        <% end %>
+
+      </div>
+
+    </div>
+
+    </main>
+  </body>
+
+
+</html>

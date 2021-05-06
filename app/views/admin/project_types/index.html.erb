@@ -1,0 +1,44 @@
+<h2><%= @title %></h2>
+
+<%= link_to 'New Type', new_admin_project_type_path, class: "pull-right" %>
+
+<%= form_tag "/admin/project_types/rank", method: :put do  %>
+  <% ProjectType.roots.group_by{|pt| pt.section}.each do |section, project_types| %>
+
+		<div class='row'>
+		  <div class='col-md-12'>
+		    <div class='panel panel-default'>
+		      <div class="panel-heading">
+						<h3 class="panel-title"><%= section.title %></h3>
+		      </div>
+		      <div class='panel-body'>
+						<% project_types.sort_by{|pt| pt.rank}.each do |pt| %>
+
+							<%= fields_for "project_types[]", pt do |f| %>
+								<div class="row">
+									<div class="col-sm-6">
+										<%= f.number_field :rank %> <%= f.text_field :title %>
+                    <%= link_to "#{fa_icon "trash"}".html_safe, admin_project_type_path(pt), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %><br \>
+									</div>
+								</div>
+							<% end %><%# field_for(roots) %>
+							<% pt.children.sort_by{|pt| pt.rank}.each do |pt| %>
+								<%= fields_for "project_types[]", pt do |f| %>
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-1">
+											<%= f.number_field :rank %><%= f.text_field :title %>
+                    <%= link_to "#{fa_icon "trash"}".html_safe, admin_project_type_path(pt), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %><br \>
+										</div>
+									</div>
+								<% end %><%# field_for(children) %>
+							<% end %>
+
+						<% end %><%# project_type(roots)%>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+  <% end %><%# end section loop%> 
+  <%= submit_tag "Update Types", class: "btn btn-primary" %>
+<% end %> <%# end form %> 
+

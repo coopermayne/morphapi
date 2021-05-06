@@ -1,0 +1,34 @@
+<div class="row">
+
+	<div class="col-md-6">
+    <%= f.input :title %>
+	</div>
+
+  <% if f.object.primary_image %>
+    <div class="col-md-6">
+      <%= image_tag f.object.primary_image.name_url, class: "img-responsive" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+	<%= f.association :projects, input_html: {class: 'chosen-select'}  %>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<%= f.input :description, rows: "20" %>
+	</div>
+	<div class="col-md-6">
+		<%= f.input :overview, rows: "20" %>
+	</div>
+	<div class="col-md-6">
+		<%= f.input :year %>
+	</div>
+</div>
+
+
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+
+<%= render partial: "admin/shared/form_images", locals: {f: f} %>
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />

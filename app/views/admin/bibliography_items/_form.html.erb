@@ -1,0 +1,43 @@
+<%= render partial: "admin/shared/form_primary_index_images", locals: {f: f} %>
+
+<div class='row'>
+  <div class='col-md-12'>
+
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Basics</h3>
+      </div>
+
+      <div class='panel-body'>
+        <div class='col-md-6'>
+          <%= f.input :title %>
+        </div>
+
+        <div class='col-md-12'>
+          <%= f.association :projects, input_html: {class: 'chosen-select'}  %>
+        </div>
+
+        <div class='col-md-6'>
+          <%= f.input :description %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :overview %>
+        </div>
+        <div class='col-md-6'><%= f.input :author  %></div>
+        <div class='col-md-6'><%= f.input :article_name %></div>
+        <div class='col-md-6'><%= f.input :book_title   %></div>
+        <div class='col-md-6'><%= f.input :subtitle     %></div>
+        <div class='col-md-6'><%= f.input :publication  %></div>
+        <div class='col-md-6'><%= f.input :publisher    %></div>
+        <div class='col-md-6'>
+          <%= f.label :pub_date %> <br \> 
+          <%= f.text_field :pub_date, class: 'datepicker' %> 
+        </div>
+        <div class='col-md-6'><%= f.input :pages        %></div>
+        <div class='col-md-6'><%= f.input :link        %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "admin/shared/form_images", locals: {f: f} %>

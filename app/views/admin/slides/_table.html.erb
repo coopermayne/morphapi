@@ -1,0 +1,60 @@
+<%= form_tag "/admin/slides/rank", method: :put do %>
+  <table class="table table-striped table-hover table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th><%= "rank" %></th>
+        <th>&nbsp;</th>
+        <th><%= "project" %></th>
+        <th><%= "visible" %></th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+
+  <% slides.each do |slide| %>
+    <%= fields_for "slides[]", slide do |f| %>
+      <tr>
+        <td><%= f.number_field :rank %> </td>
+        <td> 
+          <% if f.object.image && f.object.image.name  %>
+            <a class="btn" rel="popover" data-img=<%= f.object.image.name.mobile.url %>>
+              <%= image_tag f.object.image.name.thumb, class: "img-responsive thumby" %>
+            </a> 
+          <% end %>
+        </td>
+        <td><%= slide.project ? slide.project.title : "none" %></td>
+				<td>
+					<%= f.check_box :visible, class: 'fancy-checkbox', data: 
+						{
+							"on-color": "success",
+							"on-text": "#{fa_icon 'eye'}",
+							"off-text": "#{fa_icon "eye-slash"}"
+						} 
+					%>
+				</td>
+        <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_slide_path(slide) %></td>
+        <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_slide_path(slide), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
+        <tr>
+    <% end  %>
+  <% end %>
+  </tbody>
+
+  </table>
+
+  <% if @morph_section %>
+    
+	<%= simple_fields_for @morph_section do |builder| %>
+		<%= builder.input :id, as: :hidden %>
+
+		<%= builder.input :contact %>
+		<%= builder.input :about %>
+		<%= builder.input :employment %>
+		<%= builder.input :media %>
+
+	<% end %>
+
+  <% end %>
+
+  <%= submit_tag "Update Slides", class: "btn btn-primary" %>
+<% end  %>

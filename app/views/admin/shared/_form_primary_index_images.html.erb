@@ -1,0 +1,31 @@
+<div class='row' id="anchor-image-preview">
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Image Preview</h3>
+      </div>
+      <div class='panel-body'>
+
+        <div class="row">
+          <div class='col-md-6'>
+            <em>index image</em>
+            <% if f.object.index_image %>
+              <div class='' style="height: 180px; width: 220px; background-image: url('<%= f.object.index_image.name.mobile %>'); overflow: hidden; background-position: center center; background-size: cover;"></div>
+            <% else %>
+              none
+            <% end %>
+          </div>
+          <div class='col-md-6'>
+            <em>featured image</em>
+            <% if f.object.primary_image %>
+              <div class='' style="height: 180px; width: 360px; background-image: url('<%= f.object.primary_image.name.mobile %>'); overflow: hidden; background-position: center center; background-size: cover;"></div>
+            <% else %>
+              none
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer"> **change with checkboxes below </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<fieldset>
+  <div class='row'>
+    <div class='col-md-12'>
+
+      <div class='panel panel-default'>
+        <div class="panel-heading">
+          <h3 class="panel-title">New Ed <%= link_to "<span class='pull-right'>#{fa_icon 'close'}</span>".html_safe, "#", class: "remove_fields pull-right" %> </h3>
+        </div>
+
+        <div class='panel-body'>
+          <div class='row'>
+            <div class="col-md-12">
+              <%= f.input :title %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

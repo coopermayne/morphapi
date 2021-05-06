@@ -1,0 +1,25 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+      <th>title</th>
+      <th>Image</th>
+      <th>DL</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	
+	<% uploads.each do |upload| %>
+		<tr>
+      <td><%= upload.title %></td>
+      <% if upload.is_image %>
+        <td><%= image_tag upload.name.thumb.url %></td>
+      <% else %>
+        <td><%= upload.name.url %></td>
+      <% end %>
+      <td><%= link_to "download", upload.name.url %></td>
+			<td class="delete"> </td>
+			<td class="delete"> </td>
+		</tr>
+	<% end %>
+</table>

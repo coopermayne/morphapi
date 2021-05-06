@@ -1,0 +1,14 @@
+<% hide_destroy = false if local_assigns[:hide_destroy].nil? %>
+
+<p class="submits">
+
+<%= link_to 'Cancel', send("admin_#{f.object.class.to_s.pluralize.underscore}_path"), :class => 'btn btn-mini btn-danger' %>
+
+<% unless hide_destroy %>
+  <% unless item.new_record? %>
+    <%= link_to fa_icon("trash", text: "Destroy"), send("admin_#{f.object.class.to_s.underscore}_path", item), method: :delete, class: 'btn btn-mini btn-danger pull-right', data: { confirm: "are you sure? it'll be gone forever" } %>
+  <% end %>
+<% end %>
+<%= f.submit "Save", :class => "btn btn-mini btn-primary" %>
+
+</p>

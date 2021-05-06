@@ -1,0 +1,21 @@
+<div class='row' id="anchor-bibliography">
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Bibliography Items</h3>
+      </div>
+      <div class='panel-body'>
+
+        <div class="row">
+          <table class='table'>
+            <%= f.fields_for :bibliography_items do |builder| %>
+              <%= render "admin/projects/formpartials/form_for_bibliography_item", f:builder %>
+            <% end %>
+          </table>
+        </div>
+        <%= link_to_add_fields "Add Bibs", f, :bibliography_items %>
+
+      </div>
+    </div>
+  </div>
+</div>

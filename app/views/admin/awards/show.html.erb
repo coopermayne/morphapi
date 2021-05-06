@@ -1,0 +1,9 @@
+<h2><%= @title %></h2>
+
+<%= simple_form_for @award, :url => admin_award_path(@award) do |f| %>
+
+  <%= render :partial => 'admin/awards/form', :locals => { :f => f } %>
+
+  <%= render :partial => 'admin/shared/form_buttons', :locals => { f: f, item: @award } %>
+
+<% end %>

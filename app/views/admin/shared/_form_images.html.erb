@@ -1,0 +1,174 @@
+<% if f.object.uploads.select{|u| u.is_image}.count > 0 %>
+  
+<div class='row' id="anchor-files">
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title"> Image Galleries </h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+
+          <% f.object.uploads.select{|u| u.is_image}.group_by{|upload| upload.file_type}.sort_by {|k,v| k.nil? ? 9999 : k.rank}.each do |sorted| %>
+            <% type = sorted[0] %>
+            <% upload_group = sorted[1] %>
+            <h1><%= type ? type.title : "No Type" %></h1>
+              <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
+
+                <div class="row image-table-row">
+									<div class="col-sm-4 inline-inputs">
+										<%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %>
+
+										<a class="btn" rel="popover" data-placement="right" data-img=<%= builder.object.name.mobile.url %>>
+											<%= image_tag builder.object.name.thumb, class: "img-responsive thumby" %>
+										</a>
+
+									</div>
+									<div class="col-sm-8">
+										<div class="row">
+
+											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "success",
+													"on-text": "#{fa_icon 'eye'}",
+													"off-text": "#{fa_icon "eye-slash"}"
+												} 
+											%>
+											<%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "primary",
+													"on-text": 'yes',
+													"off-text": 'no',
+													"label-text":'copyright'
+												}
+											%>
+
+											<%= builder.check_box :make_primary, class: "make-primary fancy-checkbox", data: 
+												{
+													"on-color": "info",
+													"on-text": "yes",
+													"off-text": "no",
+													"label-text":'primary'
+												}
+											%>
+
+											<%= builder.check_box :make_index, class: "make-index fancy-checkbox", data: 
+												{
+													"on-color": "warning",
+													"on-text": "yes",
+													"off-text": "no",
+													"label-text":'index'
+												}
+											%>
+
+											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "danger",
+													"on-text": "#{fa_icon "trash-o"}",
+													"off-text": "#{fa_icon "trash-o"}"
+												}
+											%>
+											
+										</div>
+										<div class="row">
+											<%= builder.input :title %>
+											<%= builder.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+											<%= builder.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+											
+										</div>
+									</div>
+                </div>
+              <% end %>
+
+          <% end %>
+        </div> <%# row %>
+
+
+
+      </div> <%# panel- body %>
+  </div> <%# panel %>
+</div> <%# col %>
+</div> <%# row %>
+<% end %><%# end if %>
+
+<% if f.object.uploads.select{|u| u.is_document}.count > 0 %>
+<div class='row' id="anchor-files">
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title"> Documents </h3>
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+
+          <% f.object.uploads.select{|u| u.is_document}.group_by{|upload| upload.file_type}.each do |type, upload_group| %>
+            <h1><%= type ? type.title : "No Type" %></h1>
+              <%= f.fields_for :uploads, upload_group.sort_by{|i| i.rank} do |builder| %>
+
+                <div class="row image-table-row">
+									<div class="col-sm-2 inline-inputs">
+										<%= builder.input :rank, label:false, :input_html => {:style => 'width: 65px'}  %>
+
+									</div>
+									<div class="col-sm-10">
+										<div class="col-sm-12">
+                      <%= File.basename( builder.object.name.url ) %>
+                      <%= link_to fa_icon("file", text: "link to file").html_safe, builder.object.name.url, target: "_blank", class: "btn btn-info"%>
+											<%= builder.check_box :in_gallery, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "success",
+													"on-text": "#{fa_icon 'eye'}",
+													"off-text": "#{fa_icon "eye-slash"}"
+												} 
+											%>
+											<%= builder.check_box :copyright, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "primary",
+													"on-text": 'yes',
+													"off-text": 'no',
+													"label-text":'copyright'
+												}
+											%>
+
+											<%= builder.check_box :_destroy, class: 'fancy-checkbox', data: 
+												{
+													"on-color": "danger",
+													"on-text": "#{fa_icon "trash-o"}",
+													"off-text": "#{fa_icon "trash-o"}"
+												}
+											%>
+											
+										</div>
+										<div class="col-sm-12">
+											<%= builder.input :title %>
+											<%= builder.association :credit, collection: Credit.order(name: :asc), include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+											<%= builder.association :file_type, collection: FileType.all, include_blank: true, input_html: {class: 'chosen-select assoc'} %>
+											
+										</div>
+									</div>
+                </div>
+              <% end %>
+
+          <% end %>
+        </div> <%# row %>
+
+
+
+      </div> <%# panel- body %>
+  </div> <%# panel %>
+</div> <%# col %>
+</div> <%# row %>
+<% end %><%# end if %>
+
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Files</h3>
+      </div>
+      <div class='panel-body'>
+        <%= link_to_add_fields "Add Files", f, :uploads %>
+      </div>
+    </div>
+  </div>
+</div>

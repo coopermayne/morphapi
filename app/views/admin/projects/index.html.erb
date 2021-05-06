@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-sm-6">
+		<h2><%= @title %></h2>
+	</div>
+
+	<div class="col-sm-6 right">
+		<%= link_to fa_icon("plus", text: "add project").html_safe, new_admin_project_path, class: "btn btn-primary" %><br>
+		<%= link_to "manage project types",  admin_project_types_path, class: "pull-right" %><br>
+	</div>
+</div>
+
+<ul class="nav nav-tabs">
+
+  <li role="presentation" class="<%= 'active' unless @section_id %>">
+    <%= link_to "All", admin_projects_path %>
+  </li>
+
+  <% Section.all.select{|s| !s.projects.empty? }.each do |sec| %>
+    <li role="presentation" class="<%= 'active' if @section_id==sec.id.to_s %>">
+      <%= link_to sec.title, admin_projects_path(type: sec.id) %>
+    </li>
+  <% end %>
+
+</ul>
+
+<%= render :partial => 'admin/projects/table', :locals => { :projects => @projects } %>

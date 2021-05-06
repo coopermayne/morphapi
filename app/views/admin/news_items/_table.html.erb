@@ -1,0 +1,23 @@
+<table class="table table-striped table-hover table-condensed table-bordered index-table">
+	<thead>
+		<tr>
+			<th>title</th>
+      <th>has image</th>
+      <th>newsbox</th>
+			<th>created</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	
+	<% news_items.each do |news_item| %>
+		<tr>
+			<td><%= link_to news_item.title, admin_news_item_path(news_item) %></td>
+      <td><%= news_item.primary_image ? "#{fa_icon "check 1x"}".html_safe : "false" %>
+      <td><%= news_item.in_news_box ? "#{fa_icon "check 1x"}".html_safe : "false" %>
+			<td><%= news_item.created_at.strftime('%x') %></td>
+      <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_news_item_path(news_item) %></td>
+      <td><%= link_to "#{fa_icon "trash"}".html_safe, admin_news_item_path(news_item), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
+		</tr>
+	<% end %>
+</table>

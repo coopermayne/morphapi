@@ -1,0 +1,35 @@
+<h2><%= @title %></h2>
+
+<%= link_to 'New User', new_admin_user_path, class: "pull-right" %>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>email</th>
+      <th>admin?</th>
+      <th>last sign in</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin ? "yup" : "nope" %></td>
+        <td><%= user.last_sign_in_at ? user.last_sign_in_at.strftime("%m/%d/%Y") : "never" %></td>
+				<td></td>
+        <td>
+          <% unless user.admin %>
+            <%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

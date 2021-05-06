@@ -1,0 +1,10 @@
+<%= simple_form_for @project_type, :url => admin_project_types_path do |f| %>
+  <%= f.association :section, prompt: "which section?" %>
+  <%= f.collection_select :parent_id, ProjectType.roots, :id, :title, prompt: "choose a parent category" %>
+  <%= f.input :title %>
+  <%= f.input :rank %>
+  <p class="submits">
+  <%= link_to 'Cancel', admin_projects_path, :class => 'btn btn-mini btn-danger' %>
+  <%= f.submit "Save changes", :class => "btn btn-mini btn-primary" %>
+  </p>
+<% end %>

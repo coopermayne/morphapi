@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-sm-6">
+		<h2><%= @title %></h2>
+	</div>
+
+	<div class="col-sm-6 right">
+		<%= link_to fa_icon("plus", text: "add slide").html_safe, new_admin_slide_path, class: "btn btn-primary" %><br>
+	</div>
+</div>
+
+<ul class="nav nav-tabs">
+
+  <% @sections.each do |section| %>
+    <li role="presentation" class="<%= 'active' if @section_id==section.id.to_s %>">
+      <%= link_to section.title, admin_slides_path(type: section.id) %>
+    </li>
+  <% end %>
+
+</ul>
+
+<%= render :partial => 'admin/slides/table', :locals => { :slides => @slides } %>

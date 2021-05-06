@@ -1,0 +1,53 @@
+<div class='row' id="anchor-components">
+  <div class='col-sm-12'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Components</h3>
+      </div>
+      <div class='panel-body'>
+
+        <div class="row">
+          <table class='table'>
+            <%= f.fields_for :components do |builder| %>
+
+							<div class='row'>
+								<div class='col-sm-12'>
+
+									<div class='panel panel-default'>
+										<div class="panel-heading">
+											<h3 class="panel-title">Component</h3>
+										</div>
+
+										<div class='panel-body'>
+											<div class='row'>
+                        <div class="col-sm-10">
+                          <%= builder.input :title %>
+                        </div>
+												<div class="col-sm-2">
+                          <%= builder.check_box :_destroy, class: 'pull-right fancy-checkbox', data: 
+                            {
+                              "on-color": "danger",
+                              "on-text": "#{fa_icon "trash-o"}",
+                              "off-text": "#{fa_icon "trash-o"}"
+                            }
+                          %>
+                        </div>
+                        <div class="col-sm-12">
+                          <%= builder.input :content %>
+                        </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+            <% end %>
+          </table>
+        </div>
+
+				<%= link_to_add_fields "Add component", f, :components %>
+
+      </div>
+    </div>
+  </div>
+</div>

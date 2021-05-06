@@ -1,0 +1,17 @@
+<% content_for :head do %>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/js/bootstrap-datepicker.js"></script>
+<% end %>
+
+<h2><%= @title %></h2>
+
+<%= simple_form_for @slide, html: {multipart: true}, url: admin_slides_path(@slide) do |f| %>
+
+  <%= render :partial => 'admin/slides/form', :locals => { :f => f } %>
+
+  <p class="submits">
+  <%= link_to 'Cancel', admin_slides_path, :class => 'btn btn-mini btn-danger' %>
+  <%= f.submit "Save changes", id: 'testsubmit', :class => "btn btn-mini btn-primary" %>
+  </p>
+
+<% end %>
