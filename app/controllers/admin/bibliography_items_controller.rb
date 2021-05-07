@@ -24,7 +24,7 @@ class Admin::BibliographyItemsController < AdminController
       flash[:notice] = 'Bibliography item created'
       redirect_to admin_bibliography_items_path
     else
-      flash.now[:warning] = 'There were problems when trying to create a new Bib item'
+      flash.now[:warning] = @bibliography_item.errors.full_messages
       render :action => :new
     end
   end
@@ -37,7 +37,7 @@ class Admin::BibliographyItemsController < AdminController
       flash[:notice] = 'BibliographyItem item has been updated'
       redirect_to admin_bibliography_item_path(@bibliography_item)
     else
-      flash.now[:warning] = 'There were problems when trying to update this BibliographyItem item'
+      flash.now[:warning] = @bibliography_item.errors.full_messages
       render :action => :show
     end
   end

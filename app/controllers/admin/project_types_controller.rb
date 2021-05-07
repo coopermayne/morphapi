@@ -20,7 +20,7 @@ class Admin::ProjectTypesController < AdminController
       flash[:notice] = 'Type item created'
       redirect_to admin_project_types_path
     else
-      flash.now[:warning] = 'There were problems when trying to create a new Type item'
+      flash.now[:warning] = @project_type.errors.full_messages
       render :action => :new
     end
   end
@@ -33,7 +33,7 @@ class Admin::ProjectTypesController < AdminController
       flash[:notice] = 'Type item has been updated'
       redirect_to admin_project_type_path(@project_type)
     else
-      flash.now[:warning] = 'There were problems when trying to update this Type item'
+      flash.now[:warning] = @project_type.errors.full_messages
       render :action => :show
     end
   end

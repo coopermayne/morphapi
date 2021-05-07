@@ -26,7 +26,7 @@ class Admin::UploadsController < AdminController
       flash[:notice] = 'Upload created'
       redirect_to admin_uploads_path
     else
-      flash.now[:warning] = 'There were problems when trying to create a new upload'
+      flash.now[:warning] = @upload.errors.full_messages
       render :action => :new
     end
   end
@@ -40,7 +40,7 @@ class Admin::UploadsController < AdminController
       flash[:notice] = 'Upload has been updated'
       redirect_to admin_upload_path(@upload)
     else
-      flash.now[:warning] = 'There were problems when trying to update this upload'
+      flash.now[:warning] = @upload.errors.full_messages
       render :action => :show
     end
   end

@@ -24,7 +24,7 @@ class Admin::NewsItemsController < AdminController
       flash[:notice] = 'News item created'
       redirect_to admin_news_items_path
     else
-      flash.now[:warning] = 'There were problems when trying to create a new news item'
+      flash.now[:warning] = @news_item.errors.full_messages
       render :action => :new
     end
   end
@@ -37,7 +37,7 @@ class Admin::NewsItemsController < AdminController
       flash[:notice] = 'News item has been updated'
       redirect_to admin_news_item_path(@news_item)
     else
-      flash.now[:warning] = 'There were problems when trying to update this news item'
+      flash.now[:warning] = @news_item.errors.full_messages
       render :action => :show
     end
   end
