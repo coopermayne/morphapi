@@ -63,3 +63,9 @@ gem 'jquery-datatables-rails'
 gem 'trumbowyg_rails'
 gem 'chosen-rails'
 gem 'simple_form'
+
+gem 'metamagic'
+
+#caching
+gem 'dalli'
+gem 'memcachier'

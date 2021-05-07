@@ -97,6 +97,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    dalli (2.7.11)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -156,6 +157,9 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.1)
+    memcachier (0.0.2)
+    metamagic (3.1.7)
+      rails (>= 3.0.0)
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
@@ -291,6 +295,7 @@ DEPENDENCIES
   byebug
   carrierwave
   chosen-rails
+  dalli
   devise
   figaro
   fog-aws
@@ -299,6 +304,8 @@ DEPENDENCIES
   jquery-datatables-rails
   jquery-rails
   listen (~> 3.3)
+  memcachier
+  metamagic
   pg (~> 1.1)
   pry
   puma (~> 5.0)
