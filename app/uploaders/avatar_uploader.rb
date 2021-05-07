@@ -30,7 +30,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def image?(new_file)
-    new_file.content_type.start_with? 'image'
+    ['jpg', 'jpeg', 'png'].include?(new_file.extension.downcase)
   end
 
 end
