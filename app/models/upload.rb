@@ -26,7 +26,7 @@ class Upload < ActiveRecord::Base
 
   belongs_to :file_type, optional: true
   belongs_to :credit, optional: true
-  has_one :slide, optional: true
+  has_one :slide
 
   belongs_to :uploadable, polymorphic: true
 
