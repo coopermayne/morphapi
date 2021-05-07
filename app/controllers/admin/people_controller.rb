@@ -39,7 +39,7 @@ class Admin::PeopleController < AdminController
 
     @person = Person.find params[:id]
 
-    if @person.update_attributes person_params
+    if @person.update person_params
       flash[:notice] = 'Person has been updated'
       redirect_to admin_person_path(@person)
     else

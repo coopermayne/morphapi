@@ -29,7 +29,7 @@ class Admin::CreditsController < AdminController
 
     @credit = Credit.find params[:id]
 
-    if @credit.update_attributes credit_params
+    if @credit.update credit_params
       flash[:notice] = 'Type item has been updated'
       redirect_to admin_credit_path(@credit)
     else

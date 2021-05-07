@@ -29,7 +29,7 @@ class Admin::ProjectTypesController < AdminController
 
     @project_type = ProjectType.find params[:id]
 
-    if @project_type.update_attributes project_type_params
+    if @project_type.update project_type_params
       flash[:notice] = 'Type item has been updated'
       redirect_to admin_project_type_path(@project_type)
     else

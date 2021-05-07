@@ -33,7 +33,7 @@ class Admin::BibliographyItemsController < AdminController
 
     @bibliography_item = BibliographyItem.find params[:id]
 
-    if @bibliography_item.update_attributes bibliography_item_params
+    if @bibliography_item.update bibliography_item_params
       flash[:notice] = 'BibliographyItem item has been updated'
       redirect_to admin_bibliography_item_path(@bibliography_item)
     else

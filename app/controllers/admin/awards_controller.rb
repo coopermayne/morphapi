@@ -32,7 +32,7 @@ class Admin::AwardsController < AdminController
 
     @award = Award.find params[:id]
 
-    if @award.update_attributes award_params
+    if @award.update award_params
       flash[:notice] = 'Award item has been updated'
       redirect_to admin_award_path(@award)
     else

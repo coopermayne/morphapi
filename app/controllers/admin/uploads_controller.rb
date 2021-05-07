@@ -36,7 +36,7 @@ class Admin::UploadsController < AdminController
 
     @upload = Upload.find params[:id]
 
-    if @upload.update_attributes upload_params
+    if @upload.update upload_params
       flash[:notice] = 'Upload has been updated'
       redirect_to admin_upload_path(@upload)
     else

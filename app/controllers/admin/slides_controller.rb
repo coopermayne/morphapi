@@ -38,7 +38,7 @@ class Admin::SlidesController < AdminController
   def update
     @slide = Slide.find params[:id]
 
-    if @slide.update_attributes slide_params
+    if @slide.update slide_params
       flash[:notice] = 'Slide has been updated'
       #redirect_to admin_slides_path
       redirect_to admin_slide_path(@slide)

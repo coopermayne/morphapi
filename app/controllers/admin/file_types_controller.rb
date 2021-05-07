@@ -29,7 +29,7 @@ class Admin::FileTypesController < AdminController
 
     @file_type = FileType.find params[:id]
 
-    if @file_type.update_attributes file_type_params
+    if @file_type.update file_type_params
       flash[:notice] = 'Type item has been updated'
       redirect_to admin_file_type_path(@file_type)
     else

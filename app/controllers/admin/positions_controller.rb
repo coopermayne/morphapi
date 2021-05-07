@@ -41,7 +41,7 @@ class Admin::PositionsController < AdminController
   # PATCH/PUT /admin/positions/1.json
   def update
     @position = Position.find(params[:id])
-    if @position.update_attributes admin_position_params
+    if @position.update admin_position_params
       flash[:notice] = 'Position item has been updated'
       redirect_to admin_position_path(@position)
     else

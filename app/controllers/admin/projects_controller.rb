@@ -38,7 +38,7 @@ class Admin::ProjectsController < AdminController
   def update
     @project = Project.find params[:id]
 
-    if @project.update_attributes project_params
+    if @project.update project_params
 
       if !@project.sustainability.nil? && @project.sustainability.length < 50
         @project.sustainability = nil

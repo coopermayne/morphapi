@@ -33,7 +33,7 @@ class Admin::NewsItemsController < AdminController
 
     @news_item = NewsItem.find params[:id]
 
-    if @news_item.update_attributes news_item_params
+    if @news_item.update news_item_params
       flash[:notice] = 'News item has been updated'
       redirect_to admin_news_item_path(@news_item)
     else

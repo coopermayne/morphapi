@@ -72,7 +72,7 @@ module Searchable
                {}
              end
 
-    self.search_result.update_attributes attr.merge(u_attr)
+    self.search_result.update attr.merge(u_attr)
   end
 
 end
