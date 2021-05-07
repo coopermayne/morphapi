@@ -29,8 +29,8 @@ class Admin::SlidesController < AdminController
       flash[:notice] = 'Slide created'
       redirect_to admin_slides_path
     else
-      #flash.now[:warning] = @XXXYYY.errors.full_messages
-      flash[:error] = @slide.errors.empty? ? "Error" : @slide.errors.full_messages.to_sentence
+      #flash.now[:warning] = @XXXYYY.errors.full_messages.to_s
+      flash[:error] = @slide.errors.empty? ? "Error" : @slide.errors.full_messages.to_s.to_sentence
       render action: :new
     end
   end
@@ -43,7 +43,7 @@ class Admin::SlidesController < AdminController
       #redirect_to admin_slides_path
       redirect_to admin_slide_path(@slide)
     else
-      flash.now[:warning] = @slide.errors.full_messages
+      flash.now[:warning] = @slide.errors.full_messages.to_s
       render :action => :show
     end
   end

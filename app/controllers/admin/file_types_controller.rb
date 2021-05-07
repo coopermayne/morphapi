@@ -20,7 +20,7 @@ class Admin::FileTypesController < AdminController
       flash[:notice] = 'Type item created'
       redirect_to admin_file_types_path
     else
-      flash.now[:warning] = @file_type.errors.full_messages
+      flash.now[:warning] = @file_type.errors.full_messages.to_s
       render :action => :new
     end
   end
@@ -33,7 +33,7 @@ class Admin::FileTypesController < AdminController
       flash[:notice] = 'Type item has been updated'
       redirect_to admin_file_type_path(@file_type)
     else
-      flash.now[:warning] = @file_type.errors.full_messages
+      flash.now[:warning] = @file_type.errors.full_messages.to_s
       render :action => :show
     end
   end

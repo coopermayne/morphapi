@@ -29,7 +29,7 @@ class Admin::PeopleController < AdminController
       flash[:notice] = 'Person created'
       redirect_to admin_people_path
     else
-      flash.now[:warning] = @person.errors.full_messages
+      flash.now[:warning] = @person.errors.full_messages.to_s
       render :action => :new
     end
   end
@@ -43,7 +43,7 @@ class Admin::PeopleController < AdminController
       flash[:notice] = 'Person has been updated'
       redirect_to admin_person_path(@person)
     else
-      flash.now[:warning] = @person.errors.full_messages
+      flash.now[:warning] = @person.errors.full_messages.to_s
       render :action => :show
     end
   end

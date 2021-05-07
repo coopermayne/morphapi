@@ -45,7 +45,7 @@ class Admin::PositionsController < AdminController
       flash[:notice] = 'Position item has been updated'
       redirect_to admin_position_path(@position)
     else
-      flash.now[:warning] = @position.errors.full_messages
+      flash.now[:warning] = @position.errors.full_messages.to_s
       render :action => :show
     end
   end

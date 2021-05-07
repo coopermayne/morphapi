@@ -20,7 +20,7 @@ class Admin::CreditsController < AdminController
       flash[:notice] = 'Type item created'
       redirect_to admin_credits_path
     else
-      flash.now[:warning] = @credit.errors.full_messages
+      flash.now[:warning] = @credit.errors.full_messages.to_s
       render :action => :new
     end
   end
@@ -33,7 +33,7 @@ class Admin::CreditsController < AdminController
       flash[:notice] = 'Type item has been updated'
       redirect_to admin_credit_path(@credit)
     else
-      flash.now[:warning] = @credit.errors.full_messages
+      flash.now[:warning] = @credit.errors.full_messages.to_s
       render :action => :show
     end
   end

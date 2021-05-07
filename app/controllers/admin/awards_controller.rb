@@ -23,7 +23,7 @@ class Admin::AwardsController < AdminController
       flash[:notice] = 'Award item created'
       redirect_to admin_awards_path
     else
-      flash.now[:warning] = @award.errors.full_messages
+      flash.now[:warning] = @award.errors.full_messages.to_s
       render :action => :new
     end
   end
@@ -36,7 +36,7 @@ class Admin::AwardsController < AdminController
       flash[:notice] = 'Award item has been updated'
       redirect_to admin_award_path(@award)
     else
-      flash.now[:warning] = @award.errors.full_messages
+      flash.now[:warning] = @award.errors.full_messages.to_s
       render :action => :show
     end
   end

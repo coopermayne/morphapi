@@ -24,7 +24,8 @@ class Admin::BibliographyItemsController < AdminController
       flash[:notice] = 'Bibliography item created'
       redirect_to admin_bibliography_items_path
     else
-      flash.now[:warning] = @bibliography_item.errors.full_messages
+      binding.pry
+      flash.now[:warning] = @bibliography_item.errors.full_messages.to_s
       render :action => :new
     end
   end
@@ -37,7 +38,7 @@ class Admin::BibliographyItemsController < AdminController
       flash[:notice] = 'BibliographyItem item has been updated'
       redirect_to admin_bibliography_item_path(@bibliography_item)
     else
-      flash.now[:warning] = @bibliography_item.errors.full_messages
+      flash.now[:warning] = @bibliography_item.errors.full_messages.to_s
       render :action => :show
     end
   end
@@ -78,7 +79,7 @@ class Admin::BibliographyItemsController < AdminController
         :title,
         :name,
         :credit_id,
-        :make_primary, 
+        :make_primary,
         :make_index,
         :copyright
       ]

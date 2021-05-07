@@ -30,7 +30,7 @@ class Admin::ProjectsController < AdminController
       flash[:notice] = 'Project created'
       redirect_to admin_project_path(@project)
     else
-      flash.now[:warning] = @project.errors.full_messages
+      flash.now[:warning] = @project.errors.full_messages.to_s
       render :action => :new
     end
   end
@@ -50,7 +50,7 @@ class Admin::ProjectsController < AdminController
         #redirect_to admin_project_path(@project)
     else
       @project = Project.find params[:id]
-      flash.now[:warning] = @project.errors.full_messages
+      flash.now[:warning] = @project.errors.full_messages.to_s
       render :action => :show
     end
   end
