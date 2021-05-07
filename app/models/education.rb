@@ -11,5 +11,5 @@
 
 class Education < ActiveRecord::Base
   include Clearcache
-  belongs_to :person
+  belongs_to :person, optional: true
 end

@@ -14,8 +14,8 @@
 class Component < ActiveRecord::Base
   include Clearcache
 
-  belongs_to :project
+  belongs_to :project, optional: true
 
-  belongs_to :component_type
-  
+  belongs_to :component_type, optional: true
+
 end

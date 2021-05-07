@@ -29,7 +29,7 @@ class NewsItem < ActiveRecord::Base
 
   attr_accessor :address
 
-  belongs_to :news_type
+  belongs_to :news_type, optional: true
 
   accepts_nested_attributes_for :news_type
 

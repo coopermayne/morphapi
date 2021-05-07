@@ -13,7 +13,7 @@ class ProjectType < ActiveRecord::Base
   before_save :set_defaults
 
   has_and_belongs_to_many :projects, join_table: "projects_project_types"
-  belongs_to :section
+  belongs_to :section, optional: true
   has_ancestry
 
   private

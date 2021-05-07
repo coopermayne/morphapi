@@ -13,9 +13,9 @@
 class Role < ActiveRecord::Base
   include Clearcache
 
-  belongs_to :person
-  belongs_to :project
-  belongs_to :position
+  belongs_to :person, optional: true
+  belongs_to :project, optional: true
+  belongs_to :position, optional: true
 
   validates_presence_of :person, :project, :position
   validates_associated :person, :project, :position

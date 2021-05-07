@@ -20,8 +20,8 @@
 class Slide < ActiveRecord::Base
   include Clearcache
 
-  belongs_to :section
-  belongs_to :project
+  belongs_to :section, optional: true
+  belongs_to :project, optional: true
 
   has_many :uploads, as: :uploadable, dependent: :destroy
 

@@ -1,13 +1,13 @@
 module Primaryable
   # using this module... Project, Award, BibliographyItem, Person, NewsItem
-  
+
   extend ActiveSupport::Concern
 
   included do
 
     has_many :uploads, as: :uploadable, dependent: :destroy
-    belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id
-    belongs_to :index_image, class_name: 'Upload', foreign_key: :index_image_id
+    belongs_to :primary_image, class_name: 'Upload', foreign_key: :primary_id, optional: true
+    belongs_to :index_image, class_name: 'Upload', foreign_key: :index_image_id, optional: true
     before_save :set_uploads
     accepts_nested_attributes_for :uploads, allow_destroy: true
     accepts_nested_attributes_for :primary_image
