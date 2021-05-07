@@ -13,9 +13,9 @@
 
 class SearchResult < ActiveRecord::Base
   attr_accessor :rank
-  belongs_to :searchable, polymorphic: true
+  belongs_to :searchable, polymorphic: true, optional:true
   #searchable modeles include; Award, BibliographyItem, NewsItem, Person, Project
-  
+
 
   def self.search(search)
     search = search.downcase
