@@ -16,21 +16,21 @@
     <%= fields_for "slides[]", slide do |f| %>
       <tr>
         <td><%= f.number_field :rank %> </td>
-        <td> 
+        <td>
           <% if f.object.image && f.object.image.name  %>
             <a class="btn" rel="popover" data-img=<%= f.object.image.name.mobile.url %>>
-              <%= image_tag f.object.image.name.thumb, class: "img-responsive thumby" %>
-            </a> 
+              <%= image_tag f.object.image.name.thumb.url, class: "img-responsive thumby" %>
+            </a>
           <% end %>
         </td>
         <td><%= slide.project ? slide.project.title : "none" %></td>
 				<td>
-					<%= f.check_box :visible, class: 'fancy-checkbox', data: 
+					<%= f.check_box :visible, class: 'fancy-checkbox', data:
 						{
 							"on-color": "success",
 							"on-text": "#{fa_icon 'eye'}",
 							"off-text": "#{fa_icon "eye-slash"}"
-						} 
+						}
 					%>
 				</td>
         <td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_slide_path(slide) %></td>
@@ -43,7 +43,7 @@
   </table>
 
   <% if @morph_section %>
-    
+
 	<%= simple_fields_for @morph_section do |builder| %>
 		<%= builder.input :id, as: :hidden %>
 
