@@ -19,8 +19,8 @@ end
 
 def get_menu
     all_slides = Slide.get_all_slides
-      
-    news = NewsItem.news_box_items     
+
+    news = NewsItem.news_box_items
 
 
 
@@ -71,8 +71,8 @@ def get_menu
         title: 'Location',
         items: []
       } ]
-    }, 
-    
+    },
+
     {
       title: 'Planning',
       slides: planning_slides,
@@ -82,13 +82,13 @@ def get_menu
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       }, {
         title: 'Year',
-        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ].reverse
+        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019','2020-2029' ].reverse
       }, {
         title: 'Location',
         items: []
       } ]
-    }, 
-    
+    },
+
     {
       title: 'Tangents',
       slides: tan_slides,
@@ -98,7 +98,7 @@ def get_menu
         items: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       }, {
         title: 'Year',
-        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019' ].reverse
+        items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019','2020-2029' ].reverse
       }, {
         title: 'Type',
         items: Section.find_by_title("Tangents").get_types
