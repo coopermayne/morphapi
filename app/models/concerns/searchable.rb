@@ -1,6 +1,6 @@
 module Searchable
   # using this module... Award, Bib, News, Person, Project
-  
+
   extend ActiveSupport::Concern
 
   included do
