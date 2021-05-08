@@ -6,7 +6,7 @@ class Admin::PressController < AdminController
   # GET /admin/press_list.json
   def clear
     Journalist.destroy_all
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
   def index
     @title = 'Press List'
@@ -28,5 +28,3 @@ class Admin::PressController < AdminController
       end
     end
 end
-
-

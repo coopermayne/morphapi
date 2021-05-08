@@ -46,7 +46,7 @@ class Admin::ProjectsController < AdminController
       end
 
       flash[:notice] = 'Project has been updated'
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
         #redirect_to admin_project_path(@project)
     else
       @project = Project.find params[:id]
@@ -116,14 +116,14 @@ class Admin::ProjectsController < AdminController
         :_destroy,
         :title,
         :description,
-        :overview, 
-        :author, 
-        :article_name, 
-        :book_title,   
-        :subtitle,     
-        :publication,  
-        :publisher,    
-        :date, 
+        :overview,
+        :author,
+        :article_name,
+        :book_title,
+        :subtitle,
+        :publication,
+        :publisher,
+        :date,
         :pub_date,
         :link,
         primary_image_attributes: [
