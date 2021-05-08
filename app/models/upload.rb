@@ -37,7 +37,7 @@ class Upload < ActiveRecord::Base
   def make_primary=(val)
     if val=="1"
       self.uploadable.update({primary_image: self})
-    elsif val="0" && self.uploadable.primary_image == self
+    elsif val=="0" && self.uploadable.primary_image == self
       self.uploadable.update({primary_image: nil})
     end
   end
@@ -49,7 +49,7 @@ class Upload < ActiveRecord::Base
   def make_index=(val)
     if val=="1"
       self.uploadable.update({index_image: self})
-    elsif val="0" && self.uploadable.index_image == self
+    elsif val=="0" && self.uploadable.index_image == self
       self.uploadable.update({index_image: nil})
     end
   end

@@ -24,7 +24,6 @@ class Admin::BibliographyItemsController < AdminController
       flash[:notice] = 'Bibliography item created'
       redirect_to admin_bibliography_items_path
     else
-      binding.pry
       flash.now[:warning] = @bibliography_item.errors.full_messages.to_s
       render :action => :new
     end
