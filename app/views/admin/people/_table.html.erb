@@ -14,7 +14,7 @@
 		</tr>
 	</thead>
 	
-	<% people.each do |person| %>
+	<% people.find_each(batch_size: 300) do |person| %>
 		<% cache person do %>
 			<tr>
 				<td><%= link_to person.name, admin_person_path(person) %></td>

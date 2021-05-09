@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	
-	<% news_items.each do |news_item| %>
+	<% news_items.find_each(batch_size: 300) do |news_item| %>
 		<% cache news_item do %>
 			<tr>
 				<td><%= link_to news_item.title, admin_news_item_path(news_item) %></td>
