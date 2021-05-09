@@ -15,9 +15,9 @@
     <%= link_to "All", admin_people_path %>
   </li>
 
-  <% @types.each do |type| %>
+  <% @types.each_with_index do |type, i| %>
     <li role="presentation" class="<%= 'active' if @type==type  %>">
-      <%= link_to type.to_s, admin_people_path(type: type) %>
+      <%= link_to @types_human[i].to_s, admin_people_path(type: type) %>
     </li>
   <% end %>
 

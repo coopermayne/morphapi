@@ -2,7 +2,7 @@ class Admin::NewsItemsController < AdminController
   def index
     @title="News Items"
     @news_type_id = params[:type]
-    @news_items = NewsItem.where(nil)
+    @news_items = NewsItem.includes(:primary_image).where(nil)
     @news_items = @news_items.where(news_type_id: @news_type_id) if @news_type_id
     @news_items = @news_items.order(created_at: :desc)
   end

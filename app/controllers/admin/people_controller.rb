@@ -1,8 +1,9 @@
 class Admin::PeopleController < AdminController
   def index
     @title = "People"
-    @people = Person.where(nil)
+    @people = Person.includes(:roles, :primary_image).where(nil)
     @types = ["is_morphosis", "is_employed", "is_collaborator", "is_consultant"]
+    @types_human = ["All Employees", "Current Employees", "Collaborators", "Consultants"]
 
     if @types.include? params[:type]
       @type = params[:type]
