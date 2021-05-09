@@ -25,6 +25,7 @@ module Clearcache
       Rails.cache.delete('menu')
       Rails.cache.delete('videos')
     when SearchResult
+      # do nothing...
     else
       Rails.cache.clear
     end

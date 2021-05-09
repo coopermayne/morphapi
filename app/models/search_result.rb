@@ -16,7 +16,6 @@ class SearchResult < ActiveRecord::Base
   belongs_to :searchable, polymorphic: true, optional:true
   #searchable modeles include; Award, BibliographyItem, NewsItem, Person, Project
 
-
   def self.search(search)
     search = search.downcase
 
