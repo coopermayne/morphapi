@@ -14,20 +14,18 @@
 		</tr>
 	</thead>
 	
-	<% people.find_each(batch_size: 300) do |person| %>
-		<% cache person do %>
-			<tr>
-				<td><%= link_to person.name, admin_person_path(person) %></td>
-				<td><%= person.is_morphosis  %></td>
-				<td><%= person.is_employed  %></td>
-				<td><%= person.is_collaborator %></td>
-				<td><%= person.is_consultant  %></td>
-				<td><%= person.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
-				<td><%= person.roles.count  %></td>
-				<td><%= person.created_at.strftime('%x') %></td>
-				<td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_person_path(person) %></td>
-				<td><%= link_to "#{fa_icon "trash"}".html_safe, admin_person_path(person), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
-			</tr>
-		<% end %>
+	<% people.each do |person| %>
+		<tr>
+			<td><%= link_to person.name, admin_person_path(person) %></td>
+			<td><%= person.is_morphosis  %></td>
+			<td><%= person.is_employed  %></td>
+			<td><%= person.is_collaborator %></td>
+			<td><%= person.is_consultant  %></td>
+			<td><%= person.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
+			<td><%= person.roles.count  %></td>
+			<td><%= person.created_at.strftime('%x') %></td>
+			<td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_person_path(person) %></td>
+			<td><%= link_to "#{fa_icon "trash"}".html_safe, admin_person_path(person), data:  { method: "delete", confirm:  "Are you sure you want to delete this?" } %></td>
+		</tr>
 	<% end %>
 </table>
