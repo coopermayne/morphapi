@@ -22,7 +22,10 @@
 			<td><%= person.is_employed  %></td>
 			<td><%= person.is_collaborator %></td>
 			<td><%= person.is_consultant  %></td>
-			<td><%= person.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
+			<td>
+				<span class="sort_with_checkmark"><%= person.primary_image.to_s %></span>
+				<%= person.primary_image ? fa_icon("check", class: "pull-right", style: "color:green") : fa_icon("close", class: "pull-right", style: "color: red") %>
+			</td>
 			<td><%= person.roles.length  %></td>
 			<td><%= person.created_at.strftime('%x') %></td>
 			<td><%= link_to "#{fa_icon "pencil"}".html_safe, admin_person_path(person) %></td>
