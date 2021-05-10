@@ -68,6 +68,7 @@ class Admin::ProjectsController < AdminController
   def project_params
     params.require(:project).permit(
       :title,
+      :published,
       :overview,
       :description,
       :sustainability,

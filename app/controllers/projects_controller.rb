@@ -33,7 +33,7 @@
 class ProjectsController < ApplicationController
   def index
     render json: Rails.cache.fetch('projects', :expires_in => 30.days){
-      @projects = Project.includes(:primary_image, :project_types, :section, :components)
+      @projects = Project.includes(:primary_image, :project_types, :section, :components).where(published: true)
       render_to_string :index
     }
   end
