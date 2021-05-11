@@ -32,7 +32,6 @@
           <div class="col-md-6">
             <%= f.simple_fields_for :image, f.object.image || f.object.build_image  do |builder| %>
               <%= builder.input :name, label: false, :input_html => { 
-                :class => 'filestyle', 
                 data: {
                   buttonText: builder.object.name_url ? "Change Image" : "Choose Image",
                   placeholder: builder.object.name_url ? File.basename(builder.object.name_url) :  ""
@@ -62,7 +61,6 @@
 
     <%= f.simple_fields_for :mp4, f.object.mp4 || f.object.build_mp4  do |builder| %>
       <%= builder.input :name, label: false, :input_html => { 
-        :class => 'filestyle', 
         data: {
           buttonText: builder.object.name_url ? "Change mp4" : "Choose mp4",
           placeholder: builder.object.name_url ? File.basename(builder.object.name_url) :  ""
@@ -74,7 +72,6 @@
 
 <%= f.simple_fields_for :webm, f.object.webm || f.object.build_webm  do |builder| %>
   <%= builder.input :name, label: false, :input_html => { 
-    :class => 'filestyle', 
     data: {
       buttonText: builder.object.name_url ? "Change webm" : "Choose webm",
       placeholder: builder.object.name_url ? File.basename(builder.object.name_url) :  ""
@@ -86,7 +83,6 @@
 
 <%= f.simple_fields_for :gif, f.object.gif || f.object.build_gif  do |builder| %>
   <%= builder.input :name, label: false, :input_html => { 
-    :class => 'filestyle', 
     data: {
       buttonText: builder.object.name_url ? "Change gif" : "Choose gif",
       placeholder: builder.object.name_url ? File.basename(builder.object.name_url) :  ""

@@ -14,6 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require trumbowyg/trumbowyg
-// require bootstrap-filestyle.min
 //= require chosen-jquery
 //= require_tree .

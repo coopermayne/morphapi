@@ -223,7 +223,6 @@ var applyTextBox = function(jquery_el){
 var applyJsStuff = function(){
 	applyTextBox($('textarea'))
 	applyChosen();
-	$(".filestyle").filestyle();
   $('.datepicker').datepicker({
     format: "yyyy/mm/dd"
   })
