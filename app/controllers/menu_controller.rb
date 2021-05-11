@@ -19,23 +19,14 @@ end
 
 def get_menu
     all_slides = Slide.get_all_slides
-
     news = NewsItem.news_box_items
-
-
-
-    morph_slides = all_slides["Morphosis"]
-    arch_slides = all_slides["Architecture"]
-    research_slides = all_slides["Research"]
-    planning_slides = all_slides["Planning"]
-    tan_slides = all_slides["Tangents"]
+    morph_section = Section.find_by_title( "Morphosis" )
 
     res = {}
-    morph_section = Section.find_by_title( "Morphosis" )
     res[:sections] = [
       {
       title: 'Morphosis',
-      slides: morph_slides,
+      slides: all_slides["Morphosis"],
       url: "about",
       contact: morph_section.pcontact,
       about: morph_section.pabout,
@@ -50,13 +41,12 @@ def get_menu
       }, {
         title: 'Media',
         items: ['Books', 'Bibliography', 'Awards']
-        #items: ['Books', 'Bibliography', 'Videos', 'Awards', 'Exhibitions']
       } ]
     },
 
     {
       title: 'Architecture',
-      slides: arch_slides,
+      slides: all_slides["Architecture"],
       url: "architecture",
       sorting: [ {
         title: 'A-Z',
@@ -75,7 +65,7 @@ def get_menu
 
     {
       title: 'Planning',
-      slides: planning_slides,
+      slides: all_slides["Planning"],
       url: "planning",
       sorting: [ {
         title: 'A-Z',
@@ -91,7 +81,7 @@ def get_menu
 
     {
       title: 'Tangents',
-      slides: tan_slides,
+      slides: all_slides["Tangents"],
       url: "tangents",
       sorting: [ {
         title: 'A-Z',
@@ -105,7 +95,7 @@ def get_menu
       } ]
     }, {
       title: 'Research',
-      slides: research_slides,
+      slides: all_slides["Research"],
       url: 'research',
       sorting: [{
           title: "Now Institute",
