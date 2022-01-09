@@ -34,3 +34,8 @@ yarn-debug.log*
 **/.DS_Store
 */.DS_Store
 .DS_Store
+.DS_Store
+app/assets/.DS_Store
+app/views/.DS_Store
+app/views/admin/.DS_Store
+public/.DS_Store
