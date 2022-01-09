@@ -25,21 +25,22 @@ class Slide < ActiveRecord::Base
 
   has_many :uploads, as: :uploadable, dependent: :destroy
 
-  belongs_to :image, class_name: 'Upload', foreign_key: :image_upload_id
-  belongs_to :mp4, class_name: 'Upload', foreign_key: :vida_upload_id
-  belongs_to :webm, class_name: 'Upload', foreign_key: :vidb_upload_id
-  belongs_to :gif, class_name: 'Upload', foreign_key: :gif_upload_id
+  belongs_to :image, class_name: 'Upload', foreign_key: :image_upload_id, optional: true
+  belongs_to :mp4, class_name: 'Upload', foreign_key: :vida_upload_id, optional: true
+  belongs_to :webm, class_name: 'Upload', foreign_key: :vidb_upload_id, optional: true
+  belongs_to :gif, class_name: 'Upload', foreign_key: :gif_upload_id, optional: true
 
   accepts_nested_attributes_for :image, :mp4, :webm, :gif
   #, :reject_if => proc { |att| att['id'].blank? && att['name'].blank? }
 
   #validations
   validates :section_id, presence: true
-  #validates :image, presence: {message: "must be present"}
-  #validates :mp4, :webm, :gif, presence: {message: "must be present for home page section"}, if: :is_on_home_page?
+  validates :image, presence: {message: "must be present"}
+  validates :mp4, :webm, :gif, presence: {message: "must be present for home page section"}, if: :is_on_home_page?
 
   #hooks
-  before_save :set_uploads
+  #before_save :set_uploads
+  before_validation :set_uploads
 
   #methods
   def is_on_home_page?

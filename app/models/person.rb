@@ -45,4 +45,5 @@ class Person < ActiveRecord::Base
     end
     res
   end
+
 end
