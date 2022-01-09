@@ -30,7 +30,8 @@ class Slide < ActiveRecord::Base
   belongs_to :webm, class_name: 'Upload', foreign_key: :vidb_upload_id
   belongs_to :gif, class_name: 'Upload', foreign_key: :gif_upload_id
 
-  accepts_nested_attributes_for :image, :mp4, :webm, :gif, :reject_if => proc { |att| att['id'].blank? && att['name'].blank? }
+  accepts_nested_attributes_for :image, :mp4, :webm, :gif
+  #, :reject_if => proc { |att| att['id'].blank? && att['name'].blank? }
 
   #validations
   validates :section_id, presence: true
@@ -39,7 +40,6 @@ class Slide < ActiveRecord::Base
 
   #hooks
   before_save :set_uploads
-
 
   #methods
   def is_on_home_page?
