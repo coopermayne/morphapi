@@ -95,7 +95,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.10)
     crass (1.0.6)
     dalli (2.7.11)
     devise (4.8.0)
@@ -129,9 +129,9 @@ GEM
     font-awesome-rails (4.7.0.7)
       railties (>= 3.2, < 7)
     formatador (0.2.5)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
-    i18n (1.8.10)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
@@ -167,7 +167,7 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.0.3)
     mini_portile2 (2.5.1)
-    minitest (5.14.4)
+    minitest (5.17.0)
     msgpack (1.4.2)
     multi_json (1.15.0)
     nio4r (2.5.7)
@@ -263,7 +263,7 @@ GEM
       rails (>= 3.1)
       railties (>= 3.1)
       sass (>= 3.2)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -280,7 +280,7 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.4.2)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
