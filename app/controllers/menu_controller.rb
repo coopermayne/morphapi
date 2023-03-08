@@ -57,9 +57,6 @@ def get_menu
       }, {
         title: 'Type',
         items: Section.find_by_title("Architecture").get_types
-      }, {
-        title: 'Location',
-        items: []
       } ]
     },
 
@@ -73,9 +70,6 @@ def get_menu
       }, {
         title: 'Year',
         items: [ '1970-1979', '1980-1989', '1990-1999', '2000-2009', '2010-2019','2020-2029' ].reverse
-      }, {
-        title: 'Location',
-        items: []
       } ]
     },
 
